@@ -20,6 +20,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | プール・オブ・レイディアンス（Pool of Radiance、1988年） | 公開中 | [PoolOfRadiance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/poolrad-v1.0) |
 | カース・オブ・ジ・アジュール・ボンズ（Curse of the Azure Bonds、1989年） | 公開中 | [CurseOfTheAzureBonds_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/curse-v1.0) |
 | シークレット・オブ・ザ・シルバー・ブレイズ（Secret of the Silver Blades、1990年） | 公開中 | [SecretOfTheSilverBlades_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/secret-v1.0) |
+| プールズ・オブ・ダークネス（Pools of Darkness、1991年） | 公開中 | [PoolsOfDarkness_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkness-v1.0) |
 
 入れ方と外し方は、サイトの各作品のページをご覧ください。
 どのパッチも、外せば英語に戻ります。配布物には原作のプログラムは入っていません。
