@@ -18,6 +18,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | アイ・オブ・ザ・ビホルダー II ～レジェンド・オブ・ダークムーン～（Eye of the Beholder II: The Legend of Darkmoon） | 公開中 | [EyeOfTheBeholder2_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob2-v1.1) |
 | アイ・オブ・ザ・ビホルダー III ～アサルト・オン・ミス・ドラナー～（Eye of the Beholder III: Assault on Myth Drannor） | 公開中 | [EyeOfTheBeholder3_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob3-v1.1) |
 | プール・オブ・レイディアンス（Pool of Radiance、1988年） | 公開中 | [PoolOfRadiance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/poolrad-v1.0) |
+| カース・オブ・ジ・アジュール・ボンズ（Curse of the Azure Bonds、1989年） | 公開中 | [CurseOfTheAzureBonds_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/curse-v1.0) |
 
 入れ方と外し方は、サイトの各作品のページをご覧ください。
 どのパッチも、外せば英語に戻ります。配布物には原作のプログラムは入っていません。
@@ -29,7 +30,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 
 ## クレジット・権利
 
-- アイ・オブ・ザ・ビホルダー III とプール・オブ・レイディアンス（1988）の日本語表示には美咲フォント（門真 なむ さん）を使っています。
+- アイ・オブ・ザ・ビホルダー III とゴールドボックス・シリーズの日本語表示には美咲フォント（門真 なむ さん）を使っています。
 - アイ・オブ・ザ・ビホルダーの日本語表示には美咲フォント（門真 なむ さん）を、オープニングの字幕には東雲フォント（パブリックドメイン）を使っています。
 
 - アイスウィンド・デイル II の日本語化は、Red Chimera さんの拡張 MOD「Icewind Dale 2: Enhanced Edition」（[RedChimera/IWD2EE](https://github.com/RedChimera/IWD2EE)）を入れた状態に対応しています。
