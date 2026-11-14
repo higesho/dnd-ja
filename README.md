@@ -14,6 +14,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 |---|---|---|
 | アイスウィンド・デイル II（Icewind Dale II ＋ Icewind Dale 2: Enhanced Edition） | 公開中 | [IcewindDale2EE_JP.zip](https://github.com/higesho/IWD2EE/releases/latest) |
 | プール・オブ・レイディアンス ～ルインズ・オブ・ミス・ドラナー～（Pool of Radiance: Ruins of Myth Drannor） | 公開中 | [RuinsOfMythDrannor_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/romd-v1.1) |
+| アイ・オブ・ザ・ビホルダー II ～レジェンド・オブ・ダークムーン～（Eye of the Beholder II: The Legend of Darkmoon） | 公開中 | [EyeOfTheBeholder2_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob2-v1.0) |
 | アイ・オブ・ザ・ビホルダー III ～アサルト・オン・ミス・ドラナー～（Eye of the Beholder III: Assault on Myth Drannor） | 公開中 | [EyeOfTheBeholder3_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob3-v1.0) |
 
 入れ方と外し方は、サイトの各作品のページをご覧ください。
