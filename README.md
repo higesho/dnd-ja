@@ -30,6 +30,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | メンゾベランザン（Forgotten Realms: Menzoberranzan、1994年） | 公開中 | [Menzoberranzan_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/menzoberranzan-v1.0) |
 | シャドウ・ソーサラー（Shadow Sorcerer、1991年） | 公開中 | [ShadowSorcerer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/shadowsorcerer-v1.0) |
 | ドラゴンズ・オブ・フレイム（Dragons of Flame、1989年） | 公開中 | [DragonsOfFlame_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dragonsofflame-v1.0) |
+| ヒーローズ・オブ・ザ・ランス（Heroes of the Lance、1988年） | 公開中 | [HeroesOfTheLance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/heroesofthelance-v1.0) |
 
 入れ方と外し方は、サイトの各作品のページをご覧ください。
 どのパッチも、外せば英語に戻ります。配布物には原作のプログラムは入っていません。
