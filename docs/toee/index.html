@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>テンプル・オブ・エレメンタル・イーヴル 日本語化パッチ — D&amp;D シリーズ 日本語化プロジェクト</title>
+<meta name="description" content="Steam 版「The Temple of Elemental Evil」を日本語で遊べるようにする、非公式のファンメイドパッチ。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="テンプル・オブ・エレメンタル・イーヴル 日本語化パッチ">
+<meta property="og:description" content="Steam 版「The Temple of Elemental Evil」を日本語で遊べるようにする、非公式のファンメイドパッチ。">
+<meta property="og:url" content="https://higesho.github.io/dnd-ja/toee/">
+<meta property="og:image" content="https://higesho.github.io/dnd-ja/toee/img/dialog.jpg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="jpn" id="jpn"><div class="jpn-band"><a class="jpn-home" href="https://higesho.github.io/ja/">日本語化プロジェクト</a></div></header>
+<script src="https://higesho.github.io/ja/nav.js"></script>
+
+<main class="band">
+<section class="hero">
+<p class="sub">The Temple of Elemental Evil</p>
+<h1>テンプル・オブ・エレメンタル・イーヴル 日本語化パッチ</h1>
+<p class="tag">Steam 版「The Temple of Elemental Evil」を日本語で遊べるようにする、非公式のファンメイドパッチです。
+メニュー、キャラクター作成、能力値・技能・特技・呪文・アイテムの名前と説明、NPC との会話、戦闘メッセージ、
+クエストログ、ゲーム内のルール・ヘルプ、チュートリアル、ムービーの字幕までを日本語にしています。
+
+ゲームのフォルダにファイルを 1 つ置くだけで日本語になり、消せば英語に戻ります。</p>
+<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/toee-v1.0">ダウンロード（GitHub）</a></p>
+</section>
+
+<div class="text">
+<h2>どんなゲーム？</h2>
+<p>テンプル・オブ・エレメンタル・イーヴルは、2003年に Atari から発売された D&amp;D 3.5版ルールのコンピューター RPG です（開発は Troika Games）。同名の古典的な D&amp;D シナリオ（1985年）をもとにしています。</p>
+<p>舞台はグレイホーク世界の辺境の村ホムレット。十年前に打ち倒されたはずの邪悪な教団の影が、ふたたび村の周りに忍び寄ります。一行は堀の砦、川沿いの町ナルブを経て、悪の総本山「エレメンタル・イーヴル寺院」の奥深くへ挑みます。最大5人のパーティを作り、ターン制の戦闘で 3.5版のルールを細かく再現しているのが特徴です。</p>
+</div>
+
+<h2>画面</h2>
+<div class="shots">
+  <figure><img src="img/title.jpg" alt="日本語のメニューが並ぶタイトル画面" loading="lazy"><figcaption>タイトル画面</figcaption></figure>
+  <figure><img src="img/party.jpg" alt="日本語のパーティの属性選び" loading="lazy"><figcaption>パーティの属性</figcaption></figure>
+  <figure><img src="img/chargen.jpg" alt="日本語の特技と説明が並ぶキャラクター作成" loading="lazy"><figcaption>キャラクター作成（特技）</figcaption></figure>
+  <figure><img src="img/movie.jpg" alt="日本語の字幕が出たオープニングのムービー" loading="lazy"><figcaption>ムービーの字幕</figcaption></figure>
+  <figure><img src="img/dialog.jpg" alt="大ドルイドとの日本語の会話" loading="lazy"><figcaption>会話</figcaption></figure>
+  <figure><img src="img/talk.jpg" alt="ホムレットの村の少年との日本語の会話" loading="lazy"><figcaption>村人との会話</figcaption></figure>
+  <figure><img src="img/quest.jpg" alt="日本語のクエストログ" loading="lazy"><figcaption>クエストログ</figcaption></figure>
+  <figure><img src="img/radial.jpg" alt="日本語の項目が出た円形メニュー" loading="lazy"><figcaption>円形メニュー</figcaption></figure>
+  <figure><img src="img/help.jpg" alt="日本語のルール・ヘルプ" loading="lazy"><figcaption>ルール・ヘルプ</figcaption></figure>
+  <figure><img src="img/inventory.jpg" alt="日本語の持ち物の画面" loading="lazy"><figcaption>持ち物</figcaption></figure>
+</div>
+
+<div class="text">
+<h2>入れ方</h2>
+<ol>
+<li>ダウンロードした <code>TempleOfElementalEvil_JP.zip</code> を展開します。</li>
+<li>中の <code>DWrite.dll</code> を、ゲームのフォルダ（<code>temple.exe</code> があるフォルダ）にコピーします。<br>
+Steam のライブラリで「The Temple of Elemental Evil」を右クリックし、「管理」→「ローカルファイルを閲覧」で開けます。</li>
+<li>いつもどおりゲームを起動します。</li>
+</ol>
+<p>ゲームのファイルは書き換えません。日本語にしたテキストは、使うときに <code>%TEMP%\ToEEJP</code> フォルダへ作って読み込みます。</p>
+
+<h2>外し方</h2>
+<ul>
+<li>ゲームのフォルダの <code>DWrite.dll</code> を消すと英語に戻ります。<code>%TEMP%\ToEEJP</code> フォルダも消してかまいません。セーブデータはそのまま使えます。</li>
+</ul>
+
+<h2>遊ぶときの注意</h2>
+<ul>
+<li>Steam 版（TemplePlus を元にした新しい起動プログラム入り）専用です。GOG 版や、別に入れた Temple+ では動きません。</li>
+<li>日本語の表示には Noto Serif JP（見出しや本文）と Noto Sans JP（細字の欄）を元にしたフォントを使います。</li>
+<li>声（音声）、タイトルロゴ、絵として描かれた文字、一部のスクリプトが直接出す短いメッセージ、キャラクターの能力値欄の略号（STR、DEX など）は英語のままです。</li>
+<li>日本語化を入れる前に作ったセーブデータも使えますが、セーブに記録された名前（自分で付けた名前など）は元のままです。</li>
+</ul>
+
+<h2>ご意見・誤訳の報告</h2>
+<p>誤訳や不自然な訳に気づいたら、<a href="https://github.com/higesho/dnd-ja/issues">GitHub の Issues</a> で教えてください。</p>
+
+<h2>クレジット</h2>
+<ul>
+<li>日本語の表示には Noto Serif JP と Noto Sans JP（SIL Open Font License 1.1）を元にしたフォントを使っています。</li>
+<li>配布物に原作のプログラムやデータは入っていません。このパッチの使用は自己責任でお願いします。</li>
+</ul>
+</div>
+</main>
+
+<footer class="foot"><div class="band">
+  <p>非公式のファン翻訳です。開発元・販売元とは関係ありません。</p>
+  <p>Dungeons &amp; Dragons、Greyhawk、The Temple of Elemental Evil は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。</p>
+</div></footer>
+</body>
+</html>
