@@ -27,7 +27,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | チャンピオンズ・オブ・クリン（Champions of Krynn、1990年） | 公開中 | [ChampionsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/champions-v1.3) |
 | デス・ナイツ・オブ・クリン（Death Knights of Krynn、1991年） | 公開中 | [DeathKnightsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/deathknights-v1.3) |
 | ダーク・クイーン・オブ・クリン（The Dark Queen of Krynn、1992年） | 公開中 | [DarkQueenOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkqueen-v1.2) |
-| ダークサン ～シャッタード・ランド～（Dark Sun: Shattered Lands、1993年） | 公開中 | [DarkSun_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darksun-v1.0) |
+| ダークサン ～シャッタード・ランド～（Dark Sun: Shattered Lands、1993年） | 公開中 | [DarkSun_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darksun-v1.1) |
 | ダンジョン・ハック（Forgotten Realms: Dungeon Hack、1993年） | 公開中 | [DungeonHack_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dungeonhack-v1.1) |
 | メンゾベランザン（Forgotten Realms: Menzoberranzan、1994年） | 公開中 | [Menzoberranzan_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/menzoberranzan-v1.1) |
 | シャドウ・ソーサラー（Shadow Sorcerer、1991年） | 公開中 | [ShadowSorcerer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/shadowsorcerer-v1.2) |
