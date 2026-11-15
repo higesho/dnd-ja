@@ -23,6 +23,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | プールズ・オブ・ダークネス（Pools of Darkness、1991年） | 公開中 | [PoolsOfDarkness_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkness-v1.1) |
 | ゲートウェイ・トゥ・ザ・サヴェッジ・フロンティア（Gateway to the Savage Frontier、1991年） | 公開中 | [GatewayToTheSavageFrontier_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/gateway-v1.1) |
 | トレジャーズ・オブ・ザ・サヴェッジ・フロンティア（Treasures of the Savage Frontier、1992年） | 公開中 | [TreasuresOfTheSavageFrontier_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/treasures-v1.0) |
+| ヒルズファー（Hillsfar、1989年） | 公開中 | [Hillsfar_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/hillsfar-v1.0) |
 
 入れ方と外し方は、サイトの各作品のページをご覧ください。
 どのパッチも、外せば英語に戻ります。配布物には原作のプログラムは入っていません。
