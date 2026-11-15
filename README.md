@@ -28,6 +28,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | デス・ナイツ・オブ・クリン（Death Knights of Krynn、1991年） | 公開中 | [DeathKnightsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/deathknights-v1.0) |
 | ダンジョン・ハック（Forgotten Realms: Dungeon Hack、1993年） | 公開中 | [DungeonHack_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dungeonhack-v1.0) |
 | メンゾベランザン（Forgotten Realms: Menzoberranzan、1994年） | 公開中 | [Menzoberranzan_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/menzoberranzan-v1.0) |
+| シャドウ・ソーサラー（Shadow Sorcerer、1991年） | 公開中 | [ShadowSorcerer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/shadowsorcerer-v1.0) |
 
 入れ方と外し方は、サイトの各作品のページをご覧ください。
 どのパッチも、外せば英語に戻ります。配布物には原作のプログラムは入っていません。
@@ -39,8 +40,8 @@ GOG.com や Steam で販売されている版を対象にしています。
 
 ## クレジット・権利
 
-- アイ・オブ・ザ・ビホルダー III、メンゾベランザンとゴールドボックス・シリーズの日本語表示には美咲フォント（門真 なむ さん）を使っています。
+- アイ・オブ・ザ・ビホルダー III、メンゾベランザン、シャドウ・ソーサラーとゴールドボックス・シリーズの日本語表示には美咲フォント（門真 なむ さん）を使っています。
 - アイ・オブ・ザ・ビホルダーとダンジョン・ハックの日本語表示には美咲フォント（門真 なむ さん）を、オープニングの字幕には東雲フォント（パブリックドメイン）を使っています。
 
 - アイスウィンド・デイル II の日本語化は、Red Chimera さんの拡張 MOD「Icewind Dale 2: Enhanced Edition」（[RedChimera/IWD2EE](https://github.com/RedChimera/IWD2EE)）を入れた状態に対応しています。
-- Dungeons & Dragons、Forgotten Realms、Icewind Dale、Pool of Radiance、Eye of the Beholder、Dungeon Hack、Menzoberranzan は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。
+- Dungeons & Dragons、Forgotten Realms、Icewind Dale、Pool of Radiance、Eye of the Beholder、Dungeon Hack、Menzoberranzan、Dragonlance は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。
