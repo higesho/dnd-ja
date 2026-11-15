@@ -26,6 +26,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | ヒルズファー（Hillsfar、1989年） | 公開中 | [Hillsfar_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/hillsfar-v1.1) |
 | チャンピオンズ・オブ・クリン（Champions of Krynn、1990年） | 公開中 | [ChampionsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/champions-v1.1) |
 | デス・ナイツ・オブ・クリン（Death Knights of Krynn、1991年） | 公開中 | [DeathKnightsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/deathknights-v1.1) |
+| ダーク・クイーン・オブ・クリン（The Dark Queen of Krynn、1992年） | 公開中 | [DarkQueenOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkqueen-v1.0) |
 | ダンジョン・ハック（Forgotten Realms: Dungeon Hack、1993年） | 公開中 | [DungeonHack_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dungeonhack-v1.0) |
 | メンゾベランザン（Forgotten Realms: Menzoberranzan、1994年） | 公開中 | [Menzoberranzan_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/menzoberranzan-v1.0) |
 | シャドウ・ソーサラー（Shadow Sorcerer、1991年） | 公開中 | [ShadowSorcerer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/shadowsorcerer-v1.0) |
