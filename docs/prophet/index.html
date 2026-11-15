@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>レイヴンロフト ～ストーン・プロフェット～ 日本語化パッチ — D&amp;D シリーズ 日本語化プロジェクト</title>
+<meta name="description" content="Steam 版 Dungeons &amp; Dragons Ravenloft Series の「Ravenloft: Stone Prophet」を日本語で遊べるようにする、非公式のファンメイドパッチ。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="レイヴンロフト ～ストーン・プロフェット～ 日本語化パッチ">
+<meta property="og:description" content="Steam 版「Ravenloft: Stone Prophet」を日本語で遊べるようにする、非公式のファンメイドパッチ。">
+<meta property="og:url" content="https://higesho.github.io/dnd-ja/prophet/">
+<meta property="og:image" content="https://higesho.github.io/dnd-ja/prophet/img/talk.png">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="jpn" id="jpn"><div class="jpn-band"><a class="jpn-home" href="https://higesho.github.io/ja/">日本語化プロジェクト</a></div></header>
+<script src="https://higesho.github.io/ja/nav.js"></script>
+
+<main class="band">
+<section class="hero">
+<p class="sub">Ravenloft: Stone Prophet</p>
+<h1>レイヴンロフト ～ストーン・プロフェット～ 日本語化パッチ</h1>
+<p class="tag">Steam 版「Dungeons &amp; Dragons Ravenloft Series」に入っている「Ravenloft: Stone Prophet」を日本語で遊べるようにする、非公式のファンメイドパッチです。
+人物との会話（一行の台詞と選択肢を含む）、書物や碑文、場所の名前、呪文の名前、
+画面に出るメッセージ、自動地図、オプション画面、キャラクター作成の項目までを日本語にしています。
+
+ゲームの DOSBOX フォルダにファイルを 1 つ置くだけで日本語になり、消せば英語に戻ります。</p>
+<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/prophet-v1.0">ダウンロード（GitHub）</a></p>
+</section>
+
+<div class="text">
+<h2>どんなゲーム？</h2>
+<p>レイヴンロフト ～ストーン・プロフェット～は、1995年に SSI から発売された AD&amp;D 公式ライセンスの RPG です（開発は DreamForge Intertainment）。前作「ストラドズ・ポゼッション」に続く、ゴシック・ホラーの世界「レイヴンロフト」を舞台にした一人称視点の 3D RPG です。</p>
+<p>エルトゥリエルの冒険者たちは、再び霧に呑まれ、古代エジプト風の砂漠の領域ハル・アキールへ連れ去られます。そこを支配するのは古代のファラオのマミー、アンクテポト。太陽神ラーの神官たち、セトの信徒、アンクテポトに背いたマミーのセンメトの思惑が絡み合う中、一行は砂の中から脱出の道を探します。</p>
+</div>
+
+<h2>画面</h2>
+<div class="shots">
+  <figure><img src="img/title.png" alt="レイヴンロフト ～ストーン・プロフェット～のタイトル画面" loading="lazy"><figcaption>タイトル画面</figcaption></figure>
+  <figure><img src="img/talk.png" alt="砂漠で一行の仲間が日本語で話している画面" loading="lazy"><figcaption>会話</figcaption></figure>
+  <figure><img src="img/status.png" alt="日本語のキャラクターの能力値" loading="lazy"><figcaption>キャラクター</figcaption></figure>
+  <figure><img src="img/automap.png" alt="日本語の地名と凡例が出た自動地図" loading="lazy"><figcaption>自動地図</figcaption></figure>
+  <figure><img src="img/options.png" alt="日本語のオプション画面" loading="lazy"><figcaption>オプション</figcaption></figure>
+  <figure><img src="img/chargen.png" alt="キャラクター作成の種族のカード" loading="lazy"><figcaption>キャラクター作成</figcaption></figure>
+</div>
+
+<div class="text">
+<h2>入れ方</h2>
+<ol>
+<li>ダウンロードした <code>StoneProphet_JP.zip</code> を展開します。</li>
+<li>中の <code>winmm.dll</code> を、ゲームの <code>DOSBOX</code> フォルダ（<code>DOSBox.exe</code> があるフォルダ）にコピーします。<br>
+Steam のライブラリで「Dungeons &amp; Dragons Ravenloft Series」を右クリックし、「管理」→「ローカルファイルを閲覧」で開いて、
+<code>games\RVA2 - Ravenloft - Stone Prophet-ENG\DOSBOX</code> に進みます。</li>
+<li>いつもどおり Steam から Ravenloft: Stone Prophet を起動します。</li>
+</ol>
+<p>ゲームのファイルは書き換えません。日本語にしたデータは、起動時に <code>%LOCALAPPDATA%\PROPHET_JP</code> フォルダに自動で作られます。</p>
+
+<h2>外し方</h2>
+<ul>
+<li><code>DOSBOX</code> フォルダの <code>winmm.dll</code> を消すと英語に戻ります。<code>%LOCALAPPDATA%\PROPHET_JP</code> フォルダも消してかまいません。セーブデータはそのまま使えます。</li>
+</ul>
+
+<h2>遊ぶときの注意</h2>
+<ul>
+<li>会話・書物などの文章は <a href="https://littlelimit.net/k8x12.htm">k8x12 フォント</a>（8×12 ドット）で表示します。このゲームの画面は横長のドットなので、ほぼ正方形の読みやすい大きさになります。メニューや数値などのシステムの文字は美咲フォント（8×8 ドット）です。文字の色はゲームのフォントに合わせています。</li>
+<li>一行が複数のときと一人のときで変わる台詞（我々／私）も、それぞれ日本語にしています。</li>
+<li>声（音声）とムービーは英語のままです。</li>
+<li>タイトル・メニュー・ボタン・キャラクター作成のカード（性別・種族・職業・属性）など、絵として描かれた文字と、キャラクターやアイテムの名前は英語のままです。</li>
+
+
+
+
+<li>同梱の DOSBox 0.74-3 と英語版のゲームに合わせて作っています。中身が違うときは日本語化を行わず、英語のまま動きます。</li>
+</ul>
+
+<h2>ご意見・誤訳の報告</h2>
+<p>誤訳や不自然な訳に気づいたら、<a href="https://github.com/higesho/dnd-ja/issues">GitHub の Issues</a> で教えてください。</p>
+
+<h2>クレジット</h2>
+<ul>
+<li>日本語の表示には <a href="https://littlelimit.net/k8x12.htm">k8x12</a>・<a href="https://littlelimit.net/misaki.htm">美咲フォント</a>（門真 なむ さん）を使っています。</li>
+<li>配布物に原作のプログラムやデータは入っていません。このパッチの使用は自己責任でお願いします。</li>
+</ul>
+</div>
+</main>
+
+<footer class="foot"><div class="band">
+  <p>非公式のファン翻訳です。開発元・販売元とは関係ありません。</p>
+  <p>Dungeons &amp; Dragons、Forgotten Realms、Ravenloft は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。</p>
+</div></footer>
+</body>
+</html>

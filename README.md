@@ -37,6 +37,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | ウォー・オブ・ザ・ランス（War of the Lance、1989年） | 公開中 | [WarOfTheLance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/warofthelance-v1.2) |
 | ドラゴンシャード（Dungeons & Dragons: Dragonshard、2005年） | 公開中 | [Dragonshard_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dragonshard-v1.1) |
 | レイヴンロフト ～ストラドズ・ポゼッション～（Ravenloft: Strahd's Possession、1994年） | 公開中 | [Strahd_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/strahd-v1.1) |
+| レイヴンロフト ～ストーン・プロフェット～（Ravenloft: Stone Prophet、1995年） | 公開中 | [StoneProphet_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/prophet-v1.0) |
 
 入れ方と外し方は、サイトの各作品のページをご覧ください。
 どのパッチも、外せば英語に戻ります。配布物には原作のプログラムは入っていません。
@@ -50,7 +51,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 
 - アイ・オブ・ザ・ビホルダー III、メンゾベランザン、シャドウ・ソーサラーとゴールドボックス・シリーズの日本語表示には美咲フォント（門真 なむ さん）を使っています。
 - ドラゴンシャードの日本語表示には Noto Serif JP と Noto Sans JP（SIL Open Font License 1.1）を元にしたフォントを使っています。
-- レイヴンロフト ～ストラドズ・ポゼッション～の日本語表示には美咲フォント（門真 なむ さん）を、オープニングの字幕には東雲フォント（パブリックドメイン）を使っています。
+- レイヴンロフトの2作（ストラドズ・ポゼッション、ストーン・プロフェット）の日本語表示には k8x12・美咲フォント（門真 なむ さん）を、ストラドズ・ポゼッションのオープニングの字幕には東雲フォント（パブリックドメイン）を使っています。
 - アイ・オブ・ザ・ビホルダーとダンジョン・ハックの日本語表示には美咲フォント（門真 なむ さん）を、オープニングの字幕には東雲フォント（パブリックドメイン）を使っています。
 
 - アイスウィンド・デイル II の日本語化は、Red Chimera さんの拡張 MOD「Icewind Dale 2: Enhanced Edition」（[RedChimera/IWD2EE](https://github.com/RedChimera/IWD2EE)）を入れた状態に対応しています。
