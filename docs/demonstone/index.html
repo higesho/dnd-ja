@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デーモンストーン 日本語化パッチ — D&amp;D シリーズ 日本語化プロジェクト</title>
+<meta name="description" content="Steam 版「Forgotten Realms: Demon Stone」を日本語で遊べるようにする、非公式のファンメイドパッチ。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="デーモンストーン 日本語化パッチ">
+<meta property="og:description" content="Steam 版「Forgotten Realms: Demon Stone」を日本語で遊べるようにする、非公式のファンメイドパッチ。">
+<meta property="og:url" content="https://higesho.github.io/dnd-ja/demonstone/">
+<meta property="og:image" content="https://higesho.github.io/dnd-ja/demonstone/img/subtitle.jpg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="jpn" id="jpn"><div class="jpn-band"><a class="jpn-home" href="https://higesho.github.io/ja/">日本語化プロジェクト</a></div></header>
+<script src="https://higesho.github.io/ja/nav.js"></script>
+
+<main class="band">
+<section class="hero">
+<p class="sub">Forgotten Realms: Demon Stone</p>
+<h1>デーモンストーン 日本語化パッチ</h1>
+<p class="tag">Steam 版「Forgotten Realms: Demon Stone」を日本語で遊べるようにする、非公式のファンメイドパッチです。
+メニュー、オプション、操作説明、章のあらすじ、キャラクターステータス、技・アイテムの名前と説明、
+ゲーム中の会話の字幕を日本語にしています。
+
+ゲームのフォルダにファイルを 1 つ置くだけで日本語になり、消せば英語に戻ります。</p>
+<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/demonstone-v1.0">ダウンロード（GitHub）</a></p>
+</section>
+
+<div class="text">
+<h2>どんなゲーム？</h2>
+<p>デーモンストーンは、2004年に Atari から発売された D&amp;D 公式ライセンスのアクションゲームです（開発は Stormfront Studios、PC 版は2005年）。物語は R・A・サルヴァトーレが手がけ、舞台はフォーゴトン・レルムのフェイルーン。</p>
+<p>かつて大魔術師ケルベン・ブラックスタッフが「デーモンストーン」に封じた二つの軍勢――スラードの王イゴールと、ギスヤンキの将軍シレカ――が解き放たれ、フェイルーンに攻め込みます。傭兵の戦士ラネック、ハーフ・ドラウのローグのザイ、若き魔術師イリウスの3人を切り替えながら戦い、章の合間に経験値とゴールドで技やアイテムを強化していきます。</p>
+</div>
+
+<h2>画面</h2>
+<div class="shots">
+  <figure><img src="img/title.jpg" alt="日本語のメニューが並ぶデーモンストーンのタイトル画面" loading="lazy"><figcaption>タイトル画面</figcaption></figure>
+  <figure><img src="img/subtitle.jpg" alt="ゲーム中の会話の日本語字幕" loading="lazy"><figcaption>会話の字幕</figcaption></figure>
+  <figure><img src="img/pause.jpg" alt="日本語のポーズメニュー" loading="lazy"><figcaption>ポーズメニュー</figcaption></figure>
+  <figure><img src="img/hud.jpg" alt="日本語で説明された画面表示の要素" loading="lazy"><figcaption>操作説明（画面表示）</figcaption></figure>
+  <figure><img src="img/summary.jpg" alt="日本語の章のあらすじ" loading="lazy"><figcaption>章のあらすじ</figcaption></figure>
+  <figure><img src="img/status.jpg" alt="日本語のキャラクターステータス" loading="lazy"><figcaption>キャラクターステータス</figcaption></figure>
+  <figure><img src="img/levelup.jpg" alt="技の名前と日本語の説明が並ぶレベル強化の画面" loading="lazy"><figcaption>レベル強化（技の説明）</figcaption></figure>
+  <figure><img src="img/items.jpg" alt="アイテムの名前と日本語の説明が並ぶアイテム強化の画面" loading="lazy"><figcaption>アイテム強化</figcaption></figure>
+</div>
+
+<div class="text">
+<h2>入れ方</h2>
+<ol>
+<li>ダウンロードした <code>DemonStone_JP.zip</code> を展開します。</li>
+<li>中の <code>dinput8.dll</code> を、ゲームのフォルダ（<code>DemonStone.exe</code> があるフォルダ）にコピーします。<br>
+Steam のライブラリで「Forgotten Realms: Demon Stone」を右クリックし、「管理」→「ローカルファイルを閲覧」で開けます。</li>
+<li>いつもどおりゲームを起動します。</li>
+<li>字幕は最初「オフ」になっています。メインメニューの「オプション」→「字幕」で「オン」にしてください。</li>
+</ol>
+<p>ゲームのファイルは書き換えません。初めて起動するときは、日本語の文字を入れたフォントとテキストを作るため、起動に数秒ほど余計にかかります。
+作ったデータは <code>%TEMP%\DemonStoneJP</code> フォルダに保存され、2回目からはすぐ起動します。</p>
+
+<p>GOG 版でも、ゲームのフォルダ（<code>DemonStone.exe</code> があるフォルダ）に <code>dinput8.dll</code> を置いてください。日本語化で手を入れる場所は、Steam 版と同じ番地になくても <code>DemonStone.exe</code> の中から探して見つけるようにしてあります（GOG 版のゲームそのものでの動作はまだ確かめていません）。</p>
+
+<h2>外し方</h2>
+<ul>
+<li>ゲームのフォルダの <code>dinput8.dll</code> を消すと英語に戻ります。<code>%TEMP%\DemonStoneJP</code> フォルダも消してかまいません。セーブデータはそのまま使えます。</li>
+</ul>
+
+<h2>遊ぶときの注意</h2>
+<ul>
+<li>日本語の表示には Noto Serif JP を元にしたフォントを使います。</li>
+<li>声（音声）、ムービーの絵として描かれた文字（オープニングのスタッフ名など）、タイトルロゴ、スタッフクレジット、キーの名前（Lmb、Space など）は英語のままです。</li>
+<li>オープニングのムービー（ケルベンの語り）は、英語版でも字幕が出ない作りのため、日本語の字幕も出ません。</li>
+<li>英語版の <code>DemonStone.exe</code> に合わせて作っています。手を入れる場所が見つからない exe のときは、その部分を日本語化せずに動きます。</li>
+</ul>
+
+<h2>更新履歴</h2>
+<ul>
+<li>v1.0：最初の公開。</li>
+</ul>
+
+<h2>ご意見・誤訳の報告</h2>
+<p>誤訳や不自然な訳に気づいたら、<a href="https://github.com/higesho/dnd-ja/issues">GitHub の Issues</a> で教えてください。</p>
+
+<h2>クレジット</h2>
+<ul>
+<li>日本語の表示には Noto Serif JP（SIL Open Font License 1.1）を元にしたフォントを使っています。</li>
+<li>配布物に原作のプログラムやデータは入っていません。このパッチの使用は自己責任でお願いします。</li>
+</ul>
+</div>
+</main>
+
+<footer class="foot"><div class="band">
+  <p>非公式のファン翻訳です。開発元・販売元とは関係ありません。</p>
+  <p>Forgotten Realms、Dungeons &amp; Dragons、Demon Stone は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。</p>
+</div></footer>
+</body>
+</html>
