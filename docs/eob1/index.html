@@ -24,7 +24,7 @@
 ゲーム中のメッセージ、人物との会話、壁の文字や碑文、アイテム名と呪文名、キャンプのメニューやキャラクター情報、
 タイトル画面のメニュー、キャラクター作成の画面、オープニングの字幕までを日本語にしています。
 ゲームの DOSBOX フォルダにファイルを 1 つ置くだけで日本語になり、消せば英語に戻ります。</p>
-<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/eob1-v1.3">ダウンロード（GitHub）</a></p>
+<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/eob1-v1.4">ダウンロード（GitHub）</a></p>
 </section>
 
 <div class="text">
@@ -63,6 +63,33 @@ Steam のライブラリで「Forgotten Realms: The Archives - Collection One」
 <li><code>DOSBOX</code> フォルダの <code>winmm.dll</code> を消すと英語に戻ります。<code>%LOCALAPPDATA%\EOB1_JP</code> フォルダも消してかまいません。セーブデータはそのまま使えます。</li>
 </ul>
 
+<h2>自動地図「Where Are We?」といっしょに使う</h2>
+<p>「<a href="https://www.eskimo.com/~edv/lockscroll/WhereAreWe/">Where Are We?</a>」は、DOSBox で動いているゲームを読み取って、歩いた場所の地図を自動で描く Windows 用のツールです（英語）。
+この日本語化パッチを入れたままでも使えます。パーティーの位置や向き、能力や持ち物、今いる場所の説明などが Where Are We? の窓に表示されます。</p>
+<figure class="waw"><img src="img/waw.png" alt="Where Are We? の地図の画面" loading="lazy"><figcaption>Where Are We? の画面（地下水道の第1層。歩いた所から地図が描かれていきます）</figcaption></figure>
+
+<h3>使い方</h3>
+<ol>
+<li><a href="https://www.eskimo.com/~edv/lockscroll/WhereAreWe/">Where Are We? のページ</a>から zip をダウンロードして展開し、中の <code>WhereAreWe</code> の exe を起動します。動かすには .NET Framework 4.5 以上が要ります（Windows 10・11 には入っています）。</li>
+<li>最初の起動では、設定の案内（Welcome to "Where Are We"）が出ます。ゲームの場所は自動で見つかります。
+「Change the DOSBox settings for the above games to be windowed instead of fullscreen」のチェックは外してから、Next と Finish で閉じます。
+「Non-administrator mode detected」と出たら「はい」で続けます。</li>
+<li>メニューの View → Options を開き、DOSBox タブの「DOSBox memory quick-scan only (check only known memory offsets)」のチェックを外して、OK を押します。</li>
+<li><strong>Steam 版の場合だけ</strong>、ゲームを起動するときの設定を、Where Are We? に合うものに替えます。
+zip の中の <code>WhereAreWe用</code> フォルダの <code>game.conf</code> を、<code>games\Eye of the Beholder ENG\game.conf</code> に上書きしてください（元の <code>game.conf</code> は、別の場所に控えを取っておいてください）。
+ゲームの遊び方やセーブデータは変わりません。GOG 版は、この手順はいりません。</li>
+<li>いつもどおりゲームを起動して、冒険を始めます。Where Are We? がゲームを見つけると、地図にパーティーの位置が出て、歩いた所から地図が描かれていきます。
+ほかのゲームの地図が開いていると「Different game running」と聞かれるので、「はい」を押してこのゲームの地図に切り替えます。</li>
+</ol>
+
+<h3>注意</h3>
+<ul>
+<li>Eye of the Beholder の DOSBox は、1 つだけ起動してください。2 つ以上起動していると、Where Are We? が別の方を読もうとすることがあります。</li>
+<li>Where Are We? の画面（地図の説明や、怪物・品物の名前など）は英語のままです。</li>
+<li>Steam 版で起動の設定を元に戻すときは、控えの <code>game.conf</code> を戻してください。</li>
+<li>Where Are We? は、この日本語化パッチとは別に作られているツールです。詳しい使い方は <a href="https://www.eskimo.com/~edv/lockscroll/WhereAreWe/">Where Are We? のページ</a>をご覧ください。</li>
+</ul>
+
 <h2>遊ぶときの注意</h2>
 <ul>
 <li>ボタンやタイトルロゴなど、絵として描かれている文字は英語のままです。</li>
@@ -75,6 +102,7 @@ Steam のライブラリで「Forgotten Realms: The Archives - Collection One」
 
 <h2>更新履歴</h2>
 <ul>
+<li>v1.4：自動地図「Where Are We?」といっしょに使えるようにしました（Steam 版用の起動設定を同梱）。</li>
 <li>v1.3：レベルが上がったときと、アンデッド退散を使ったときのメッセージが英語のままだったのを直しました。環境設定で「棒グラフ」をオフにしたときの HP の数字が「15の15」のように崩れていたのを「15/15」に直しました。</li>
 <li>v1.2：環境によっては、起動したときに「プロシージャ エントリ ポイント mmioCreateChunk が … DINPUT.DLL から見つかりませんでした」と出て、マウスが使えなくなる不具合を直しました。winmm.dll を新しいものに置き換えてください。</li>
 <li>v1.1：GOG 版（DOSBox 0.74-2.1 が付いたもの）でも日本語になるようにしました。</li>
