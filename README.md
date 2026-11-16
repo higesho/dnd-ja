@@ -14,34 +14,34 @@ GOG.com や Steam で販売されている版を対象にしています。
 |---|---|---|
 | アイスウィンド・デイル II（Icewind Dale II ＋ Icewind Dale 2: Enhanced Edition） | 公開中 | [IcewindDale2EE_JP.zip](https://github.com/higesho/IWD2EE/releases/latest) |
 | プール・オブ・レイディアンス ～ルインズ・オブ・ミス・ドラナー～（Pool of Radiance: Ruins of Myth Drannor） | 公開中 | [RuinsOfMythDrannor_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/romd-v1.1) |
-| アイ・オブ・ザ・ビホルダー（Eye of the Beholder） | 公開中 | [EyeOfTheBeholder_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob1-v1.1) |
-| アイ・オブ・ザ・ビホルダー II ～レジェンド・オブ・ダークムーン～（Eye of the Beholder II: The Legend of Darkmoon） | 公開中 | [EyeOfTheBeholder2_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob2-v1.2) |
-| アイ・オブ・ザ・ビホルダー III ～アサルト・オン・ミス・ドラナー～（Eye of the Beholder III: Assault on Myth Drannor） | 公開中 | [EyeOfTheBeholder3_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob3-v1.2) |
-| プール・オブ・レイディアンス（Pool of Radiance、1988年） | 公開中 | [PoolOfRadiance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/poolrad-v1.3) |
-| カース・オブ・ジ・アジュール・ボンズ（Curse of the Azure Bonds、1989年） | 公開中 | [CurseOfTheAzureBonds_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/curse-v1.3) |
-| シークレット・オブ・ザ・シルバー・ブレイズ（Secret of the Silver Blades、1990年） | 公開中 | [SecretOfTheSilverBlades_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/secret-v1.3) |
-| プールズ・オブ・ダークネス（Pools of Darkness、1991年） | 公開中 | [PoolsOfDarkness_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkness-v1.4) |
-| ゲートウェイ・トゥ・ザ・サヴェッジ・フロンティア（Gateway to the Savage Frontier、1991年） | 公開中 | [GatewayToTheSavageFrontier_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/gateway-v1.3) |
-| トレジャーズ・オブ・ザ・サヴェッジ・フロンティア（Treasures of the Savage Frontier、1992年） | 公開中 | [TreasuresOfTheSavageFrontier_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/treasures-v1.2) |
-| ヒルズファー（Hillsfar、1989年） | 公開中 | [Hillsfar_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/hillsfar-v1.2) |
-| チャンピオンズ・オブ・クリン（Champions of Krynn、1990年） | 公開中 | [ChampionsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/champions-v1.3) |
-| デス・ナイツ・オブ・クリン（Death Knights of Krynn、1991年） | 公開中 | [DeathKnightsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/deathknights-v1.3) |
-| ダーク・クイーン・オブ・クリン（The Dark Queen of Krynn、1992年） | 公開中 | [DarkQueenOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkqueen-v1.2) |
-| ダークサン ～シャッタード・ランド～（Dark Sun: Shattered Lands、1993年） | 公開中 | [DarkSun_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darksun-v1.2) |
-| ダークサン２ ～ウェイク・オブ・ザ・ラヴェジャー～（Dark Sun: Wake of the Ravager、1994年） | 公開中 | [DarkSun2_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darksun2-v1.0) |
-| ダンジョン・ハック（Forgotten Realms: Dungeon Hack、1993年） | 公開中 | [DungeonHack_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dungeonhack-v1.1) |
-| メンゾベランザン（Forgotten Realms: Menzoberranzan、1994年） | 公開中 | [Menzoberranzan_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/menzoberranzan-v1.1) |
-| シャドウ・ソーサラー（Shadow Sorcerer、1991年） | 公開中 | [ShadowSorcerer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/shadowsorcerer-v1.2) |
-| ドラゴンズ・オブ・フレイム（Dragons of Flame、1989年） | 公開中 | [DragonsOfFlame_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dragonsofflame-v1.2) |
-| ヒーローズ・オブ・ザ・ランス（Heroes of the Lance、1988年） | 公開中 | [HeroesOfTheLance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/heroesofthelance-v1.2) |
-| ウォー・オブ・ザ・ランス（War of the Lance、1989年） | 公開中 | [WarOfTheLance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/warofthelance-v1.2) |
+| アイ・オブ・ザ・ビホルダー（Eye of the Beholder） | 公開中 | [EyeOfTheBeholder_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob1-v1.2) |
+| アイ・オブ・ザ・ビホルダー II ～レジェンド・オブ・ダークムーン～（Eye of the Beholder II: The Legend of Darkmoon） | 公開中 | [EyeOfTheBeholder2_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob2-v1.3) |
+| アイ・オブ・ザ・ビホルダー III ～アサルト・オン・ミス・ドラナー～（Eye of the Beholder III: Assault on Myth Drannor） | 公開中 | [EyeOfTheBeholder3_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob3-v1.3) |
+| プール・オブ・レイディアンス（Pool of Radiance、1988年） | 公開中 | [PoolOfRadiance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/poolrad-v1.4) |
+| カース・オブ・ジ・アジュール・ボンズ（Curse of the Azure Bonds、1989年） | 公開中 | [CurseOfTheAzureBonds_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/curse-v1.4) |
+| シークレット・オブ・ザ・シルバー・ブレイズ（Secret of the Silver Blades、1990年） | 公開中 | [SecretOfTheSilverBlades_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/secret-v1.4) |
+| プールズ・オブ・ダークネス（Pools of Darkness、1991年） | 公開中 | [PoolsOfDarkness_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkness-v1.5) |
+| ゲートウェイ・トゥ・ザ・サヴェッジ・フロンティア（Gateway to the Savage Frontier、1991年） | 公開中 | [GatewayToTheSavageFrontier_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/gateway-v1.4) |
+| トレジャーズ・オブ・ザ・サヴェッジ・フロンティア（Treasures of the Savage Frontier、1992年） | 公開中 | [TreasuresOfTheSavageFrontier_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/treasures-v1.3) |
+| ヒルズファー（Hillsfar、1989年） | 公開中 | [Hillsfar_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/hillsfar-v1.3) |
+| チャンピオンズ・オブ・クリン（Champions of Krynn、1990年） | 公開中 | [ChampionsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/champions-v1.4) |
+| デス・ナイツ・オブ・クリン（Death Knights of Krynn、1991年） | 公開中 | [DeathKnightsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/deathknights-v1.4) |
+| ダーク・クイーン・オブ・クリン（The Dark Queen of Krynn、1992年） | 公開中 | [DarkQueenOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkqueen-v1.3) |
+| ダークサン ～シャッタード・ランド～（Dark Sun: Shattered Lands、1993年） | 公開中 | [DarkSun_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darksun-v1.3) |
+| ダークサン２ ～ウェイク・オブ・ザ・ラヴェジャー～（Dark Sun: Wake of the Ravager、1994年） | 公開中 | [DarkSun2_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darksun2-v1.1) |
+| ダンジョン・ハック（Forgotten Realms: Dungeon Hack、1993年） | 公開中 | [DungeonHack_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dungeonhack-v1.2) |
+| メンゾベランザン（Forgotten Realms: Menzoberranzan、1994年） | 公開中 | [Menzoberranzan_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/menzoberranzan-v1.2) |
+| シャドウ・ソーサラー（Shadow Sorcerer、1991年） | 公開中 | [ShadowSorcerer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/shadowsorcerer-v1.3) |
+| ドラゴンズ・オブ・フレイム（Dragons of Flame、1989年） | 公開中 | [DragonsOfFlame_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dragonsofflame-v1.3) |
+| ヒーローズ・オブ・ザ・ランス（Heroes of the Lance、1988年） | 公開中 | [HeroesOfTheLance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/heroesofthelance-v1.3) |
+| ウォー・オブ・ザ・ランス（War of the Lance、1989年） | 公開中 | [WarOfTheLance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/warofthelance-v1.3) |
 | ドラゴンシャード（Dungeons & Dragons: Dragonshard、2005年） | 公開中 | [Dragonshard_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dragonshard-v1.2) |
-| レイヴンロフト ～ストラドズ・ポゼッション～（Ravenloft: Strahd's Possession、1994年） | 公開中 | [Strahd_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/strahd-v1.1) |
-| レイヴンロフト ～ストーン・プロフェット～（Ravenloft: Stone Prophet、1995年） | 公開中 | [StoneProphet_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/prophet-v1.0) |
+| レイヴンロフト ～ストラドズ・ポゼッション～（Ravenloft: Strahd's Possession、1994年） | 公開中 | [Strahd_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/strahd-v1.2) |
+| レイヴンロフト ～ストーン・プロフェット～（Ravenloft: Stone Prophet、1995年） | 公開中 | [StoneProphet_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/prophet-v1.1) |
 | テンプル・オブ・エレメンタル・イーヴル（The Temple of Elemental Evil、2003年） | 公開中 | [TempleOfElementalEvil_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/toee-v1.0) |
-| アル・カディム ～ジーニーの呪い～（Al-Qadim: The Genie's Curse、1994年） | 公開中 | [AlQadim_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/alqadim-v1.1) |
+| アル・カディム ～ジーニーの呪い～（Al-Qadim: The Genie's Curse、1994年） | 公開中 | [AlQadim_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/alqadim-v1.2) |
 | デーモンストーン（Forgotten Realms: Demon Stone、2004年） | 公開中 | [DemonStone_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/demonstone-v1.0) |
-| スペルジャマー ～パイレーツ・オブ・リアルムスペース～（Spelljammer: Pirates of Realmspace、1992年） | 公開中 | [Spelljammer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/spelljammer-v1.0) |
+| スペルジャマー ～パイレーツ・オブ・リアルムスペース～（Spelljammer: Pirates of Realmspace、1992年） | 公開中 | [Spelljammer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/spelljammer-v1.1) |
 | デスキープ（DeathKeep、1995年） | 公開中 | [DeathKeep_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/deathkeep-v1.0) |
 
 入れ方と外し方は、サイトの各作品のページをご覧ください。
