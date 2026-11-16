@@ -35,7 +35,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | ドラゴンズ・オブ・フレイム（Dragons of Flame、1989年） | 公開中 | [DragonsOfFlame_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dragonsofflame-v1.2) |
 | ヒーローズ・オブ・ザ・ランス（Heroes of the Lance、1988年） | 公開中 | [HeroesOfTheLance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/heroesofthelance-v1.2) |
 | ウォー・オブ・ザ・ランス（War of the Lance、1989年） | 公開中 | [WarOfTheLance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/warofthelance-v1.2) |
-| ドラゴンシャード（Dungeons & Dragons: Dragonshard、2005年） | 公開中 | [Dragonshard_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dragonshard-v1.1) |
+| ドラゴンシャード（Dungeons & Dragons: Dragonshard、2005年） | 公開中 | [Dragonshard_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dragonshard-v1.2) |
 | レイヴンロフト ～ストラドズ・ポゼッション～（Ravenloft: Strahd's Possession、1994年） | 公開中 | [Strahd_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/strahd-v1.1) |
 | レイヴンロフト ～ストーン・プロフェット～（Ravenloft: Stone Prophet、1995年） | 公開中 | [StoneProphet_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/prophet-v1.0) |
 | テンプル・オブ・エレメンタル・イーヴル（The Temple of Elemental Evil、2003年） | 公開中 | [TempleOfElementalEvil_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/toee-v1.0) |
