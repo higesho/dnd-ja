@@ -42,6 +42,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | アル・カディム ～ジーニーの呪い～（Al-Qadim: The Genie's Curse、1994年） | 公開中 | [AlQadim_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/alqadim-v1.1) |
 | デーモンストーン（Forgotten Realms: Demon Stone、2004年） | 公開中 | [DemonStone_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/demonstone-v1.0) |
 | スペルジャマー ～パイレーツ・オブ・リアルムスペース～（Spelljammer: Pirates of Realmspace、1992年） | 公開中 | [Spelljammer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/spelljammer-v1.0) |
+| デスキープ（DeathKeep、1995年） | 公開中 | [DeathKeep_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/deathkeep-v1.0) |
 
 入れ方と外し方は、サイトの各作品のページをご覧ください。
 どのパッチも、外せば英語に戻ります。配布物には原作のプログラムは入っていません。
@@ -60,4 +61,4 @@ GOG.com や Steam で販売されている版を対象にしています。
 - アイ・オブ・ザ・ビホルダーとダンジョン・ハックの日本語表示には美咲フォント（門真 なむ さん）を、オープニングの字幕には東雲フォント（パブリックドメイン）を使っています。
 
 - アイスウィンド・デイル II の日本語化は、Red Chimera さんの拡張 MOD「Icewind Dale 2: Enhanced Edition」（[RedChimera/IWD2EE](https://github.com/RedChimera/IWD2EE)）を入れた状態に対応しています。
-- Dungeons & Dragons、Forgotten Realms、Icewind Dale、Pool of Radiance、Eye of the Beholder、Dungeon Hack、Menzoberranzan、Ravenloft、Dragonlance、Eberron、Dragonshard、Greyhawk、The Temple of Elemental Evil、Al-Qadim は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。
+- Dungeons & Dragons、Forgotten Realms、Icewind Dale、Pool of Radiance、Eye of the Beholder、Dungeon Hack、Menzoberranzan、Ravenloft、Dragonlance、Eberron、Dragonshard、Greyhawk、The Temple of Elemental Evil、Al-Qadim、Demon Stone、Spelljammer、DeathKeep は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。

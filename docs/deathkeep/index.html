@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デスキープ 日本語化パッチ — D&amp;D シリーズ 日本語化プロジェクト</title>
+<meta name="description" content="Steam 版「DeathKeep」を日本語で遊べるようにする、非公式のファンメイドパッチ。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="デスキープ 日本語化パッチ">
+<meta property="og:description" content="Steam 版「DeathKeep」を日本語で遊べるようにする、非公式のファンメイドパッチ。">
+<meta property="og:url" content="https://higesho.github.io/dnd-ja/deathkeep/">
+<meta property="og:image" content="https://higesho.github.io/dnd-ja/deathkeep/img/chargen.png">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="jpn" id="jpn"><div class="jpn-band"><a class="jpn-home" href="https://higesho.github.io/ja/">日本語化プロジェクト</a></div></header>
+<script src="https://higesho.github.io/ja/nav.js"></script>
+
+<main class="band">
+<section class="hero">
+<p class="sub">DeathKeep</p>
+<h1>デスキープ 日本語化パッチ</h1>
+<p class="tag">Steam 版「DeathKeep」を日本語で遊べるようにする、非公式のファンメイドパッチです。
+メニューとメッセージ、アイテム・呪文・怪物の名前、インベントリや呪文の選択に加えて、
+キャラクター選択やレベルクリアの画面など絵として描かれた見出し・ボタンも日本語の絵に差し替えました。
+語りのあるムービーには日本語の字幕が付きます。
+ゲームのフォルダにファイルを 1 つ置くだけで日本語になり、消せば英語に戻ります。</p>
+<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/deathkeep-v1.0">ダウンロード（GitHub）</a></p>
+</section>
+
+<div class="text">
+<h2>どんなゲーム？</h2>
+<p>デスキープは、1995年に SSI から発売された AD&amp;D 公式ライセンスの 3D アクション RPG です（もとは 3DO 向けに作られ、のちに Windows 95 に移植されました）。</p>
+<p>プレイヤーはドワーフの戦士、エルフの魔術師、ハーフエルフの戦士/魔術師から 1 人を選び、祖先から伝わる護符に導かれて、氷の湖からよみがえったネクロマンサーを倒す旅に出ます。凍てついた洞窟から錬金・物質・星幽の塔、そして怪物の体内のような迷宮まで、23 のレベルを一人称視点で進みます。</p>
+</div>
+
+<h2>画面</h2>
+<div class="shots">
+  <figure><img src="img/title.png" alt="デスキープのタイトル画面。メニューが日本語になっている" loading="lazy"><figcaption>タイトル画面</figcaption></figure>
+  <figure><img src="img/movie.png" alt="オープニングのムービーに日本語の字幕が出ている" loading="lazy"><figcaption>ムービーの字幕</figcaption></figure>
+  <figure><img src="img/chargen.png" alt="キャラクター選択の画面。見出しと能力値の名前が日本語の絵になっている" loading="lazy"><figcaption>キャラクター選択</figcaption></figure>
+  <figure><img src="img/difficulty.png" alt="難易度を選ぶ画面" loading="lazy"><figcaption>難易度</figcaption></figure>
+  <figure><img src="img/menu.png" alt="ゲーム中のメニュー" loading="lazy"><figcaption>ゲームメニュー</figcaption></figure>
+  <figure><img src="img/spells.png" alt="呪文を選ぶメニュー" loading="lazy"><figcaption>呪文の選択</figcaption></figure>
+  <figure><img src="img/inventory.png" alt="インベントリの画面" loading="lazy"><figcaption>インベントリ</figcaption></figure>
+  <figure><img src="img/options.png" alt="オプションの画面" loading="lazy"><figcaption>オプション</figcaption></figure>
+  <figure><img src="img/keys.png" alt="キー操作の一覧" loading="lazy"><figcaption>操作の確認</figcaption></figure>
+</div>
+
+<div class="text">
+<h2>入れ方</h2>
+<ol>
+<li>ダウンロードした <code>DeathKeep_JP.zip</code> を展開します。</li>
+<li>中の <code>winmm.dll</code> を、ゲームのフォルダ（<code>DK.EXE</code> があるフォルダ）にコピーします。<br>
+Steam のライブラリで「DeathKeep」を右クリックし、「管理」→「ローカルファイルを閲覧」で開いて、<code>games\DeathKeep</code> に進みます。</li>
+<li>いつもどおり Steam から起動します。</li>
+</ol>
+<p>GOG 版でも、<code>DK.EXE</code> があるフォルダに <code>winmm.dll</code> を置けば動くように作ってあります（文字を描く処理などはファイルの中身から探して差し替えます）。GOG 版での動作はまだ確かめていません。</p>
+<p>ゲームのファイルは書き換えません。日本語にした画像は、起動時に <code>%LOCALAPPDATA%\DK_JP\img</code> フォルダに書き出して読ませています。</p>
+
+<h2>外し方</h2>
+<ul>
+<li><code>winmm.dll</code> を消すと英語に戻ります。<code>%LOCALAPPDATA%\DK_JP</code> フォルダも消してかまいません。セーブデータはそのまま使えます。</li>
+</ul>
+
+<h2>遊ぶときの注意</h2>
+<ul>
+<li>ムービーの字幕は、英語の語りを聞き取って訳したものです。</li>
+<li>タイトルロゴ、スタッフクレジットのムービー、ゲーム名「DeathKeep」は英語のままです。</li>
+<li>名前の入力やセーブの名前は英字で入力してください（日本語の入力はできません）。</li>
+<li>ほかの改造のうち、<code>winmm.dll</code> を置くものとは同時に使えません。</li>
+</ul>
+
+<h2>更新履歴</h2>
+<ul>
+<li>v1.0：最初の公開。</li>
+</ul>
+
+<h2>ご意見・誤訳の報告</h2>
+<p>誤訳や不自然な訳に気づいたら、<a href="https://github.com/higesho/dnd-ja/issues">GitHub の Issues</a> で教えてください。</p>
+
+<h2>クレジット</h2>
+<ul>
+<li>日本語の表示には <a href="https://littlelimit.net/k8x12.htm">k8x12</a>・<a href="https://littlelimit.net/misaki.htm">美咲フォント</a>・<a href="https://littlelimit.net/k6x8.htm">k6x8</a>（門真 なむ さん）を使っています。</li>
+<li>絵の見出しは <a href="https://fonts.google.com/noto/specimen/Noto+Serif+JP">Noto Serif JP</a>（SIL Open Font License 1.1）で描きました。</li>
+<li>ムービーの聞き取りには faster-whisper（Whisper large-v3）を使い、手で直しました。</li>
+<li>配布物に原作のプログラムやデータは入っていません。このパッチの使用は自己責任でお願いします。</li>
+</ul>
+</div>
+</main>
+
+<footer class="foot"><div class="band">
+  <p>非公式のファン翻訳です。開発元・販売元とは関係ありません。</p>
+  <p>Dungeons &amp; Dragons、DeathKeep は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。</p>
+</div></footer>
+</body>
+</html>
