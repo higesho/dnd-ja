@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アイスウィンド・デイル エンハンスド・エディション 日本語化修正パッチ — D&amp;D シリーズ 日本語化プロジェクト</title>
+<meta name="description" content="Icewind Dale: Enhanced Edition の公式日本語版に残っている未訳部分と表示の不具合を直す、非公式のファンメイドパッチ。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="アイスウィンド・デイル エンハンスド・エディション 日本語化修正パッチ">
+<meta property="og:description" content="Icewind Dale: Enhanced Edition の公式日本語版の未訳部分と表示の不具合を直す、非公式のファンメイドパッチ。">
+<meta property="og:url" content="https://higesho.github.io/dnd-ja/iwdee/">
+<meta property="og:image" content="https://higesho.github.io/dnd-ja/iwdee/img/talk.jpg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="jpn" id="jpn"><div class="jpn-band"><a class="jpn-home" href="https://higesho.github.io/ja/">日本語化プロジェクト</a></div></header>
+<script src="https://higesho.github.io/ja/nav.js"></script>
+
+<main class="band">
+<section class="hero">
+<p class="sub">Icewind Dale: Enhanced Edition</p>
+<h1>アイスウィンド・デイル エンハンスド・エディション 日本語化修正パッチ</h1>
+<p class="tag">「Icewind Dale: Enhanced Edition」の現行版（v2.7）には公式の日本語版が入っていますが、拡張「ハート・オブ・ウィンター」「トライアル・オブ・ザ・ルアマスター」の会話などが英語のまま残り、文字の並びが崩れる・文章が途中で欠けるといった表示の不具合もあります。
+このパッチは、英語のまま残っていた約4,600件の文章を翻訳し、表示の不具合を直して、最後まで日本語で遊べるようにする非公式のファンメイドパッチです。
+
+ゲームのフォルダにファイルを置き、オプションで言語を日本語にするだけで使えます。</p>
+<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/iwdee-v1.0">ダウンロード（GitHub）</a></p>
+</section>
+
+<div class="text">
+<h2>どんなゲーム？</h2>
+<p>アイスウィンド・デイルは、2000年に Black Isle Studios が発表した、D&amp;D 第2版ルールのコンピューター RPG です。エンハンスド・エディションは Beamdog による 2014年のリメイク版で、拡張「ハート・オブ・ウィンター」と追加シナリオ「トライアル・オブ・ザ・ルアマスター」を収めています。</p>
+<p>舞台はフォーゴトン・レルムの北の果て、氷に閉ざされたアイスウィンド・デイル。港町イーストヘイヴンに集まった冒険者たちは、クルダハルの村を襲う災いの源を探る旅に出ます。最大6人の仲間を一から作り、リアルタイムで一時停止できる戦闘で、ダンジョンと氷原を進んでいく戦闘中心のパーティー RPG です。</p>
+</div>
+
+<h2>画面</h2>
+<div class="shots">
+  <figure><img src="img/title.jpg" alt="アイスウィンド・デイルとハート・オブ・ウィンターを選ぶタイトル画面" loading="lazy"><figcaption>タイトル画面</figcaption></figure>
+  <figure><img src="img/talk.jpg" alt="ロンリーウッドでヒョルダーと日本語で会話する画面" loading="lazy"><figcaption>ハート・オブ・ウィンターの冒頭</figcaption></figure>
+  <figure><img src="img/field.jpg" alt="雪のロンリーウッドに立つパーティーと日本語の日誌の通知" loading="lazy"><figcaption>ロンリーウッド</figcaption></figure>
+  <figure><img src="img/battle.jpg" alt="スノートロールとの戦闘、日本語の戦闘メッセージ" loading="lazy"><figcaption>スノートロールとの戦い</figcaption></figure>
+  <figure><img src="img/item.jpg" alt="クォータースタッフのアイテム説明が最後まで日本語で表示される画面" loading="lazy"><figcaption>アイテムの説明</figcaption></figure>
+</div>
+
+<div class="text">
+<h2>入れ方</h2>
+<ol>
+<li>ダウンロードした <code>IcewindDaleEE_JP.zip</code> を展開します。</li>
+<li>中の <code>lang</code> フォルダと <code>override</code> フォルダを、フォルダごとゲームのフォルダ（<code>icewind.exe</code> があるフォルダ）にコピーします（上書きしてかまいません）。<br>
+Steam のライブラリで「Icewind Dale: Enhanced Edition」を右クリックし、「管理」→「ローカルファイルを閲覧」で開けます。</li>
+<li>ゲームを起動し、「オプション」→「言語」で日本語（Japanese）を選んで、ゲームを起動し直します。</li>
+</ol>
+
+<h2>外し方</h2>
+<ul>
+<li>Steam でゲームを右クリックし、「プロパティ」→「インストール済みファイル」→「ゲームファイルの整合性を確認」を実行します（公式の日本語ファイルに戻ります）。そのうえで <code>override</code> フォルダの <code>L_ja_JP.LUA</code>・<code>MEIRYO.ttf</code> を消してください。セーブデータはそのまま使えます。</li>
+</ul>
+
+<h2>直した内容</h2>
+<ul>
+<li>英語のまま残っていた約4,600件を翻訳しました。ハート・オブ・ウィンターとトライアル・オブ・ザ・ルアマスターの会話・日誌・アイテム・呪文、EE で追加された文章（キャラクターの声のセット、トラッキング、効果のメッセージ、オプションやヘルプの説明、シャーマンなど）が中心です。</li>
+<li>古いままだったアイテムと呪文の説明（約330件）を、EE 版の性能（情報欄）と数値に合わせて訳し直しました。</li>
+<li>別の文章の訳が入っていた箇所を直しました（ワールドマップの地名がバルダーズ・ゲートの地名になっていた、宿屋の会話が呪文の効果の文になっていた、など）。</li>
+<li>「ヒッ トポイン ト」「クエス ト」のように、ト・ド・！などの前に隙間が空いてしまう文字の並びの不具合を直しました。</li>
+<li>アイテムの説明や日誌の文章が途中で欠けて表示される不具合を直しました。</li>
+<li>日誌の日付を「1日目　7時（1281年マータル月2日）」の形に直しました。半角カナで書かれていた名前は全角にしました。</li>
+<li>画面の項目名（オプション、呪文の系統、難易度の説明、宿屋の部屋など）の未訳と誤訳を直しました。</li>
+<li>主人公の選択肢は、公式の訳と同じく男性の主人公用と女性の主人公用で口調を分けています。</li>
+</ul>
+
+<h2>遊ぶときの注意</h2>
+<ul>
+<li>Steam 版の v2.7.3.0 で確かめています。GOG 版などほかの版の v2.7 でも同じ入れ方で使えるはずですが、確かめていません。</li>
+<li>公式の日本語訳の部分は、明らかな誤りを除いてそのままです。</li>
+<li>声（音声）、ムービー、スタッフクレジットの人名などは英語のままです。</li>
+<li>ゲームのアップデートで日本語のファイルが置き換わったときは、もう一度入れ直してください。</li>
+</ul>
+
+<h2>ご意見・誤訳の報告</h2>
+<p>誤訳や不自然な訳に気づいたら、<a href="https://github.com/higesho/dnd-ja/issues">GitHub の Issues</a> で教えてください。</p>
+
+<h2>クレジット</h2>
+<ul>
+<li>日本語訳のもと：Icewind Dale: Enhanced Edition 公式日本語版（Beamdog）。</li>
+<li>日本語の表示には Mgen+（自家製フォント工房、SIL Open Font License 1.1）を使っています。</li>
+<li>配布物にゲームのプログラムは入っていません。このパッチの使用は自己責任でお願いします。</li>
+</ul>
+</div>
+</main>
+
+<footer class="foot"><div class="band">
+  <p>非公式のファン翻訳です。開発元・販売元とは関係ありません。</p>
+  <p>Dungeons &amp; Dragons、Forgotten Realms、Icewind Dale は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。</p>
+</div></footer>
+</body>
+</html>
