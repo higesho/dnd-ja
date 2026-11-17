@@ -26,7 +26,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | ヒルズファー（Hillsfar、1989年） | 公開中 | [Hillsfar_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/hillsfar-v1.3) |
 | チャンピオンズ・オブ・クリン（Champions of Krynn、1990年） | 公開中 | [ChampionsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/champions-v1.4) |
 | デス・ナイツ・オブ・クリン（Death Knights of Krynn、1991年） | 公開中 | [DeathKnightsOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/deathknights-v1.4) |
-| ダーク・クイーン・オブ・クリン（The Dark Queen of Krynn、1992年） | 公開中 | [DarkQueenOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkqueen-v1.3) |
+| ダーク・クイーン・オブ・クリン（The Dark Queen of Krynn、1992年） | 公開中 | [DarkQueenOfKrynn_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkqueen-v1.4) |
 | ダークサン ～シャッタード・ランド～（Dark Sun: Shattered Lands、1993年） | 公開中 | [DarkSun_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darksun-v1.3) |
 | ダークサン２ ～ウェイク・オブ・ザ・ラヴェジャー～（Dark Sun: Wake of the Ravager、1994年） | 公開中 | [DarkSun2_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darksun2-v1.1) |
 | ダンジョン・ハック（Forgotten Realms: Dungeon Hack、1993年） | 公開中 | [DungeonHack_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dungeonhack-v1.2) |
