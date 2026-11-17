@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WeiDU の使い方とバルダーズ・ゲート日本語統合環境の作り方 — D&amp;D シリーズ 日本語化プロジェクト</title>
+<meta name="description" content="バルダーズ・ゲート EE の MOD インストーラー WeiDU の使い方と、BG1・SoD・BG2 を一本で遊べる EET を日本語で組む手順の解説。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WeiDU の使い方とバルダーズ・ゲート日本語統合環境の作り方">
+<meta property="og:description" content="WeiDU の使い方と、EET（BG1＋SoD＋BG2）を日本語で組む手順。">
+<meta property="og:url" content="https://higesho.github.io/dnd-ja/bg-weidu/">
+<link rel="stylesheet" href="../style.css">
+<style>.text table{border-collapse:collapse;margin:.8em 0;width:100%}.text th,.text td{border:1px solid rgba(128,128,128,.45);padding:.35em .6em;text-align:left;vertical-align:top}</style>
+</head>
+<body>
+<header class="jpn" id="jpn"><div class="jpn-band"><a class="jpn-home" href="https://higesho.github.io/ja/">日本語化プロジェクト</a></div></header>
+<script src="https://higesho.github.io/ja/nav.js"></script>
+
+<main class="band">
+<section class="hero">
+<p class="sub">Baldur's Gate: Enhanced Edition / Siege of Dragonspear / Baldur's Gate II: Enhanced Edition</p>
+<h1>WeiDU の使い方とバルダーズ・ゲート日本語統合環境の作り方</h1>
+<p class="tag">バルダーズ・ゲート EE シリーズの MOD は、ほとんどが「WeiDU（ウェイドゥー）」というインストーラーで入れる形になっています。このページでは WeiDU の使い方と、BG1・Siege of Dragonspear・BG2 を一本のゲームとして続けて遊べる「EET」を、日本語で組み立てる手順を説明します。</p>
+</section>
+
+<div class="text">
+<h2>このプロジェクトの配布物</h2>
+<table>
+<tr><th>配布物</th><th>入れる先</th><th>WeiDU</th></tr>
+<tr><td><a href="../bgee/">BGEE 日本語化修正パッチ</a></td><td>BGEE</td><td>差し替え版／WeiDU 版</td></tr>
+<tr><td><a href="../sod/">Siege of Dragonspear 日本語化パッチ</a></td><td>BGEE（SoD）</td><td>かんたんインストール／WeiDU 版</td></tr>
+<tr><td><a href="../bg2ee/">BG2EE 日本語化パッチ</a></td><td>BG2EE</td><td>ファイルを置くだけ</td></tr>
+<tr><td><a href="../eet/">EET 日本語版</a></td><td>BG2EE</td><td>WeiDU</td></tr>
+<tr><td><a href="../dsotsc/">DSotSC 日本語版</a></td><td>EET（BG2EE）</td><td>WeiDU</td></tr>
+<tr><td><a href="../ntotsc/">NTotSC 日本語版</a></td><td>EET（BG2EE）</td><td>WeiDU</td></tr>
+</table>
+<p>BGEE だけ、BGEE＋SoD だけで遊ぶなら、各ページの「差し替え版」「かんたんインストール」で足ります。EET や追加 MOD を使うときに WeiDU の手順が必要になります。</p>
+
+<h2>WeiDU とは</h2>
+<p>WeiDU は Infinity Engine（バルダーズ・ゲート、アイスウィンド・デイルなど）用の MOD インストーラーです。MOD には <code>setup-（MOD名）.exe</code> という実行ファイル（中身は WeiDU）と、MOD のフォルダが入っています。実行すると、MOD のフォルダにある手順書を読んで、ゲームのファイルに必要な変更だけを書き込みます。</p>
+<ul>
+<li>入れた MOD は、ゲームのフォルダの <code>WeiDU.log</code> に順番どおり記録されます。</li>
+<li>元のファイルは自動でバックアップされるので、あとから個別に外せます。</li>
+<li>複数の MOD が同じファイルを書き換えても、後から入れたものが前のものの上に変更を重ねるので、共存できます。</li>
+</ul>
+
+<h2>WeiDU の基本の使い方</h2>
+<ol>
+<li><b>ゲームのフォルダを開く</b>：<code>Baldur.exe</code> と <code>chitin.key</code> があるフォルダです。Steam ならライブラリでゲームを右クリック →「管理」→「ローカルファイルを閲覧」。</li>
+<li><b>MOD を置く</b>：zip の中身（<code>setup-○○.exe</code> と MOD のフォルダ）をそのままゲームのフォルダにコピーします。フォルダの中にさらにフォルダができないように注意してください。</li>
+<li><b>setup-○○.exe をダブルクリック</b>：黒い画面（コマンドプロンプト）が開きます。</li>
+<li><b>言語を選ぶ</b>：最初に MOD の言語を聞かれます。<code>Japanese</code> の番号を入力して Enter。初めて WeiDU を使うゲームでは、ゲームの言語（<code>ja_JP</code> など）を聞かれることもあります。そのときも日本語を選びます。</li>
+<li><b>入れる部品を選ぶ</b>：MOD の部品（コンポーネント）ごとに次のように聞かれるので、キーを押して Enter。
+<ul>
+<li><code>[I]nstall</code>（入れる）／<code>[N]ot Install</code>（入れない）／<code>[Q]uit</code>（ここで終える）</li>
+<li>すでに入っている部品は <code>[R]e-Install</code>（入れ直す）／<code>[N]o Change</code>（そのまま）／<code>[U]ninstall</code>（外す）</li>
+</ul></li>
+<li><b>結果を確かめる</b>：最後に部品ごとに <code>SUCCESSFULLY INSTALLED</code> と出ていれば成功です。<code>NOT INSTALLED DUE TO ERRORS</code> と出たら、表示されたエラーの文を控えておいてください。何かキーを押すと画面が閉じます。</li>
+</ol>
+<h3>外すとき</h3>
+<p>同じ <code>setup-○○.exe</code> をもう一度実行し、外したい部品で <code>U</code> を選びます。いくつも MOD を入れているときは、<b>入れたのと逆の順番</b>で外すのが安全です。</p>
+<h3>注意</h3>
+<ul>
+<li>ゲームが <code>C:\Program Files</code> の下にあると、Windows の権限の都合で失敗することがあります。EET を組むときは、ゲームのフォルダを丸ごと別の場所（例：<code>D:\Games\BGEE</code>）にコピーして、そちらで作業するのがおすすめです（Steam 版・GOG 版とも、コピーしたフォルダの <code>Baldur.exe</code> から起動できます）。</li>
+<li>MOD を入れたあとにゲームのアップデートや「整合性の確認」をすると、MOD の変更が壊れることがあります。統合環境は、更新の入らないコピーで組むと安心です。</li>
+<li>WeiDU の黒い画面では、日本語の部品名が文字化けすることがあります。インストールの結果には影響しません。</li>
+</ul>
+
+<h2>日本語統合環境（EET）の作り方</h2>
+<p>EET（Enhanced Edition Trilogy）は、BGEE＋SoD の内容を BG2EE に取り込み、BG1 から SoD、BG2、スロウン・オブ・バールまでを、同じ主人公で一本のゲームとして続けて遊べるようにする MOD です。EET は BGEE 側の文章をそのまま取り込むので、先に BGEE を日本語化しておくのが大事です。</p>
+<h3>用意するもの</h3>
+<ul>
+<li>Baldur's Gate: Enhanced Edition と拡張 Siege of Dragonspear（v2.6 以降。Steam 版 v2.7.3.0 で確かめています）</li>
+<li>Baldur's Gate II: Enhanced Edition（v2.6 以降）</li>
+<li>どちらもゲームの「オプション」→「言語」で日本語にして、一度起動しておく</li>
+<li>このプロジェクトの <a href="../bgee/">BGEE 修正パッチ</a>、<a href="../sod/">SoD 日本語化パッチ</a>、<a href="../bg2ee/">BG2EE 日本語化パッチ</a>、<a href="../eet/">EET 日本語版</a>（必要なら <a href="../dsotsc/">DSotSC</a>・<a href="../ntotsc/">NTotSC</a> 日本語版も）</li>
+</ul>
+<h3>手順</h3>
+<ol>
+<li><b>ゲームをコピーする</b>（おすすめ）：BGEE と BG2EE のフォルダを、それぞれ <code>Program Files</code> の外にコピーします。以下はコピー先で作業します。</li>
+<li><b>BGEE を日本語化する</b>：BGEE のフォルダに、SoD 日本語化パッチと BGEE 修正パッチ（WeiDU 版）の中身を置き、<code>かんたんインストール.bat</code> をダブルクリックします。DLC Merger による SoD の統合、BGEE 修正、SoD 日本語化が順に入ります（数分かかります）。<br>
+手で入れる場合は <code>setup-DlcMerger.exe</code>（「Merge "Siege of Dragonspear" DLC」を I）→ <code>setup-bgee_jpfix.exe</code> → <code>setup-sod_ja.exe</code> の順です。</li>
+<li><b>BG2EE を日本語化する</b>：BG2EE のフォルダに <a href="../bg2ee/">BG2EE 日本語化パッチ</a>の <code>lang</code> と <code>override</code> を上書きコピーします。</li>
+<li><b>EET を入れる</b>：BG2EE のフォルダに EET 日本語版の中身を置き、<code>setup-EET.exe</code> を実行します。
+<ul>
+<li>言語は <code>Japanese</code> を選びます。</li>
+<li>BGEE のフォルダが見つかると「Detected BG:EE directory as …. Is this correct?」と聞かれるので、手順 2 で日本語化した BGEE なら <code>Y</code>。違う場合は <code>N</code> を押し、BGEE のフォルダの場所（例：<code>D:\Games\BGEE</code>）を入力して Enter。</li>
+<li>「EET core (resource importation)」を <code>I</code> で入れます。BGEE の全データを取り込むので、30分〜1時間ほどかかります。</li>
+</ul></li>
+<li><b>追加の MOD を入れる</b>（任意）：DSotSC 日本語版 → NTotSC 日本語版の順に、同じく BG2EE のフォルダに置いて実行し、言語は <code>Japanese</code> を選びます。ほかの EET 対応 MOD もこの段階で入れます。</li>
+<li><b>EET_end を入れる</b>：最後に <code>setup-EET_end.exe</code> を実行して入れます（EET の仕上げ。必ず一番最後）。</li>
+<li><b>遊ぶ</b>：BG2EE のフォルダの <code>Baldur.exe</code> を起動し、キャンペーン選択で「バルダーズ・ゲート」を選ぶと BG1 から始まります。</li>
+</ol>
+<h3>入れる順番のまとめ</h3>
+<table>
+<tr><th>順</th><th>どこに</th><th>なにを</th></tr>
+<tr><td>1</td><td>BGEE</td><td>DLC Merger（SoD の統合）</td></tr>
+<tr><td>2</td><td>BGEE</td><td>BGEE 修正パッチ（bgee_jpfix）</td></tr>
+<tr><td>3</td><td>BGEE</td><td>SoD 日本語化（sod_ja）</td></tr>
+<tr><td>4</td><td>BG2EE</td><td>BG2EE 日本語化パッチ（ファイルを置く）</td></tr>
+<tr><td>5</td><td>BG2EE</td><td>EET（日本語版）</td></tr>
+<tr><td>6</td><td>BG2EE</td><td>DSotSC・NTotSC などの MOD（日本語版）</td></tr>
+<tr><td>7</td><td>BG2EE</td><td>EET_end</td></tr>
+</table>
+
+<h2>うまくいかないとき</h2>
+<ul>
+<li><b>「BGEE_JPFIX BG:EE mod is not recognized by EET」と出て EET が止まる</b>：配布元の EET ではなく、このプロジェクトの EET 日本語版を使ってください（日本語化の MOD を BGEE 側に入れても大丈夫なように設定してあります）。</li>
+<li><b>「Invalid directory, or incorrect BG:EE+SoD installation」</b>：BGEE のフォルダの場所が違うか、SoD が統合されていません。手順 2 からやり直してください。</li>
+<li><b>BG1・SoD の部分が英語になる</b>：EET を入れる前に BGEE 側の日本語化（手順 2）が済んでいたか確かめてください。BGEE を日本語化し直したあとは、EET を入れ直す必要があります。</li>
+<li><b>「SUCCESSFULLY INSTALLED」と出ない</b>：エラーの文と、ゲームのフォルダの <code>WeiDU.log</code>、<code>SETUP-○○.DEBUG</code> を添えて <a href="https://github.com/higesho/dnd-ja/issues">GitHub の Issues</a> で知らせてください。</li>
+</ul>
+</div>
+</main>
+
+<footer class="foot"><div class="band">
+  <p>非公式のファン翻訳です。開発元・販売元とは関係ありません。</p>
+  <p>Dungeons &amp; Dragons、Forgotten Realms、Baldur's Gate は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。</p>
+</div></footer>
+</body>
+</html>

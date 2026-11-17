@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>シージ・オブ・ドラゴンスピア 日本語化パッチ — D&amp;D シリーズ 日本語化プロジェクト</title>
+<meta name="description" content="公式の日本語版がない Baldur's Gate の拡張「Siege of Dragonspear」の全テキストを日本語にする、非公式のファンメイドパッチ。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="シージ・オブ・ドラゴンスピア 日本語化パッチ">
+<meta property="og:description" content="公式の日本語版がない Baldur's Gate の拡張「Siege of Dragonspear」の全テキストを日本語にする、非公式のファンメイドパッチ。">
+<meta property="og:url" content="https://higesho.github.io/dnd-ja/sod/">
+<meta property="og:image" content="https://higesho.github.io/dnd-ja/sod/img/title.jpg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="jpn" id="jpn"><div class="jpn-band"><a class="jpn-home" href="https://higesho.github.io/ja/">日本語化プロジェクト</a></div></header>
+<script src="https://higesho.github.io/ja/nav.js"></script>
+
+<main class="band">
+<section class="hero">
+<p class="sub">Baldur's Gate: Siege of Dragonspear</p>
+<h1>シージ・オブ・ドラゴンスピア 日本語化パッチ</h1>
+<p class="tag">「Baldur's Gate: Enhanced Edition」の拡張「Siege of Dragonspear（シージ・オブ・ドラゴンスピア）」には公式の日本語版がありません。このパッチは、会話・主人公の選択肢・日誌・アイテムや呪文の説明・ボイスの字幕など、SoD の文章約3.7万件をすべて日本語にする非公式のファンメイドパッチです。
+
+固有名詞や仲間の口調は、BGEE・BG2EE の日本語版に合わせています。zip の中の「かんたんインストール」をダブルクリックするだけで入れられます。</p>
+<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/sod-v1.0">ダウンロード（GitHub）</a></p>
+</section>
+
+<div class="text">
+<h2>どんなゲーム？</h2>
+<p>シージ・オブ・ドラゴンスピアは、2016年に Beamdog が発表した、バルダーズ・ゲートとバルダーズ・ゲートII の間をつなぐ拡張シナリオです。</p>
+<p>サレヴォクを倒し「バルダーズ・ゲートの英雄」となった主人公は、北から攻め寄せる「輝ける淑女」ケイラー・アージェント率いる十字軍との戦いに身を投じます。新しい仲間グリント、コーウィン、ムキーン、ヴォグヒルンとともに、ブリッジフォートやボアスカイア橋を越えて、ドラゴンスピア城へ向かいます。</p>
+</div>
+
+<h2>画面</h2>
+<div class="shots">
+  <figure><img src="img/title.jpg" alt="タイトル画面のキャンペーン選択。ドラゴンスピア包囲戦の説明が日本語で表示されている" loading="lazy"><figcaption>タイトル画面（キャンペーン選択）</figcaption></figure>
+</div>
+
+<div class="text">
+<h2>入れ方</h2>
+<p>ダウンロードした <code>SiegeOfDragonspear_JP_v1.0.zip</code> を展開します。先にゲームの「オプション」→「言語」で日本語（Japanese）を選んでおいてください。ゲームのフォルダは、Steam のライブラリで「Baldur's Gate: Enhanced Edition」を右クリックし、「管理」→「ローカルファイルを閲覧」で開けます。</p>
+<h3>A. かんたんインストール（おすすめ）</h3>
+<ol>
+<li>zip の中身を全部、ゲームのフォルダ（<code>Baldur.exe</code> があるフォルダ）にコピーします。<a href="../bgee/">BGEE 日本語化修正パッチ</a>も使う場合は、その WeiDU 版（<code>setup-bgee_jpfix.exe</code> と <code>bgee_jpfix</code>）も同じ場所に置いておくと一緒に入ります。</li>
+<li><code>かんたんインストール.bat</code> をダブルクリックします。DLC Merger による SoD の統合 → BGEE 修正 → SoD 日本語化 が順に自動で入ります（統合に数分かかります）。</li>
+<li>最後に「完了しました」と出たら、何かキーを押して閉じます。</li>
+</ol>
+<h3>B. 差し替え版（すでに DLC Merger で SoD を統合している人向け）</h3>
+<p>「差し替え版（DLC Merger 導入済み環境用）」の中の <code>lang</code> と <code>override</code> を、ゲームのフォルダに上書きコピーします（BGEE 修正パッチの内容も含まれています）。DLC Merger を入れていない環境では反映されません。</p>
+<h3>C. WeiDU 版（ほかの MOD と組み合わせる人、EET を使う人向け）</h3>
+<p><code>setup-DlcMerger.exe</code>（「Merge "Siege of Dragonspear" DLC」）→ <code>setup-sod_ja.exe</code> の順に実行し、言語は Japanese を選びます。</p>
+<p>WeiDU の使い方と、BGEE・SoD・BG2EE・EET をまとめて日本語で遊ぶ手順は <a href="../bg-weidu/">WeiDU の使い方とバルダーズ・ゲート日本語統合環境の作り方</a>で詳しく説明しています。</p>
+<h2>外し方</h2>
+<ul>
+<li><code>setup-sod_ja.exe</code> をもう一度実行して <code>U</code> を選ぶと元の英語に戻ります。DLC Merger も外す場合は、そのあとで <code>setup-DlcMerger.exe</code> を実行して <code>U</code> を選びます。</li>
+</ul>
+<h2>訳について</h2>
+<ul>
+<li>SoD の全テキスト（約3.7万件）を翻訳しました。主人公の選択肢は、男性の主人公用と女性の主人公用で口調を分けています。</li>
+<li>地名・人名・用語は、BGEE（BG1）と BG2EE の日本語版の表記に合わせました。SoD で初めて出てくる名前は新しく訳しています（例：ケイラー・アージェント、輝ける淑女、ブリッジフォート、コーウィン、グリント、ムキーン）。</li>
+<li>声（音声）は英語のままで、字幕が日本語になります。</li>
+</ul>
+<h2>遊ぶときの注意</h2>
+<ul>
+<li>Steam 版の v2.7.3.0 で確かめています。GOG 版などでも同じ v2.7 なら使えるはずです。</li>
+<li>Steam・GOG 版の SoD は DLC の圧縮ファイルに入っているため、文章を書き換えるには DLC Merger で本体に統合する必要があります（zip に同梱しています）。</li>
+<li>機械の助けを借りた大量の翻訳です。不自然な訳や誤訳があればお知らせください。</li>
+</ul>
+
+<h2>ご意見・誤訳の報告</h2>
+<p>誤訳や不自然な訳に気づいたら、<a href="https://github.com/higesho/dnd-ja/issues">GitHub の Issues</a> で教えてください。</p>
+
+<h2>クレジット</h2>
+<ul>
+<li>翻訳：Claude（Anthropic）。用語のもと：Baldur's Gate: Enhanced Edition／Baldur's Gate II: Enhanced Edition 日本語版。</li>
+<li>同梱：DLC Merger v2.1（作者 Argent77、<a href="https://github.com/Argent77/A7-DlcMerger">配布元</a>、CC BY-SA 4.0）。</li>
+<li>日本語の表示には Mgen+（自家製フォント工房、SIL Open Font License 1.1）を使っています。インストーラーは WeiDU（GPL）です。</li>
+<li>配布物にゲームのプログラムは入っていません。このパッチの使用は自己責任でお願いします。</li>
+</ul>
+</div>
+</main>
+
+<footer class="foot"><div class="band">
+  <p>非公式のファン翻訳です。開発元・販売元・MOD の作者とは関係ありません。</p>
+  <p>Dungeons &amp; Dragons、Forgotten Realms、Baldur's Gate は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。</p>
+</div></footer>
+</body>
+</html>

@@ -15,6 +15,10 @@ GOG.com や Steam で販売されている版を対象にしています。
 | アイスウィンド・デイル エンハンスド・エディション（Icewind Dale: Enhanced Edition） | 公開中 | [IcewindDaleEE_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/iwdee-v1.1) |
 | アイスウィンド・デイル II（Icewind Dale II ＋ Icewind Dale 2: Enhanced Edition） | 公開中 | [IcewindDale2EE_JP.zip](https://github.com/higesho/IWD2EE/releases/latest) |
 | バルダーズ・ゲート エンハンスド・エディション 日本語化修正パッチ（Baldur's Gate: Enhanced Edition） | 公開中 | [BaldursGateEE_JPfix_v1.0.zip](https://github.com/higesho/dnd-ja/releases/tag/bgee-v1.0) |
+| シージ・オブ・ドラゴンスピア 日本語化パッチ（Baldur's Gate: Siege of Dragonspear） | 公開中 | [SiegeOfDragonspear_JP_v1.0.zip](https://github.com/higesho/dnd-ja/releases/tag/sod-v1.0) |
+| EET 日本語版（Enhanced Edition Trilogy v15.0） | 公開中 | [EET_v15.0_JP_v1.0.zip](https://github.com/higesho/dnd-ja/releases/tag/eet-v1.0) |
+| DSotSC 日本語版（Dark Side of the Sword Coast v4.2） | 公開中 | [DSotSC_v4.2_JP_v1.0.zip](https://github.com/higesho/dnd-ja/releases/tag/dsotsc-v1.0) |
+| NTotSC 日本語版（Northern Tales of the Sword Coast v5.0.0） | 公開中 | [NTotSC_v5.0.0_JP_v1.0.zip](https://github.com/higesho/dnd-ja/releases/tag/ntotsc-v1.0) |
 | バルダーズ・ゲートII エンハンスド・エディション（Baldur's Gate II: Enhanced Edition） | 公開中 | [BaldursGate2EE_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/bg2ee-v1.0) |
 | プール・オブ・レイディアンス ～ルインズ・オブ・ミス・ドラナー～（Pool of Radiance: Ruins of Myth Drannor） | 公開中 | [RuinsOfMythDrannor_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/romd-v1.1) |
 | アイ・オブ・ザ・ビホルダー（Eye of the Beholder） | 公開中 | [EyeOfTheBeholder_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob1-v1.4) |
