@@ -12,7 +12,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 
 | 作品 | 状態 | ダウンロード |
 |---|---|---|
-| アイスウィンド・デイル エンハンスド・エディション（Icewind Dale: Enhanced Edition） | 公開中 | [IcewindDaleEE_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/iwdee-v1.0) |
+| アイスウィンド・デイル エンハンスド・エディション（Icewind Dale: Enhanced Edition） | 公開中 | [IcewindDaleEE_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/iwdee-v1.1) |
 | アイスウィンド・デイル II（Icewind Dale II ＋ Icewind Dale 2: Enhanced Edition） | 公開中 | [IcewindDale2EE_JP.zip](https://github.com/higesho/IWD2EE/releases/latest) |
 | バルダーズ・ゲート エンハンスド・エディション 日本語化修正パッチ（Baldur's Gate: Enhanced Edition） | 公開中 | [BaldursGateEE_JPfix_v1.0.zip](https://github.com/higesho/dnd-ja/releases/tag/bgee-v1.0) |
 | バルダーズ・ゲートII エンハンスド・エディション（Baldur's Gate II: Enhanced Edition） | 公開中 | [BaldursGate2EE_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/bg2ee-v1.0) |
