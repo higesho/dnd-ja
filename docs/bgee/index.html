@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>バルダーズ・ゲート エンハンスド・エディション 日本語化修正パッチ — D&amp;D シリーズ 日本語化プロジェクト</title>
+<meta name="description" content="Baldur's Gate: Enhanced Edition の公式日本語版に残っている未訳部分・誤訳・データの食い違いを直す、非公式のファンメイドパッチ。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="バルダーズ・ゲート エンハンスド・エディション 日本語化修正パッチ">
+<meta property="og:description" content="Baldur's Gate: Enhanced Edition の公式日本語版の未訳部分・誤訳・データの食い違いを直す、非公式のファンメイドパッチ。">
+<meta property="og:url" content="https://higesho.github.io/dnd-ja/bgee/">
+<meta property="og:image" content="https://higesho.github.io/dnd-ja/bgee/img/title.jpg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="jpn" id="jpn"><div class="jpn-band"><a class="jpn-home" href="https://higesho.github.io/ja/">日本語化プロジェクト</a></div></header>
+<script src="https://higesho.github.io/ja/nav.js"></script>
+
+<main class="band">
+<section class="hero">
+<p class="sub">Baldur's Gate: Enhanced Edition</p>
+<h1>バルダーズ・ゲート エンハンスド・エディション 日本語化修正パッチ</h1>
+<p class="tag">「Baldur's Gate: Enhanced Edition」（v2.7）には公式の日本語版が入っていますが、英語のまま残った台詞や、別の場面の訳が入ってしまった会話、EE 版で変わった数値に追いついていない呪文・アイテムの説明、画面に開発用のラベルが出る不具合などが残っています。
+このパッチは、英語版と1件ずつ照らし合わせて見つけた約1,500件の未訳・誤訳・食い違いと、文字の表示の不具合を直す、非公式のファンメイドパッチです。
+
+ゲームのフォルダにファイルを上書きするだけの「差し替え版」と、ほかの MOD と一緒に使える「WeiDU 版」の2通りで使えます。</p>
+<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/bgee-v1.0">ダウンロード（GitHub）</a></p>
+</section>
+
+<div class="text">
+<h2>どんなゲーム？</h2>
+<p>バルダーズ・ゲートは、1998年に BioWare が発表した、D&amp;D 第2版ルールのコンピューター RPG です。エンハンスド・エディションは Beamdog による 2012年のリメイク版で、拡張「テイルズ・オブ・ザ・ソードコースト」と追加の仲間・シナリオを収めています。</p>
+<p>舞台はフォーゴトン・レルムのソードコースト。城塞図書館キャンドルキープで育った主人公は、養父ゴライオンを謎の騎士に殺され、鉄の不足に揺れる地方で自らの出生の秘密に迫っていきます。</p>
+</div>
+
+<h2>画面</h2>
+<div class="shots">
+  <figure><img src="img/title.jpg" alt="タイトル画面のキャンペーン選択。日本語の説明文が隙間なく表示されている" loading="lazy"><figcaption>タイトル画面（キャンペーン選択）</figcaption></figure>
+</div>
+
+<div class="text">
+<h2>入れ方</h2>
+<p>ダウンロードした <code>BaldursGateEE_JPfix_v1.0.zip</code> を展開し、次のどちらかで入れます。先にゲームの「オプション」→「言語」で日本語（Japanese）を選んでおいてください。ゲームのフォルダは、Steam のライブラリで「Baldur's Gate: Enhanced Edition」を右クリックし、「管理」→「ローカルファイルを閲覧」で開けます。</p>
+<h3>A. 差し替え版（Siege of Dragonspear を持っていない人向け・いちばん簡単）</h3>
+<ol>
+<li>念のため、ゲームのフォルダの <code>lang\ja_JP\dialog.tlk</code> と <code>dialogF.tlk</code> を別の場所にコピーしておきます。</li>
+<li>zip の中の「差し替え版（SoDなし）」フォルダにある <code>lang</code> フォルダと <code>override</code> フォルダを、ゲームのフォルダ（<code>Baldur.exe</code> があるフォルダ）にフォルダごとコピーします（上書きしてかまいません）。</li>
+</ol>
+<p>拡張「Siege of Dragonspear」を持っている場合、SoD の文章は DLC の中のファイルが使われるので、この方法では反映されません。B の WeiDU 版か、Siege of Dragonspear 日本語化パッチ（準備中）の「かんたんインストール」を使ってください。</p>
+<h3>B. WeiDU 版（SoD を持っている人、ほかの MOD と使う人、EET を使う人向け）</h3>
+<ol>
+<li>zip の中の <code>setup-bgee_jpfix.exe</code> と <code>bgee_jpfix</code> フォルダを、ゲームのフォルダに置きます。</li>
+<li>SoD を持っている場合は、先に DLC Merger で SoD を本体に統合しておきます（SoD 日本語化パッチに同梱予定です。単体は <a href="https://github.com/Argent77/A7-DlcMerger/releases">DLC Merger の配布ページ</a>から入手できます）。</li>
+<li><code>setup-bgee_jpfix.exe</code> をダブルクリックし、黒い画面で言語は <code>0</code>（Japanese）、インストールするかは <code>I</code> を入力します。</li>
+<li>「SUCCESSFULLY INSTALLED」と出たら完了です。</li>
+</ol>
+
+
+<h2>外し方</h2>
+<ul>
+<li>差し替え版：コピーしておいた元の <code>dialog.tlk</code>・<code>dialogF.tlk</code> を戻すか、Steam で「ゲームファイルの整合性を確認」を実行します。そのうえで <code>override</code> フォルダの <code>MEIRYO.ttf</code> を消してください。</li>
+<li>WeiDU 版：<code>setup-bgee_jpfix.exe</code> をもう一度実行し、<code>U</code>（アンインストール）を選びます。</li>
+</ul>
+
+<h2>直した内容</h2>
+<p>直した文章の一覧（文章番号・英語原文・修正前・修正後）は、zip に入っている <code>修正一覧.txt</code> と<a href="https://github.com/higesho/dnd-ja/releases/tag/bgee-v1.0">リリースノート</a>に載せています。</p>
+<ul>
+<li><b>未訳 1,096件</b>：英語のまま残っていた台詞・選択肢・日誌・呪文名・ボイス・チュートリアルなどを翻訳しました。</li>
+<li><b>表示の不具合 13件</b>：キャラクターの記録でレベルの欄にクラス名が出る、日誌の日付で日数が出ない、など文字の差し込み記号の誤りを直しました。</li>
+<li><b>開発用ラベル 7件</b>：「[OGRE MAGE 03]キァーー！」のように本文に出ていた開発用のラベルを消しました。</li>
+<li><b>別の文の訳・大きな省略・誤訳 75件</b>：別の場面の台詞が入っていた会話、一言に縮められていた長い台詞、意味が逆になっていた文などを訳し直しました。</li>
+<li><b>アイテム説明 57件・呪文説明 96件</b>：情報欄や効果範囲・距離・持続時間などの数値を EE 版の現行データに合わせました（例：スリープ・ウェブ・ディスペルマジックの効果範囲が半径30フィートのままだったのを15フィートに、毒のダーツのダメージを1ポイントから20ポイントに）。欠けていた情報欄も補いました。</li>
+<li><b>文章が途中で欠ける不具合 39件</b>：半角スペースのせいで改行がうまくいかず、説明文などが途中で切れて表示されていた文を直しました。</li>
+<li><b>半角カナ 112件</b>：「ポーション･オブ･…」のような半角の記号・カナを全角にしました。</li>
+<li><b>文字の隙間</b>：「バルダーズ ・ゲー ト」のように「ト」「・」「！」などの前に隙間が空いてしまうフォントの不具合を、フォントを差し替えて直しました。</li>
+</ul>
+
+<h2>遊ぶときの注意</h2>
+<ul>
+<li>Steam 版の v2.7.3.0 で確かめています。GOG 版などでも同じ v2.7 なら使えるはずです。</li>
+<li>公式の日本語訳の部分は、上の不具合を除いてそのままです。声（音声）は英語のままです。</li>
+<li>差し替え版は、ほかの MOD で書き換えた文章を元に戻してしまいます。MOD を使う場合は WeiDU 版を使ってください。</li>
+<li>ゲームのアップデートで日本語のファイルが置き換わったときは、もう一度入れ直してください。</li>
+</ul>
+
+<h2>ご意見・誤訳の報告</h2>
+<p>誤訳や不自然な訳に気づいたら、<a href="https://github.com/higesho/dnd-ja/issues">GitHub の Issues</a> で教えてください。</p>
+
+<h2>クレジット</h2>
+<ul>
+<li>日本語訳のもと：Baldur's Gate: Enhanced Edition 公式日本語版（Beamdog）。修正・追加の訳：Claude（Anthropic）。</li>
+<li>日本語の表示には Mgen+（自家製フォント工房、SIL Open Font License 1.1）を使っています。</li>
+<li>WeiDU 版のインストーラーには WeiDU（GPL）を使っています。</li>
+<li>配布物にゲームのプログラムは入っていません。このパッチの使用は自己責任でお願いします。</li>
+</ul>
+</div>
+</main>
+
+<footer class="foot"><div class="band">
+  <p>非公式のファン翻訳です。開発元・販売元とは関係ありません。</p>
+  <p>Dungeons &amp; Dragons、Forgotten Realms、Baldur's Gate は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。</p>
+</div></footer>
+</body>
+</html>
