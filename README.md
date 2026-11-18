@@ -49,7 +49,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | アル・カディム ～ジーニーの呪い～（Al-Qadim: The Genie's Curse、1994年） | 公開中 | [AlQadim_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/alqadim-v1.2) |
 | デーモンストーン（Forgotten Realms: Demon Stone、2004年） | 公開中 | [DemonStone_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/demonstone-v1.0) |
 | スペルジャマー ～パイレーツ・オブ・リアルムスペース～（Spelljammer: Pirates of Realmspace、1992年） | 公開中 | [Spelljammer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/spelljammer-v1.1) |
-| デスキープ（DeathKeep、1995年） | 公開中 | [DeathKeep_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/deathkeep-v1.0) |
+| デスキープ（DeathKeep、1995年） | 公開中 | [DeathKeep_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/deathkeep-v1.1) |
 | ドラゴンストライク（DragonStrike、1990年） | 公開中 | [DragonStrike_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dragonstrike-v1.0) |
 | ファンタジー・エンパイア（Fantasy Empires、1993年） | 公開中 | [FantasyEmpires_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/fantasyempires-v1.0) |
 | ストロングホールド（D&D Stronghold: Kingdom Simulator、1993年） | 公開中 | [Stronghold_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/stronghold-v1.0) |
