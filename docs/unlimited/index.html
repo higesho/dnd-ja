@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アンリミテッド・アドベンチャーズ 日本語化パッチ — D&amp;D シリーズ 日本語化プロジェクト</title>
+<meta name="description" content="Steam 版 Forgotten Realms: The Archives - Collection Two の「Unlimited Adventures」を日本語で使えるようにする、非公式のファンメイドパッチ。冒険の文章に日本語を入力できます。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="アンリミテッド・アドベンチャーズ 日本語化パッチ">
+<meta property="og:description" content="Steam 版「Forgotten Realms: Unlimited Adventures」を日本語で使えるようにする、非公式のファンメイドパッチ。冒険の文章に日本語を入力できます。">
+<meta property="og:url" content="https://higesho.github.io/dnd-ja/unlimited/">
+<meta property="og:image" content="https://higesho.github.io/dnd-ja/unlimited/img/story.png">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="jpn" id="jpn"><div class="jpn-band"><a class="jpn-home" href="https://higesho.github.io/ja/">日本語化プロジェクト</a></div></header>
+<script src="https://higesho.github.io/ja/nav.js"></script>
+
+<main class="band">
+<section class="hero">
+<p class="sub">Forgotten Realms: Unlimited Adventures</p>
+<h1>アンリミテッド・アドベンチャーズ 日本語化パッチ</h1>
+<p class="tag">Steam 版「Forgotten Realms: The Archives - Collection Two」に入っている「Unlimited Adventures」を日本語で使えるようにする、非公式のファンメイドパッチです。
+メインメニュー、冒険を作るエディタ、付属の冒険「Heirs to Skull Crag」の文章と会話、戦闘、キャラクター作成までを日本語にしています。
+自分で作る冒険の文章には、Windows の日本語入力で日本語を入れられます。
+ゲームの DOSBOX フォルダにファイルを 1 つ置くだけで日本語になり、消せば英語に戻ります。</p>
+<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/unlimited-v1.0">ダウンロード（GitHub）</a></p>
+</section>
+
+<div class="text">
+<h2>どんなソフト？</h2>
+<p>アンリミテッド・アドベンチャーズは、1993年に SSI から発売された AD&amp;D 公式ライセンスのソフトです（開発は MicroMagic）。「プール・オブ・レイディアンス」に始まるゴールドボックス・シリーズと同じ仕組みの RPG を、自分で作って遊ぶことができます。</p>
+<p>マップを描き、壁や背景の絵を選び、マスごとに「文章を見せる」「戦闘」「店」「質問」などのイベントを置いていくと、冒険が 1 本できあがります。作った冒険はその場で遊べ、人に渡すこともできます。見本として、フォーゴトン・レルムの辺境の町を舞台にした冒険「Heirs to Skull Crag」（スカル・クラッグの後継者）が付いています。</p>
+</div>
+
+<h2>画面</h2>
+<div class="shots">
+  <figure><img src="img/title.png" alt="アンリミテッド・アドベンチャーズのメインメニュー。ゲーム名の下に日本語のメニューが並んでいる" loading="lazy"><figcaption>タイトル画面（メインメニュー）</figcaption></figure>
+  <figure><img src="img/story.png" alt="付属の冒険の冒頭。隊商の主の絵と、日本語の地の文と台詞が出ている" loading="lazy"><figcaption>付属の冒険「スカル・クラッグの後継者」</figcaption></figure>
+  <figure><img src="img/map.png" alt="マップエディタ。メニューとボタンが日本語になっている" loading="lazy"><figcaption>マップエディタ</figcaption></figure>
+  <figure><img src="img/edit.png" alt="文章イベントの設定ページ。文章の欄に日本語が入っている" loading="lazy"><figcaption>イベントの文章に日本語を入力</figcaption></figure>
+  <figure><img src="img/play.png" alt="プレイ中の画面。入力した日本語の文章が表示されている" loading="lazy"><figcaption>入力した文章をプレイで表示</figcaption></figure>
+</div>
+
+<div class="text">
+<h2>入れ方</h2>
+<ol>
+<li>ダウンロードした <code>UnlimitedAdventures_JP.zip</code> を展開します。</li>
+<li>中の <code>winmm.dll</code> を、ゲームの <code>DOSBOX</code> フォルダ（<code>DOSBox.exe</code> があるフォルダ）にコピーします。<br>
+Steam のライブラリで「Forgotten Realms: The Archives - Collection Two」を右クリックし、「管理」→「ローカルファイルを閲覧」で開いて、<code>games\Unlimited Adventures -ENG\DOSBOX</code> に進みます。</li>
+<li>いつもどおり Unlimited Adventures を起動します。</li>
+</ol>
+<p>GOG 版の DOSBox（0.74-2.1）にも合わせてあります。GOG 版でも、ゲームを入れたフォルダの中の <code>DOSBOX</code> フォルダに <code>winmm.dll</code> を置いてください（GOG 版のゲーム本体は Steam 版と同じ内容で、GOG 版の DOSBox で日本語になることは確かめましたが、GOG 版のランチャーから起動しての動作はまだ確かめていません）。</p>
+<p>ゲームのファイルは書き換えません。日本語化は、ゲームの動いているメモリの上で行います。</p>
+
+<h2>外し方</h2>
+<ul>
+<li><code>DOSBOX</code> フォルダの <code>winmm.dll</code> を消すと英語に戻ります。セーブデータはそのまま使えます。</li>
+</ul>
+
+<h2>日本語の入力</h2>
+<p>DOSBox の中では Windows の日本語入力（IME）が使えないので、次のようにして入力します。</p>
+<ol>
+<li>イベントの設定ページで、文章の欄をクリックして文字を打てる状態にします。</li>
+<li><kbd>F12</kbd> キーを押すと、Windows の小さな入力欄が開きます。</li>
+<li>そこに普段の日本語入力で文を打ち、OK（Enter）を押します。</li>
+<li>打った文が、ゲームの文章の欄に入ります（1 字ずつ送るので、長い文は数秒かかります）。</li>
+</ol>
+<figure><img src="img/ime.png" alt="F12 で開く日本語の入力欄。日本語の文を打って OK を押す" loading="lazy"><figcaption>F12 で開く入力欄</figcaption></figure>
+<ul>
+<li>入れた文は、エディタの欄にもプレイ中の画面にも日本語で表示されます。Backspace・Delete・左右の矢印キーは、日本語 1 字ぶん動きます。</li>
+<li>日本語 1 字は、ゲームの文字 2〜3 字ぶんの場所を使います（かなは 2 字ぶん、漢字は 3 字ぶん）。文章の欄 1 つに入る日本語は、かなだけなら約 110 字、漢字まじりなら 80〜90 字ほどです。</li>
+<li>文章の欄では、1 行に入るのは日本語で 12〜19 字ほどです（欄の右側が空きます）。プレイ中は画面の幅いっぱいに折り返して表示されます。</li>
+<li>使える字は、ひらがな・カタカナ・JIS 第 1・第 2 水準の漢字と記号です。</li>
+<li>全画面表示では入力欄が見えないことがあります。日本語を入力するときはウインドウ表示にしてください（Alt + Enter で切り替えられます）。</li>
+</ul>
+
+<h2>日本語で作った冒険について</h2>
+<ul>
+<li>日本語は、冒険（デザイン）のファイルの中に、英字と記号の組み合わせとして保存されます。ファイルの形は元のままなので、このパッチを入れていない Unlimited Adventures でも読み込めますが、日本語のところは記号の並びに見えます。日本語で作った冒険を人に渡すときは、このパッチも入れてもらってください。</li>
+<li>英語で作られた冒険は、そのまま遊べます（文章は英語のままです）。ただし、文章の中に <code># $ &lt; = &gt; [ ]</code> の記号があり、すぐ後ろに英数字などが続くと、そこが日本語の字に見えることがあります。</li>
+</ul>
+
+<h2>使うときの注意</h2>
+<ul>
+<li>日本語は 1 字 8 ドットの<a href="https://littlelimit.net/misaki.htm">美咲フォント</a>で、英字 1 字と同じマスに表示します。</li>
+<li>メニューの項目は、キーの英字の後ろに日本語を出します（例: <code>P置く S選択 C中止</code>）。いつもどおり英字のキーで選べます。</li>
+<li>起動のあとに出る「規則書の○ページの○番目の単語」を聞く画面は、Steam 版・GOG 版では何を入力しても先へ進めます。</li>
+<li>日本語の入力を確かめたのは、イベントの文章の欄（文章 1〜3）です。ボタン（選択肢）の名前など 1 行の入力欄での日本語入力は、まだ確かめていません。キャラクターやデザインの名前は英字で入力してください。</li>
+<li>文章の欄をマウスでクリックしたときのカーソルの位置は、日本語の字の位置とずれることがあります。矢印キーで合わせてください。</li>
+<li>日本語の入力は、作者の環境で自動の操作によって確かめました。うまく入らない、入力欄が出ないなどの不具合があれば、下の Issues でお知らせください。</li>
+<li>付属の説明書（UAHELP.TXT、PDF）、絵として描かれた文字、キャラクターの名前は英語のままです。</li>
+<li>付属の冒険は冒頭の場面までを実際に遊んで確かめました。先の場面で不自然な訳を見つけたら、お知らせください。</li>
+</ul>
+
+<h2>更新履歴</h2>
+<ul>
+<li>v1.0：最初の公開。</li>
+</ul>
+
+<h2>ご意見・誤訳の報告</h2>
+<p>誤訳や不自然な訳に気づいたら、<a href="https://github.com/higesho/dnd-ja/issues">GitHub の Issues</a> で教えてください。</p>
+
+<h2>クレジット</h2>
+<ul>
+<li>日本語の表示には<a href="https://littlelimit.net/misaki.htm">美咲フォント</a>（門真 なむ さん）を使っています。</li>
+<li>配布物に原作のプログラムやデータは入っていません。このパッチの使用は自己責任でお願いします。</li>
+</ul>
+</div>
+</main>
+
+<footer class="foot"><div class="band">
+  <p>非公式のファン翻訳です。開発元・販売元とは関係ありません。</p>
+  <p>Dungeons &amp; Dragons、Forgotten Realms、Unlimited Adventures は Wizards of the Coast LLC の商標です。ゲームの画像・文章の権利は原作の権利者にあります。</p>
+</div></footer>
+</body>
+</html>
