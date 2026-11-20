@@ -1,0 +1,14 @@
+{
+ "dirname": "Curse_JP",
+ "draw_func": "4ebf",
+ "print_hook": "5052",
+ "wprint_hook": "5205",
+ "font_var": "65ae",
+ "cursor_var": "65ba",
+ "wprint_x1": "16",
+ "wprint_x2": "12",
+ "print_x": "10",
+ "menu_hook": "3c492",
+ "menu_var": "72af",
+ "copy_answer": 2
+}

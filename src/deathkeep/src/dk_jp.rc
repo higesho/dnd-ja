@@ -1,0 +1,4 @@
+#include "resource.h"
+IDR_PATCH RCDATA "..\build\patch.bin"
+IDR_IMAGES RCDATA "..\build\images.bin"
+IDR_SUBS RCDATA "..\build\subs.bin"

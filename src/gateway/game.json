@@ -1,0 +1,15 @@
+{
+ "dirname": "Gateway_JP",
+ "exe": "GAME.EXE",
+ "draw_func": "ovr:51a05",
+ "draw_mode": 2,
+ "print_hook": "ovr:51bf1",
+ "wprint_hook": "ovr:51f5a",
+ "font_var": "784e",
+ "cursor_var": "785a",
+ "wprint_x1": "16",
+ "wprint_x2": "12",
+ "print_x": "10",
+ "menu2": [{"hook": "450cd", "prompt": "2a", "items": "7c", "max": "50", "op": "copyb", "src": "12", "addr": "85b7"}],
+ "copy_answer": 0
+}

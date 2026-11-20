@@ -1,0 +1,5 @@
+#include <windows.h>
+1 TJP "../build/tr.bin"
+2 TJP "../build/files.txt"
+3 TJP "../build/sans.ttf"
+4 TJP "../build/serif.ttf"

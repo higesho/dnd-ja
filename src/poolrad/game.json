@@ -1,0 +1,14 @@
+{
+ "dirname": "PoolRad_JP",
+ "draw_func": "726f",
+ "print_hook": "76df",
+ "wprint_hook": "7885",
+ "font_var": "5e20",
+ "cursor_var": "5e24",
+ "wprint_x1": "14",
+ "wprint_x2": "10",
+ "print_x": "0e",
+ "menu_hook": "2ccb9",
+ "menu_var": "6b2c",
+ "copy_answer": 1
+}

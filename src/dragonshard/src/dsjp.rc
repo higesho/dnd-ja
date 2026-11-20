@@ -1,0 +1,5 @@
+#include <windows.h>
+1 DSJP "../build/tr.bin"
+2 DSJP "../build/chars.bin"
+3 DSJP "../build/serif.ttf"
+4 DSJP "../build/sans.ttf"

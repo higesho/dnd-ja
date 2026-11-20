@@ -1,0 +1,36 @@
+{
+ "dirname": "DeathKnights_JP",
+ "draw_func": "5035",
+ "print_hook": "51d8",
+ "wprint_hook": "537d",
+ "font_var": "b42e",
+ "cursor_var": "b43a",
+ "wprint_x1": "16",
+ "wprint_x2": "12",
+ "print_x": "10",
+ "menu2": [
+  {
+   "hook": "82f0",
+   "prompt": "29",
+   "items": "129"
+  },
+  {
+   "hook": "8207",
+   "prompt": "2a",
+   "items": "12a"
+  },
+  {
+   "hook": "37c46",
+   "prompt": "2a",
+   "items": "12a",
+   "op": "movb",
+   "disp": "279"
+  }
+ ],
+ "copy_answer": 3,
+ "cp3": [
+  "0",
+  "dba3",
+  "dba4"
+ ]
+}

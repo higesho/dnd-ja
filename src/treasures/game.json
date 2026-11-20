@@ -1,0 +1,42 @@
+{
+ "dirname": "Treasures_JP",
+ "exe": "GAME.EXE",
+ "draw_func": "6462",
+ "draw_mode": 2,
+ "draw_locals": "04",
+ "print_hook": "659f",
+ "wprint_hook": "6b24",
+ "font_var": "7032",
+ "cursor_var": "93ac",
+ "wprint_x1": "16",
+ "wprint_x2": "12",
+ "print_x": "10",
+ "menu2": [
+  {
+   "hook": "44e0f",
+   "prompt": "2a",
+   "items": "12a",
+   "op": "movds",
+   "addr": "f2be",
+   "imm": "01"
+  },
+  {
+   "hook": "84d2",
+   "prompt": "2a",
+   "items": "12a"
+  },
+  {
+   "hook": "85c2",
+   "prompt": "2a",
+   "items": "12a"
+  }
+ ],
+ "copy_answer": 3,
+ "font_fmt": 2,
+ "font_hdr": "1c",
+ "cp3": [
+  "70a4",
+  "bcb2",
+  "bcb3"
+ ]
+}

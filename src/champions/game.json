@@ -1,0 +1,14 @@
+{
+ "dirname": "Champions_JP",
+ "draw_func": "53ef",
+ "print_hook": "5591",
+ "wprint_hook": "574e",
+ "font_var": "6128",
+ "cursor_var": "6134",
+ "wprint_x1": "16",
+ "wprint_x2": "12",
+ "print_x": "10",
+ "menu_hook": "3b24e",
+ "menu_var": "6e10",
+ "copy_answer": 4
+}

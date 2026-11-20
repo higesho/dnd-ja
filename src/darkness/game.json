@@ -1,0 +1,37 @@
+{
+ "dirname": "PoolsDark_JP",
+ "exe": "GAME.EXE",
+ "draw_func": "49cf",
+ "print_hook": "4b72",
+ "wprint_hook": "4d1a",
+ "font_var": "9d86",
+ "cursor_var": "9d92",
+ "wprint_x1": "16",
+ "wprint_x2": "12",
+ "print_x": "10",
+ "menu2": [
+  {
+   "hook": "764a",
+   "prompt": "29",
+   "items": "129"
+  },
+  {
+   "hook": "7562",
+   "prompt": "2a",
+   "items": "12a"
+  },
+  {
+   "hook": "3a450",
+   "prompt": "2a",
+   "items": "12a",
+   "op": "movb",
+   "disp": "28a"
+  }
+ ],
+ "copy_answer": 3,
+ "cp3": [
+  "7dee",
+  "c5bb",
+  "c5bc"
+ ]
+}
