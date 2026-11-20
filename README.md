@@ -45,7 +45,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | ドラゴンシャード（Dungeons & Dragons: Dragonshard、2005年） | 公開中 | [Dragonshard_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/dragonshard-v1.2) |
 | レイヴンロフト ～ストラドズ・ポゼッション～（Ravenloft: Strahd's Possession、1994年） | 公開中 | [Strahd_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/strahd-v1.2) |
 | レイヴンロフト ～ストーン・プロフェット～（Ravenloft: Stone Prophet、1995年） | 公開中 | [StoneProphet_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/prophet-v1.1) |
-| テンプル・オブ・エレメンタル・イーヴル（The Temple of Elemental Evil、2003年） | 公開中 | [TempleOfElementalEvil_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/toee-v1.0) |
+| テンプル・オブ・エレメンタル・イーヴル（The Temple of Elemental Evil、2003年） | 公開中 | [TempleOfElementalEvil_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/toee-v1.1) |
 | アル・カディム ～ジーニーの呪い～（Al-Qadim: The Genie's Curse、1994年） | 公開中 | [AlQadim_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/alqadim-v1.2) |
 | デーモンストーン（Forgotten Realms: Demon Stone、2004年） | 公開中 | [DemonStone_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/demonstone-v1.0) |
 | スペルジャマー ～パイレーツ・オブ・リアルムスペース～（Spelljammer: Pirates of Realmspace、1992年） | 公開中 | [Spelljammer_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/spelljammer-v1.1) |
