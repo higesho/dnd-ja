@@ -21,7 +21,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | NTotSC 日本語版（Northern Tales of the Sword Coast v5.0.0） | 公開中 | [NTotSC_v5.0.0_JP_v1.0.zip](https://github.com/higesho/dnd-ja/releases/tag/ntotsc-v1.0) |
 | バルダーズ・ゲートII エンハンスド・エディション（Baldur's Gate II: Enhanced Edition） | 公開中 | [BaldursGate2EE_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/bg2ee-v1.0) |
 | プール・オブ・レイディアンス ～ルインズ・オブ・ミス・ドラナー～（Pool of Radiance: Ruins of Myth Drannor） | 公開中 | [RuinsOfMythDrannor_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/romd-v1.1) |
-| アイ・オブ・ザ・ビホルダー（Eye of the Beholder） | 公開中 | [EyeOfTheBeholder_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob1-v1.4) |
+| アイ・オブ・ザ・ビホルダー（Eye of the Beholder） | 公開中 | [EyeOfTheBeholder_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob1-v1.5) |
 | アイ・オブ・ザ・ビホルダー II ～レジェンド・オブ・ダークムーン～（Eye of the Beholder II: The Legend of Darkmoon） | 公開中 | [EyeOfTheBeholder2_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob2-v1.5) |
 | アイ・オブ・ザ・ビホルダー III ～アサルト・オン・ミス・ドラナー～（Eye of the Beholder III: Assault on Myth Drannor） | 公開中 | [EyeOfTheBeholder3_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob3-v1.3) |
 | プール・オブ・レイディアンス（Pool of Radiance、1988年） | 公開中 | [PoolOfRadiance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/poolrad-v1.4) |

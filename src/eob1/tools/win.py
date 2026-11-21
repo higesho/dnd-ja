@@ -1,5 +1,5 @@
 # Drive the test DOSBox window by its own process / unique title (never the foreground window).
-#   python tools/win.py start [trace|jp|none]   launch DOSBox (DLL variant copied as winmm.dll)
+#   python tools/win.py start [trace|jp|gog|none]   launch DOSBox (DLL variant copied as winmm.dll; gog needs EOB_GOG_DOSBOX = the DOSBOX folder of a GOG install)
 #   python tools/win.py shot NAME               PrintWindow capture -> capture/NAME.png
 #   python tools/win.py key KEY [KEY..]         post keys (names: enter esc space up down left right f1.. a..z 0..9, or 'text:HELLO')
 #   python tools/win.py click X Y [right]       click at game coords (320x200)
@@ -10,6 +10,14 @@ from ctypes import windll
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 GAME = os.path.abspath(os.path.join(ROOT, '..'))
 PIDF = os.path.join(ROOT, 'test', 'pid.txt')
+VARF = os.path.join(ROOT, 'test', 'variant.txt')
+def cmd_path():
+    v = open(VARF).read().strip() if os.path.exists(VARF) else ''
+    if v == 'gog':
+        d = os.path.join(ROOT, 'test', '_jp', 'test')
+        os.makedirs(d, exist_ok=True)
+        return os.path.join(d, 'cmd.txt')
+    return os.path.join(ROOT, 'test', 'cmd.txt')
 u32 = windll.user32; g32 = windll.gdi32
 
 WNDENUMPROC = ctypes.WINFUNCTYPE(W.BOOL, W.HWND, W.LPARAM)
@@ -42,6 +50,25 @@ def client_size(h):
     return r.right, r.bottom
 
 def shot(name):
+    # the DLL (dev.c, EOBJP_DEV=1) writes DOSBox's SDL surface to a BMP: works even when the window paints white
+    from PIL import Image
+    h, t = find_window()
+    bmp = os.path.join(ROOT, 'test', 'shot.bmp')
+    if os.path.exists(bmp): os.remove(bmp)
+    cmd = cmd_path()
+    open(cmd + '.tmp', 'w').write('shot ' + bmp + chr(10))
+    os.replace(cmd + '.tmp', cmd)
+    t0 = time.time()
+    while not os.path.exists(bmp):
+        time.sleep(0.05)
+        if time.time() - t0 > 10: raise SystemExit('shot timeout')
+    time.sleep(0.1)
+    im = Image.open(bmp).convert('RGB')
+    out = os.path.join(ROOT, 'capture', name + '.png')
+    im.save(out)
+    print(out, im.size, t)
+
+def shot_printwindow(name):
     from PIL import Image
     h, t = find_window()
     w, hh = client_size(h)
@@ -85,7 +112,7 @@ def post_key(h, name, hold=0.05):
 
 def key(names):
     # DLL (dev.c) reads _jp/test/cmd.txt and pushes SDL key events itself
-    cmd = os.path.join(ROOT, 'test', 'cmd.txt')
+    cmd = cmd_path()
     lines = []
     for n in names:
         if n.startswith('text:'): lines.append('text ' + n[5:])
@@ -143,10 +170,21 @@ def start(variant):
         shutil.copy(os.path.join(ROOT, 'build', 'trace', 'winmm.dll'), dst)
     elif variant == 'jp':
         shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), dst)
-    p = subprocess.Popen([os.path.join(GAME, 'DOSBOX', 'DOSBox.exe'), '-noconsole', '-conf', 'base.conf', '-conf', 'graphics.conf',
+    exe = os.path.join(GAME, 'DOSBOX', 'DOSBox.exe')
+    if variant == 'gog':
+        # GOG's DOSBox 0.74-2.1 (copied from the GOG install) with the Steam game files
+        src = os.environ['EOB_GOG_DOSBOX']   # the DOSBOX folder of a GOG install
+        gd = os.path.join(ROOT, 'test', 'gogdosbox')
+        os.makedirs(gd, exist_ok=True)
+        for f in ('DOSBox.exe', 'SDL.dll', 'SDL_net.dll'):
+            shutil.copy(os.path.join(src, f), os.path.join(gd, f))
+        shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), os.path.join(gd, 'winmm.dll'))
+        exe = os.path.join(gd, 'DOSBox.exe')
+    p = subprocess.Popen([exe, '-noconsole', '-conf', 'base.conf', '-conf', 'graphics.conf',
                           '-conf', '_jp\\test\\test.conf'], cwd=GAME,
                          env=dict(os.environ, EOBJP_DEV='1'))
     open(PIDF, 'w').write(str(p.pid))
+    open(VARF, 'w').write(variant)
     for i in range(50):
         time.sleep(0.2)
         try:

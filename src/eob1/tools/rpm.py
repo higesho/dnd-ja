@@ -14,14 +14,16 @@ class Guest:
         if pid is None:
             pid = int(open(os.path.join(os.path.dirname(__file__), '..', 'test', 'pid.txt')).read())
         self.h = open_proc(pid)
-        tl = struct.unpack('<256I', read(self.h, 0x74d6d0, 1024))
+        vf = os.path.join(os.path.dirname(__file__), '..', 'test', 'variant.txt')
+        self.dbx = 0xe000 if os.path.exists(vf) and open(vf).read().strip() == 'gog' else 0   # GOG DOSBox 0.74-2.1: globals +0xe000
+        tl = struct.unpack('<256I', read(self.h, 0x74d6d0 + self.dbx, 1024))
         import collections
         self.membase = collections.Counter(x for x in tl[:0xa0] if x).most_common(1)[0][0]
     def mem(self, lin, n):
         return read(self.h, self.membase + lin, n)
     def w(self, lin): return struct.unpack('<H', self.mem(lin, 2))[0]
     def regs(self):
-        r = struct.unpack('<9I', read(self.h, 0x74d1e0, 36)); s = struct.unpack('<8I', read(self.h, 0x74d100, 32))
+        r = struct.unpack('<9I', read(self.h, 0x74d1e0 + self.dbx, 36)); s = struct.unpack('<8I', read(self.h, 0x74d100 + self.dbx, 32))
         return r, s
 
 def dump(name='mem'):

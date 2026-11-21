@@ -143,6 +143,11 @@ def exe_patch():
     S = 0x2800 + 0x8b58
     assert orig[S:S + 5] == bytes.fromhex('558bec5657')
     recs.append((S, cb(3) + bytes([0xcb])))
+    # 会話の選択ボタンの y を決める所（オーバーレイ 33d2:0462 の mov al,[8101]; cbw）を DLL へ:
+    # 原作は y = 窓の y + (行+1) × 行の高さ + 4。本文は和文の行の高さで出しているので、DLL がその高さで数える
+    B = 0x3ded2
+    assert orig[B - 5:B + 18] == bytes.fromhex('a154fe4050a00181988bd058f7ea8b1666fe03d083c204')
+    recs.append((B, cb(4)))
     # 再配置表の確認（書き換え範囲にかからないこと）
     nrel, rt = struct.unpack_from('<H', orig, 6)[0], struct.unpack_from('<H', orig, 0x18)[0]
     for i in range(nrel):

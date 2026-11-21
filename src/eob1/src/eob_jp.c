@@ -488,7 +488,10 @@ static int prepare_text(uint32_t s, uint16_t *v, int cap, int *has_jp)
     static uint8_t raw[MAXS];
     int n, i, m;
     n = decode_guest(s, v, cap, has_jp);
-    if (*has_jp || g_in_disp || n <= 0) return n;
+    if (*has_jp || n <= 0) return n;
+    /* メッセージの表示中に描かれる行は訳したあとのものなので、訳し直さない。
+     * ただし長い文の途中で出るページ送りのボタン "MORE" は表示中に描かれるので、これだけは訳す */
+    if (g_in_disp && !(n == 4 && v[0] == 'M' && v[1] == 'O' && v[2] == 'R' && v[3] == 'E')) return n;
     for (i = 0; i < n; i++) raw[i] = (uint8_t)v[i];
     m = translate_str(raw, n, t, MAXS);
     if (m < 0) {
@@ -845,18 +848,45 @@ static uint32_t __cdecl cb_disp_next(void)
     return 0;
 }
 
+/* コールバック: 会話の選択ボタンの y を決める所（オーバーレイ 33d2:0462 の mov al,[8101]; cbw の代わり）。
+ * 原作は y = 窓の y + (行+1) × 行の高さ + 4 で、ボタンを本文のすぐ下に置く。本文は和文の行の高さ（JP_PITCH）で
+ * 出しているのに、ここでは英字の行の高さ（6）で数えるので、ボタンが本文の途中に重なっていた。
+ * 和文の行の高さで数え直す。窓の下にはみ出すときは、窓に収まる所まで上げる（原作の英文 10 行のときと同じ位置）。
+ * スタックの一番上に (行+1) が積んである: それを 1 にして、ax に「窓の y + 4 からの距離」を返す。
+ * [bp+6] = ボタンの表の最初の番号, [bp+8] = ボタンの数, DS:7b94 = 段ごとの y の足し分（0, 12, 24） */
+#define V_BTN_YOFS 0x7b94
+static uint32_t __cdecl cb_btn_y(void)
+{
+    uint32_t ds = PHYS_DS, sp = PHYS_SS + R_SP, bp = PHYS_SS + R_BP;
+    int lines = rws(sp), ch = (int8_t)rb(ds + V_CH);
+    int first = (int8_t)rb(bp + 6), nbtn = (int8_t)rb(bp + 8), i, maxoff = 0;
+    int orig = lines * ch, jp = lines * JP_PITCH, lim;
+    if (first < 0 || first > 10) first = 0;
+    for (i = 0; i < nbtn && first + i < 11; i++) {
+        int o = (int8_t)rb(ds + V_BTN_YOFS + first + i);
+        if (o > maxoff) maxoff = o;
+    }
+    lim = rws(ds + V_WH) - 3 - maxoff;
+    if (jp > lim) jp = lim;
+    if (jp < orig) jp = orig;     /* 原作より上には置かない */
+    ww(sp, 1);
+    SET_AX(jp);
+    return 0;
+}
+
 static int g_cb_installed;
 static int install_callbacks(void)
 {
     uint32_t *tab = (uint32_t*)A_CB_HANDLERS;
     int b = g_cb_base, i;
     if (g_cb_installed) return 1;
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < 5; i++)
         if (tab[b + i] != A_CB_ILLEGAL) { dbg("callback slot %x busy (%x)\n", b + i, tab[b + i]); return 0; }
     tab[b + 0] = (uint32_t)cb_disp_prep;
     tab[b + 1] = (uint32_t)cb_disp_next;
     tab[b + 2] = (uint32_t)cb_print;
     tab[b + 3] = (uint32_t)cb_shaded;
+    tab[b + 4] = (uint32_t)cb_btn_y;
     g_cb_installed = 1;
     dbg("callbacks installed at %x\n", b);
     return 1;
