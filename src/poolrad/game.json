@@ -10,5 +10,10 @@
  "print_x": "0e",
  "menu_hook": "2ccb9",
  "menu_var": "6b2c",
- "copy_answer": 1
+ "copy_answer": 1,
+ "pause_hook": "7e51",
+ "print_ip": "626",
+ "speed_var": "49e2",
+ "state_var": "49f3",
+ "pause_skip": "b00050b01850b00a508d7edf1657bf1e"
 }

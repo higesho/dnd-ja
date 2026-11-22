@@ -24,7 +24,7 @@
 町や迷宮のできごとの文、人物との会話、遭遇と戦闘のメッセージ、画面下のメニュー、野営、呪文やアイテムの名前、
 キャラクター作成やキャラクター情報の画面までを日本語にしています。
 ゲームの DOSBOX フォルダにファイルを 1 つ置くだけで日本語になり、消せば英語に戻ります。</p>
-<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/poolrad-v1.4">ダウンロード（GitHub）</a></p>
+<p><a class="dl" href="https://github.com/higesho/dnd-ja/releases/tag/poolrad-v1.5">ダウンロード（GitHub）</a></p>
 </section>
 
 <div class="text">
@@ -43,6 +43,7 @@
   <figure><img src="img/travel.png" alt="フランの通りを進み、日本語の説明が出た画面" loading="lazy"><figcaption>町を進む</figcaption></figure>
   <figure><img src="img/encounter.png" alt="コボルドに遭遇し、日本語のメッセージと選択肢が出た画面" loading="lazy"><figcaption>遭遇</figcaption></figure>
   <figure><img src="img/combat.png" alt="コボルドとの戦闘で、攻撃の結果が日本語で出た画面" loading="lazy"><figcaption>戦闘</figcaption></figure>
+  <figure><img src="img/enterwait.png" alt="ゲーム速度 9 の戦闘で、攻撃の結果のメッセージが止まり、右下に「ENTERで次へ」と出ている画面" loading="lazy"><figcaption>速度 9 では Enter で次へ</figcaption></figure>
   <figure><img src="img/sheet.png" alt="能力値や職業が日本語で表示されたキャラクター情報" loading="lazy"><figcaption>キャラクター情報</figcaption></figure>
 </div>
 
@@ -57,7 +58,8 @@ Steam のライブラリで「Forgotten Realms: The Archives - Collection Two」
 </ol>
 <p>GOG 版でも使えます。<code>winmm.dll</code> を、GOG 版のゲームを入れたフォルダの中の <code>DOSBOX</code> フォルダ（<code>DOSBox.exe</code> があるフォルダ）にコピーしてください。</p>
 <p>ゲームのファイルは書き換えません。日本語にしたデータは、起動時に <code>%LOCALAPPDATA%\PoolRad_JP</code> フォルダに自動で作られます。</p>
-<p>v1.0・v1.1 から更新するときは、<code>winmm.dll</code> を新しいものに置き換えるだけです。</p>
+<p>前の版から更新するときは、<code>winmm.dll</code> を新しいものに置き換えるだけです。</p>
+<p>Steam 版は、最初はウインドウで起動する設定になっています（日本語化とは関係ありません）。ゲーム中に <kbd>Alt</kbd>+<kbd>Enter</kbd> で全画面に切り替えられます。いつも全画面で起動するには、ゲームのフォルダ（<code>POOLRAD</code>）の <code>graphics.conf</code> にある <code>fullscreen=false</code> を <code>fullscreen=true</code> に書き換えます（Steam のランチャーの画面の設定でも変えられます）。</p>
 
 <h2>外し方</h2>
 <ul>
@@ -66,16 +68,18 @@ Steam のライブラリで「Forgotten Realms: The Archives - Collection Two」
 
 <h2>遊ぶときの注意</h2>
 <ul>
+<li>原作では、戦闘中のメッセージは「ゲーム速度」に応じた時間（速度 9 でも約 2 秒）で次へ進みます。このパッチでは、<strong>ゲーム速度を 9 にすると、戦闘中は Enter キーを押すまでメッセージが止まります</strong>（右下に「ENTERで次へ」と出ます）。ゲーム速度は、野営（<code>E</code>）→ 変える（<code>A</code>）→ 速さ（<code>S</code>）、または戦闘中の 終了（<code>D</code>）→ 速さ（<code>S</code>）で変えられます。速度 0〜8 は今までどおりです。</li>
 <li>日本語は、英字 1 字と同じ 8×8 ドットのマスに 1 字ずつ、美咲フォントで表示します。</li>
 <li>メニューの項目は、キーの英字の後ろに日本語を出します（例: <code>A地図 C呪文 V見る</code>）。いつもどおり英字のキーで選べます。</li>
 <li>ゲーム中で「冒険日誌の○番」と出る文章は、付属の Adventurer's Journal（PDF、英語）の番号です。</li>
 <li>タイトルロゴなど絵として描かれた文字と、キャラクターの名前は英語のままです。</li>
 <li>コードホイールのコピープロテクト画面では、答えの語も表示します（Steam 版では入力しなくても先へ進みます）。</li>
-<li>同梱の DOSBox 0.74-3 と英語版のゲーム（START.EXE v1.3）に合わせて作っています。中身が違うときは日本語化を行わず、英語のまま動きます。</li>
+<li>同梱の DOSBox（Steam 版 0.74-3、GOG 版 0.74-2.1）と英語版のゲーム（START.EXE v1.3）に合わせて作っています。中身が違うときは日本語化を行わず、英語のまま動きます。</li>
 </ul>
 
 <h2>更新履歴</h2>
 <ul>
+<li>v1.5：ゲーム速度を 9 にすると、戦闘中のメッセージが Enter キーを押すまで止まるようにしました。速度変更などのメニューで英語のまま残っていた項目（FASTER・SLOWER、Guard、Bandage、Target、扉の Bash・Knock など）を日本語にし、扉の Pick を「拾う」から「鍵開け」に直しました。「は倒れた。、瀕死だ。」と句読点が重なっていたのを直しました。</li>
 <li>v1.4：環境によっては、起動したときに「プロシージャ エントリ ポイント mmioCreateChunk が … DINPUT.DLL から見つかりませんでした」と出て、マウスが使えなくなる不具合を直しました。winmm.dll を新しいものに置き換えてください。</li>
 <li>v1.3：GOG 版（DOSBox 0.74-2.1 が付いたもの）でも日本語になるようにしました。</li>
 <li>v1.2：キャラクター作成のアイコン編集で「出る」（E キー）などが効かず、先へ進めなかったのを直しました。</li>

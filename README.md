@@ -24,7 +24,7 @@ GOG.com や Steam で販売されている版を対象にしています。
 | アイ・オブ・ザ・ビホルダー（Eye of the Beholder） | 公開中 | [EyeOfTheBeholder_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob1-v1.5) |
 | アイ・オブ・ザ・ビホルダー II ～レジェンド・オブ・ダークムーン～（Eye of the Beholder II: The Legend of Darkmoon） | 公開中 | [EyeOfTheBeholder2_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob2-v1.5) |
 | アイ・オブ・ザ・ビホルダー III ～アサルト・オン・ミス・ドラナー～（Eye of the Beholder III: Assault on Myth Drannor） | 公開中 | [EyeOfTheBeholder3_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/eob3-v1.3) |
-| プール・オブ・レイディアンス（Pool of Radiance、1988年） | 公開中 | [PoolOfRadiance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/poolrad-v1.4) |
+| プール・オブ・レイディアンス（Pool of Radiance、1988年） | 公開中 | [PoolOfRadiance_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/poolrad-v1.5) |
 | カース・オブ・ジ・アジュール・ボンズ（Curse of the Azure Bonds、1989年） | 公開中 | [CurseOfTheAzureBonds_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/curse-v1.4) |
 | シークレット・オブ・ザ・シルバー・ブレイズ（Secret of the Silver Blades、1990年） | 公開中 | [SecretOfTheSilverBlades_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/secret-v1.4) |
 | プールズ・オブ・ダークネス（Pools of Darkness、1991年） | 公開中 | [PoolsOfDarkness_JP.zip](https://github.com/higesho/dnd-ja/releases/tag/darkness-v1.5) |

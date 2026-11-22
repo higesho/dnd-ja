@@ -5,6 +5,7 @@
  *    （GAME.OVR も、必要なら同じ大きさのまま書き換えたコピーへ）
  *  - 1 行表示（709:0626）とワードラップ表示（709:0768）で英文を訳す。
  *    日本語の字は 1 字 1 マス（8x8）。文字列の中では 0x80-0xff の 1 バイト（動的に割り当てる番号）で表す
+ *  - 文を読ませる待ち（709:0dbe）は、速度 9 の戦闘中だけ Enter 待ちにする
  *  - 1 文字描画（709:01df）の入口で、その番号の字形をスタックに置き、フォントの参照先をそこへ向けてゲームに描かせる
  */
 #include <windows.h>
@@ -126,6 +127,9 @@ static uint32_t gp_wx1 = 0x14, gp_wx2 = 0x10;   /* ワードラップ表示の�
 static uint32_t gp_px = 0x0e;         /* 1 行表示の x の引数（bp+） */
 static uint32_t gp_menuvar = 0x6b2c;  /* メニューのフックで置き換えた mov byte [xxxx],0 */
 static uint32_t gp_cp = 1;            /* コードホイールの答えを出す */
+static uint32_t gp_print_ip, gp_speed, gp_state;   /* Enter 待ち: 1 行表示の IP、速度と場面の変数（0 = 使わない） */
+static int g_drawn;                   /* 前の Enter 待ちのあとに字を描いた */
+static uint8_t gp_skip[16];           /* この命令列へ戻る待ち（戦闘の準備中で、読む文が無い）は Enter 待ちにしない */
 static char gp_dirname[32] = "PoolRad_JP";
 static int g_enabled;
 
@@ -176,6 +180,11 @@ static int load_blob(HMODULE self)
             if (s->len >= 9 * 4 + 32) {
                 gp_font = v[2]; gp_cursor = v[3]; gp_wx1 = v[4]; gp_wx2 = v[5]; gp_px = v[6]; gp_menuvar = v[7]; gp_cp = v[8];
                 memcpy(gp_dirname, d + 36, 31);
+            }
+            if (s->len >= 9 * 4 + 32 + 3 * 4 + 16) {
+                const uint32_t *w = (const uint32_t*)(d + 9 * 4 + 32);
+                gp_print_ip = w[0]; gp_speed = w[1]; gp_state = w[2];
+                memcpy(gp_skip, w + 3, 16);
             }
         }
         p = d + s->len;
@@ -575,6 +584,7 @@ static uint32_t __cdecl cb_draw(void)
     bp = ss + R_BP;
     ch = rb(bp + 8);
     flag = rb(bp + 6);
+    if (flag == 1 && ch != ' ') g_drawn = 1;
     if (flag == 1 && ch >= 0x80) {
         uint16_t code = g_dyn_code[ch - 0x80];
         int g = code ? glyph_of(code) : 0, k;
@@ -710,18 +720,127 @@ static uint32_t __cdecl cb_menu(void)
     return 0;
 }
 
+/* --- 文を読ませる待ち 709:0dbe（元は Delay(速度 * 225 ミリ秒)。速度 9 でも 2 秒で消える）
+ * 速度 9 の戦闘中だけ、Enter が押されるまで待つ。ゲーム側は次の形に書き換えてある:
+ *   again: callback / jcxz go / hlt / jmp again / go: push ax / call Delay
+ * AX = Delay に渡すミリ秒、CX = 0 なら先へ。hlt で待つので時計・割り込みは動き続ける。
+ * 待ちの目印「Enterで次へ」は、戻り先をこの callback にしてゲームの 1 行表示 709:0626 に描かせる。 */
+#define BDA_HEAD 0x41a
+#define BDA_TAIL 0x41c
+#define BDA_FIRST 0x1e     /* キーボードバッファ（40:1e から 2 バイト x 16） */
+#define BDA_END 0x3e
+#define SET_AX(v) (*(uint16_t*)&REG32(0) = (uint16_t)(v))
+#define SET_CX(v) (*(uint16_t*)&REG32(1) = (uint16_t)(v))
+#define R_IP ((uint16_t)REG32(8))
+#define PROMPT_X 31
+#define PROMPT_Y 23        /* 戦闘画面の枠と最下行のメニューの間の、空いている行 */
+#define PROMPT_W 8
+
+static enum { PW_IDLE, PW_PROMPT, PW_WAIT, PW_ERASE } g_pw;
+static uint16_t g_pw_sp, g_pw_cursor;
+
+/* バッファから Enter だけを抜く（Space = 自動戦闘をやめる、などのキーはゲームに残す）。戻り値 = Enter があった */
+static int take_enter(void)
+{
+    uint16_t keep[16];
+    uint16_t h = rw(BDA_HEAD), t = rw(BDA_TAIL), p;
+    int n = 0, found = 0, i, from;
+    if (h < BDA_FIRST || h >= BDA_END || t < BDA_FIRST || t >= BDA_END || ((h | t) & 1)) return 0;
+    for (p = h; p != t && n < 16; p = (uint16_t)(p + 2 >= BDA_END ? BDA_FIRST : p + 2)) {
+        uint16_t k = rw(0x400 + p);
+        if ((k & 0xff) == 0x0d) found = 1;
+        else keep[n++] = k;
+    }
+    from = n >= 14 ? n - 8 : 0;      /* ほかのキーで一杯になると Enter が入らないので、古いものを捨てる */
+    if (!found && !from) return 0;
+    p = BDA_FIRST;
+    for (i = from; i < n; i++) { ww(0x400 + p, keep[i]); p += 2; }
+    ww(BDA_HEAD, BDA_FIRST);
+    ww(BDA_TAIL, p);
+    return found;
+}
+
+/* Print(x, y, 色, 文字列) を呼ぶ。戻ると、この callback をもう一度通る */
+static void call_print(const char *s)
+{
+    uint32_t ss = PHYS_SS;
+    uint16_t again = (uint16_t)(R_IP - 4), cs = SEGVAL(1), sp, str;
+    int n = (int)strlen(s), i;
+    sp = str = (uint16_t)(g_pw_sp - ((n + 2) & ~1));
+    wb(ss + str, (uint8_t)n);
+    for (i = 0; i < n; i++) wb(ss + (uint16_t)(str + 1 + i), (uint8_t)s[i]);
+#define PUSH(v) (sp -= 2, ww(ss + sp, (uint16_t)(v)))
+    PUSH(PROMPT_X); PUSH(PROMPT_Y); PUSH(15); PUSH(SEGVAL(2)); PUSH(str);
+    PUSH(cs); PUSH(again);
+#undef PUSH
+    SET_SP(sp);
+    *(uint16_t*)&REG32(8) = (uint16_t)gp_print_ip;
+}
+
+static uint32_t __cdecl cb_pause(void)
+{
+    uint32_t ds = PHYS_DS;
+    uint8_t speed = rb(ds + gp_speed);
+    font_restore();
+    if (g_pw == PW_PROMPT || g_pw == PW_ERASE) {     /* Print から戻ってきた */
+        SET_SP(g_pw_sp);
+        ww(ds + gp_cursor, g_pw_cursor);             /* ゲームは待ちの前後でカーソルの行を見る */
+        if (g_pw == PW_ERASE) {
+            g_pw = PW_IDLE;
+            g_drawn = 0;
+            SET_AX(0); SET_CX(0);
+        } else {
+            g_pw = PW_WAIT;
+            SET_CX(1);
+        }
+        return 0;
+    }
+    if (g_pw == PW_WAIT && R_SP == g_pw_sp) {
+        if (take_enter()) {
+            char blank[PROMPT_W + 1];
+            memset(blank, ' ', PROMPT_W);
+            blank[PROMPT_W] = 0;
+            g_pw = PW_ERASE;
+            call_print(blank);
+        } else SET_CX(1);
+        return 0;
+    }
+    g_pw = PW_IDLE;
+    if (speed == 9 && rb(ds + gp_state) == 5) {      /* 戻り先が除外する場所か */
+        uint32_t ss = PHYS_SS, ret = ((uint32_t)rw(ss + R_BP + 4) << 4) + rw(ss + R_BP + 2);
+        int i;
+        for (i = 0; i < 16 && rb(ret + i) == gp_skip[i]; i++) ;
+        if (i == 16) speed = 1;
+    }
+    if (speed != 9 || rb(ds + gp_state) != 5) {      /* 今までどおり */
+        SET_AX(rb(ds + gp_speed) * 225); SET_CX(0);
+        return 0;
+    }
+    if (!g_drawn) {          /* 前の Enter の後に新しい文が無い（倒れる絵など）: もう一度押させない */
+        SET_AX(300); SET_CX(0);
+        return 0;
+    }
+    take_enter();            /* 出る前に押されていた Enter では送らない */
+    g_pw_sp = R_SP;
+    g_pw_cursor = rw(ds + gp_cursor);
+    g_pw = PW_PROMPT;
+    call_print("@NEXT");
+    return 0;
+}
+
 static int g_cb_installed;
 static int install_callbacks(void)
 {
     uint32_t *tab = (uint32_t*)A_CB_HANDLERS;
-    int b = g_cb_base, i;
+    int b = g_cb_base, i, n = gp_print_ip ? 5 : 4;
     if (g_cb_installed) return 1;
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < n; i++)
         if (tab[b + i] != A_CB_ILLEGAL) { dbg("callback slot %x busy (%x)\n", b + i, tab[b + i]); return 0; }
     tab[b + 0] = (uint32_t)cb_print;
     tab[b + 1] = (uint32_t)cb_wprint;
     tab[b + 2] = (uint32_t)cb_draw;
     tab[b + 3] = (uint32_t)cb_menu;
+    if (n > 4) tab[b + 4] = (uint32_t)cb_pause;
     g_cb_installed = 1;
     dbg("callbacks installed at %x\n", b);
     return 1;

@@ -9,6 +9,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 BDF = os.path.join(ROOT, 'font', 'misaki_gothic_2nd.bdf')
 CB_BASE = 0x70
 CB_PRINT, CB_WPRINT, CB_DRAW, CB_MENU = CB_BASE, CB_BASE + 1, CB_BASE + 2, CB_BASE + 3
+CB_PAUSE = CB_BASE + 4
 LOG = int(os.environ.get('PRJ_LOG', '1'))
 GAMECFG = json.load(open(os.path.join(ROOT, 'game.json'), encoding='utf-8'))
 H = lambda k: int(GAMECFG[k], 16)
@@ -58,6 +59,7 @@ def load_translations():
         table[en.encode('latin1')] = (ja, 1 if en in center else 0)
         by_en[en] = ja
     table[b'@ANSWER'] = ('（答え：%s）', 0)
+    table[b'@NEXT'] = ('Enterで次へ', 0)      # Enter 待ちの目印（8 字）
     # メインメニューの残りの部分
     for en in SPLIT_FIRST:
         if en in by_en:
@@ -112,6 +114,10 @@ def main():
     patch(H('print_hook'), '8a8600ff', cb(CB_PRINT))            # 1 行表示: mov al,[bp-100]
     patch(H('wprint_hook'), '8a8600ff', cb(CB_WPRINT))          # ワードラップ表示: mov al,[bp-100]
     patch(H('draw_func') + 1, '89e583ec12', cb(CB_DRAW) + b'\x90')  # 1 文字描画: mov bp,sp / sub sp,12
+    if 'pause_hook' in GAMECFG:                                 # mov al,[速度] / xor ah,ah / mov dx,225 / mul dx / push ax / call Delay
+        sv = H('speed_var')
+        patch(H('pause_hook'), 'a0%02x%02x30e4bae100f7e250' % (sv & 0xff, sv >> 8),
+              cb(CB_PAUSE) + bytes.fromhex('e304' 'f4' 'ebf7' '90' '50'))
     if packed:
         sects.append(esect('START.EXE', exe, p))
     else:
@@ -157,7 +163,9 @@ def main():
     sects.append(sect('F', struct.pack('<I', len(codes)) + struct.pack('<%dH' % len(codes), *codes) + bits + flags))
     sects.append(sect('P', struct.pack('<9I', CB_BASE, LOG, H('font_var'), H('cursor_var'), H('wprint_x1'), H('wprint_x2'),
                                        H('print_x'), H('menu_var'), GAMECFG.get('copy_answer', 0))
-                      + GAMECFG['dirname'].encode().ljust(32, b'\0')))
+                      + GAMECFG['dirname'].encode().ljust(32, b'\0')
+                      + (struct.pack('<3I', H('print_ip'), H('speed_var'), H('state_var')) + bytes.fromhex(GAMECFG['pause_skip'])
+                         if 'pause_hook' in GAMECFG else b'')))
     blob = b'PRJ1' + struct.pack('<II', 1, len(sects)) + b''.join(sects)
     os.makedirs(os.path.join(ROOT, 'build'), exist_ok=True)
     open(os.path.join(ROOT, 'build', 'patch.bin'), 'wb').write(blob)
