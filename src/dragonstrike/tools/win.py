@@ -133,7 +133,7 @@ def start(variant):
     if variant == 'trace':
         shutil.copy(os.path.join(ROOT, 'build', 'trace', 'winmm.dll'), dst)
     else:
-        shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), dst)
+        shutil.copy(os.path.join(ROOT, 'build', 'test', 'winmm.dll'), dst)   # 試験版（src/build.bat test）
     env = dict(os.environ); env["DS_TEST"] = "1"; env["DS_LOG"] = "1"
     exe = os.path.join(GAME, 'DOSBOX', 'DOSBox.exe')
     if variant == 'gog':
@@ -144,7 +144,7 @@ def start(variant):
         os.makedirs(gd, exist_ok=True)
         for f in ('DOSBox.exe', 'SDL.dll', 'SDL_net.dll'):
             shutil.copy(os.path.join(src, f), os.path.join(gd, f))
-        shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), os.path.join(gd, 'winmm.dll'))
+        shutil.copy(os.path.join(ROOT, 'build', 'test', 'winmm.dll'), os.path.join(gd, 'winmm.dll'))
         exe = os.path.join(gd, 'DOSBox.exe')
     p = subprocess.Popen([exe, '-noconsole', '-conf', 'base.conf',
                           '-conf', '_jp\\test\\' + os.environ.get('DS_CONF', 'test.conf')], cwd=GAME, env=env)

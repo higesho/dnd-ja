@@ -7,9 +7,9 @@ DOSBox の中で動くゲームの文字の表示を横取りして日本語に�
 - 必要なもの: Visual Studio 2022（x86 の C コンパイラ）、Python 3
 - このフォルダの中身を、ゲームのフォルダの中の `_jp` フォルダとして置きます（道具は `../` にある原作のファイルを読みます）。
 - `python -X utf8 tools/make_patch.py` で訳とフォントを `build/patch.bin` にまとめ、`src/build.bat` で DLL を作ります（`patch.bin` は DLL のリソースに入ります）。
-- `src/testio.c` は DLL に一緒に入る試験用の入出力です（環境変数を付けたときだけ働きます）。
+- `src/testio.c` は試験用の入出力（画面の撮影・入力の差し込み）です。配布版には入りません。`src/build.bat test` で、これとログを入れた試験版 `build/test/winmm.dll` を作ります（`tools/win.py` が使います。配布しません）。
 - `tools/to_game.sh` はできた DLL をゲームのフォルダに写します。
-- できあがり: `build/winmm.dll`
+- できあがり: `build/winmm.dll`（配布版）
 
 ## 含まれないもの（各自用意）
 - 原作のゲームのファイル

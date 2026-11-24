@@ -163,8 +163,8 @@ def start(variant):
         shutil.copy(os.path.join(ROOT, 'build', 'trace', 'winmm.dll'), dst)
     elif variant == 'en':      # 訳なしの DLL（英語のまま、テスト用のキー入力は効く）
         shutil.copy(os.path.join(ROOT, 'build', 'en', 'winmm.dll'), dst)
-    elif variant == 'jp':
-        shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), dst)
+    elif variant == 'jp':      # 試験版（src/build.bat test。DS_TEST の入出力が入っている）
+        shutil.copy(os.path.join(ROOT, 'build', 'test', 'winmm.dll'), dst)
     env = dict(os.environ); env['DS_TEST'] = '1'
     p = subprocess.Popen([os.path.join(GAME, 'DOSBOX', 'DOSBox.exe'), '-conf', '_jp\\test\\test.conf', '-noconsole'], cwd=GAME, env=env)
     open(PIDF, 'w').write(str(p.pid))

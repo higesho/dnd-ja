@@ -18,8 +18,10 @@ void proxy_init(void);
 static char g_dir[MAX_PATH];
 static FILE *g_log;
 static int g_logon;
+/* ログは試験版（RLJP_TEST）だけで書く。配布版では何もしない */
 static void dbg(const char *fmt, ...)
 {
+#ifdef RLJP_TEST
     va_list ap;
     if (!g_logon) return;
     if (!g_log) {
@@ -32,6 +34,9 @@ static void dbg(const char *fmt, ...)
     vfprintf(g_log, fmt, ap);
     va_end(ap);
     fflush(g_log);
+#else
+    (void)fmt;
+#endif
 }
 
 /* ------------------------------------------------- DOSBox 0.74-3 internals */
@@ -597,15 +602,22 @@ static const char *patched_path(const char *orig_path, char *buf)
     const uint8_t *sx, *st;
     uint8_t *orig, *out;
     if (!g_enabled) return NULL;
-    {   /* test aid: RLJP_SKIP=T;OBJECTS.DAT leaves those files unpatched */
+#ifdef RLJP_TEST
+    {   /* 試験版だけ: RLJP_SKIP=T;OBJECTS.DAT でそのファイルを日本語化しない */
         char sk[256];
         if (GetEnvironmentVariableA("RLJP_SKIP", sk, sizeof sk) && strstr(sk, bn)) return NULL;
     }
+#endif
     sx = find_sect('X', bn, &slen);
     st = sx ? NULL : find_sect('T', bn, &slen);
     if (!sx && !st) return NULL;
     wsprintfA(buf, "%s\\%08X_%s", g_dir, g_blob_crc, bn);
+#ifdef RLJP_TEST
+    /* 試験版だけ: RLJP_NOMEM があれば DOS メモリを取らない */
     if (sx && !g_mem && !GetEnvironmentVariableA("RLJP_NOMEM", NULL, 0)) g_mem = reserve_dos();     /* the program is being loaded: DOS memory is still free */
+#else
+    if (sx && !g_mem) g_mem = reserve_dos();     /* the program is being loaded: DOS memory is still free */
+#endif
     if (GetFileAttributesA(buf) != INVALID_FILE_ATTRIBUTES) return buf;
     clean_old(bn);
     orig = read_all(orig_path, &olen);

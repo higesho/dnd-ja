@@ -4,13 +4,16 @@
    - 折り返しで日本語の字も区切りとして扱う（wrap.c）
    テスト（DSTJP_TEST=1）: 窓のまま動かし（全画面にしない）、画面を撮り、キーを送る（testio.c） */
 #include "dst.h"
+#include "resource.h"
+#ifdef DSTJP_TEST
 #include <stdio.h>
 #include <intrin.h>
 #include <d3d9.h>
-#include "resource.h"
+#endif
 
-int g_test;
 HMODULE g_self;
+#ifdef DSTJP_TEST
+int g_test;
 static FILE *g_log;
 static CRITICAL_SECTION g_logcs;
 
@@ -26,6 +29,7 @@ void dlog(const char *fmt, ...)
     fflush(g_log);
     LeaveCriticalSection(&g_logcs);
 }
+#endif
 
 void patch_bytes(uint32_t at, const void *b, int n)
 {
@@ -58,8 +62,12 @@ uint32_t find_code(uint32_t fixed, const uint8_t *pat, const char *mask)
     IMAGE_SECTION_HEADER *sh = IMAGE_FIRST_SECTION(nt);
     int n = (int)strlen(mask), i, hits = 0;
     uint32_t found = 0;
+#ifdef DSTJP_TEST
     char fs[4];
     if (match((const uint8_t *)fixed, pat, mask, n) && !(g_test && GetEnvironmentVariableA("DSTJP_FORCESCAN", fs, sizeof fs))) return fixed;
+#else
+    if (match((const uint8_t *)fixed, pat, mask, n)) return fixed;
+#endif
     for (i = 0; i < nt->FileHeader.NumberOfSections; i++, sh++) {
         uint8_t *s, *e;
         if (!(sh->Characteristics & IMAGE_SCN_MEM_EXECUTE)) continue;
@@ -133,6 +141,7 @@ static HANDLE WINAPI h_CreateFileA(LPCSTR name, DWORD acc, DWORD share, LPSECURI
     return h;
 }
 
+#ifdef DSTJP_TEST
 static BOOL (WINAPI *o_ReadFile)(HANDLE, LPVOID, DWORD, LPDWORD, LPOVERLAPPED);
 static BOOL WINAPI h_ReadFile(HANDLE h, LPVOID buf, DWORD n, LPDWORD got, LPOVERLAPPED ov)
 {
@@ -271,14 +280,19 @@ static BOOL WINAPI h_PathFileExistsA(LPCSTR p)
 }
 static BOOL WINAPI h_WritePrivateProfileStringW(LPCWSTR a, LPCWSTR b, LPCWSTR c, LPCWSTR d) { (void)a; (void)b; (void)c; (void)d; return TRUE; }
 
+#endif /* DSTJP_TEST */
+
 HRESULT WINAPI real_DirectInput8Create(HINSTANCE h, DWORD v, REFIID r, LPVOID *o, LPUNKNOWN u);
 HRESULT WINAPI p_DirectInput8Create(HINSTANCE h, DWORD v, REFIID r, LPVOID *o, LPUNKNOWN u)
 {
     HRESULT hr = real_DirectInput8Create(h, v, r, o, u);
+#ifdef DSTJP_TEST
     if (g_test && SUCCEEDED(hr)) testio_wrap_dinput(*o);
+#endif
     return hr;
 }
 
+#ifdef DSTJP_TEST
 static LONG CALLBACK veh(EXCEPTION_POINTERS *e)
 {
     DWORD c = e->ExceptionRecord->ExceptionCode;
@@ -307,10 +321,12 @@ static BOOL WINAPI h_TerminateProcess(HANDLE p, UINT c) { log_stack("TerminatePr
 static HANDLE WINAPI h_CreateMutexA(LPSECURITY_ATTRIBUTES a, BOOL o, LPCSTR n) { HANDLE h = CreateMutexA(a, o, n); dlog("CreateMutexA %s -> %p err %u", n ? n : "", h, GetLastError()); SetLastError(h ? GetLastError() : 0); return h; }
 static void WINAPI h_OutputDebugStringA(LPCSTR t) { dlog("ODS: %s", t ? t : ""); }
 static int WINAPI h_MessageBoxA(HWND w, LPCSTR t, LPCSTR c, UINT f) { dlog("MessageBoxA %s / %s", t, c); (void)w; (void)f; return IDOK; }
+#endif /* DSTJP_TEST */
 
 void proxy_init(void);
 static void init(void)
 {
+#ifdef DSTJP_TEST
     char buf[MAX_PATH];
     InitializeCriticalSection(&g_logcs);
     if (GetEnvironmentVariableA("DSTJP_TEST", buf, sizeof buf) && buf[0] >= '1') g_test = buf[0] - '0';
@@ -348,9 +364,12 @@ static void init(void)
         testio_init();
     }
     if (g_test && GetEnvironmentVariableA("DSTJP_NOJP", buf, sizeof buf)) { dlog("NOJP"); return; }
+#endif
     if (!data_init()) { dlog("no data"); return; }
     o_CreateFileA = iat_hook("KERNEL32.dll", "CreateFileA", (void *)h_CreateFileA);
+#ifdef DSTJP_TEST
     if (g_test > 1) o_ReadFile = iat_hook("KERNEL32.dll", "ReadFile", (void *)h_ReadFile);
+#endif
     wrap_init();
     font_init();
 }
@@ -363,7 +382,9 @@ BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r)
         g_self = h;
         proxy_init();
         init();
-    } else if (reason == DLL_PROCESS_DETACH && g_test) {
+    }
+#ifdef DSTJP_TEST
+    else if (reason == DLL_PROCESS_DETACH && g_test) {
         uint32_t *sp = (uint32_t *)_AddressOfReturnAddress(), i;
         dlog("process detach (exit), exe/dsfix return addresses on the stack:");
         for (i = 0; i < 4096; i++) {
@@ -374,5 +395,6 @@ BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r)
                 dlog("   dsfix +%x", sp[i] - (uint32_t)m);
         }
     }
+#endif
     return TRUE;
 }

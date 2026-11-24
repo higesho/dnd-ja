@@ -5,5 +5,6 @@
 - `src/` … DLL の C ソースと組み立て用の `build.bat`（Visual Studio 2022 の x86 用 C コンパイラ）
 - `tools/` … 訳の表から埋め込みデータとフォントを作る Python スクリプト、試験用の道具
 - 組み立て: `sh tools/rebuild.sh`（`make_data.py` → `make_font.py` → `src/build.bat`）。`build/dinput8.dll` ができます
+- 配布版と試験版: `src/build.bat` は配布版（`build/dinput8.dll`）、`src/build.bat test` は試験版（`build/test/dinput8.dll`、`DSTJP_TEST` 付きで `testio.c` 入り）を作ります。試験の道具（`tools/win.py`）は試験版を使います。試験版は配布しません
 
 訳の表（text/）・フォントのデータ・原作のファイルは含みません。原作は各自で用意してください。

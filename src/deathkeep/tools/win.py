@@ -1,5 +1,5 @@
 # テスト用: DeathKeep をウインドウ（画面の外）で動かす。前面のウインドウではなく、自分が起動したプロセスのウインドウだけを扱う
-#   python tools/win.py start [nojp]     ddraw.ini をテスト用に替え、build/winmm.dll をゲームのフォルダに置いて DK.EXE を起動
+#   python tools/win.py start [nojp]     ddraw.ini をテスト用に替え、build/test/winmm.dll（試験版）をゲームのフォルダに置いて DK.EXE を起動
 #   python tools/win.py shot NAME        画面を capture/NAME.png に（DLL のテスト機能 DK_TEST=1 で、ゲームの画面を BMP に書かせる）
 #   python tools/win.py key K [K..]      キー（DLL のテスト機能で GetAsyncKeyState / メッセージに入れる）
 #   python tools/win.py click X Y [right]   ゲームの 320x200 の座標でクリック（画面写真 640x400 なら半分の値）
@@ -90,7 +90,7 @@ def start(variant):
     ini = os.path.join(GAME, 'ddraw.ini')
     shutil.copy(os.path.join(ROOT, 'test', 'ddraw.ini'), ini)
     dst = os.path.join(GAME, 'winmm.dll')
-    shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), dst)
+    shutil.copy(os.path.join(ROOT, 'build', 'test', 'winmm.dll'), dst)   # 試験版（src/build.bat test）
     env = dict(os.environ); env['DK_TEST'] = '1'
     if variant == 'nojp': env['DK_NOJP'] = '1'
     p = subprocess.Popen([os.path.join(GAME, 'DK.EXE')], cwd=GAME, env=env)

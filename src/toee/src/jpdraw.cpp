@@ -11,11 +11,18 @@
 #include <string>
 
 extern "C" {
-void tlog(const char *fmt, ...);
 const void *res_get(int id, DWORD *size);
-extern int g_test;
 extern ID3D11Device *g_d3d;
+#ifdef TJP_TEST
+void tlog(const char *fmt, ...);
+extern int g_test;
+#endif
 }
+#ifndef TJP_TEST
+// 配布版: ログは出さない（tjp.h と同じ）
+#define g_test 0
+#define tlog(...) ((void)0)
+#endif
 
 #pragma pack(push, 1)
 struct TigRect { int x, y, width, height; };

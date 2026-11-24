@@ -1,5 +1,5 @@
 # Drive the test game through the DLL's shared memory (never the foreground window).
-#   python tools/win.py start            copy build/dinput8.dll into the game, launch with DSJP_TEST=1
+#   python tools/win.py start            copy build/test/dinput8.dll (test build) into the game, launch with DSTJP_TEST=1
 #   python tools/win.py shot NAME [W]    back-buffer capture -> capture/NAME.png (optional width)
 #   python tools/win.py key K [K..]      tap keys (DIK names: enter esc space up down left right tab f1.. a..z 0..9)
 #   python tools/win.py hold K MS
@@ -85,7 +85,7 @@ def start():
         open(USER_INI, 'w', newline='').write(USER_INI_TEXT)
         open(os.path.join(ROOT, 'work', 'user_ini_ours'), 'w').write('1')
     shutil.rmtree(os.path.join(os.environ['TEMP'], 'DemonStoneJP'), ignore_errors=True)
-    shutil.copy(os.path.join(ROOT, 'build', 'dinput8.dll'), os.path.join(GAME, 'dinput8.dll'))
+    shutil.copy(os.path.join(ROOT, 'build', 'test', 'dinput8.dll'), os.path.join(GAME, 'dinput8.dll'))   # 試験版（src/build.bat test）
     env = dict(os.environ)
     env['DSTJP_TEST'] = '1'
     env['DSTJP_LOG'] = os.path.join(ROOT, 'work', 'dstjp.log')

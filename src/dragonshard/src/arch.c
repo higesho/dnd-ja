@@ -175,7 +175,9 @@ static int prepare(const WCHAR *src, const WCHAR *dst, const WCHAR *name, XformF
 {
     WCHAR stamp[MAX_PATH];
     swprintf(stamp, MAX_PATH, L"%s\\%s.stamp", g_dir, name);
+#ifdef DSJP_TEST
     if (!g_test || !GetEnvironmentVariableW(L"DSJP_REBUILD", NULL, 0))
+#endif
         if (cache_valid(src, dst, stamp)) return 1;
     {
         DWORD t0 = GetTickCount();

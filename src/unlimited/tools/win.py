@@ -1,5 +1,5 @@
 # Drive the test DOSBox window by its own process / unique title (never the foreground window).
-#   python tools/win.py start [trace|jp|none]   launch DOSBox (DLL variant copied as winmm.dll)
+#   python tools/win.py start [trace|jp|none]   launch DOSBox (DLL variant copied as winmm.dll; jp = test build build/test/winmm.dll)
 #   python tools/win.py shot NAME               PrintWindow capture -> capture/NAME.png
 #   python tools/win.py key KEY [KEY..]         post keys (names: enter esc space up down left right f1.. a..z 0..9, or 'text:HELLO')
 #   python tools/win.py click X Y [right]       click at game coords (320x200)
@@ -166,8 +166,8 @@ def start(variant):
         shutil.copy(os.path.join(ROOT, 'build', 'trace', 'winmm.dll'), dst)
     elif variant == 'en':      # 訳なしの DLL（英語のまま、テスト用のキー入力は効く）
         shutil.copy(os.path.join(ROOT, 'build', 'en', 'winmm.dll'), dst)
-    elif variant == 'jp':
-        shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), dst)
+    elif variant == 'jp':      # 試験版（src/build.bat test）
+        shutil.copy(os.path.join(ROOT, 'build', 'test', 'winmm.dll'), dst)
     env = dict(os.environ); env['DS_TEST'] = '1'
     p = subprocess.Popen([os.path.join(GAME, 'DOSBOX', 'DOSBox.exe'), '-conf', '_jp\\test\\test.conf', '-noconsole'], cwd=GAME, env=env)
     open(PIDF, 'w').write(str(p.pid))

@@ -19,9 +19,15 @@
 #include "resource.h"
 
 void proxy_init(void);
+#ifdef SJ_TEST
 void testio_init(void);
+#endif
 
 static char g_dir[MAX_PATH];
+#ifndef SJ_TEST
+/* 配布版: ログは書かない（ログと画面の撮影などの試験用の仕組みは、build.bat test の試験版にだけ入る） */
+#define dbg(...) ((void)0)
+#else
 static FILE *g_log;
 static int g_logon;
 static void dbg(const char *fmt, ...)
@@ -39,6 +45,7 @@ static void dbg(const char *fmt, ...)
     va_end(ap);
     fflush(g_log);
 }
+#endif
 
 /* ------------------------------------------------ DOSBox の中身 */
 static uint32_t g_dbx, g_dbx_code;   /* DOSBox の版: Steam 0.74-3 = 0、GOG 0.74-2.1 = +0xe000 / -0x10、SVN 版 = +0x3b000 / +0xbc0 */
@@ -550,13 +557,18 @@ static int hook_iat(void)
 
 static void init(HMODULE self)
 {
-    char la[MAX_PATH], v[8];
+    char la[MAX_PATH];
+#ifdef SJ_TEST
+    char v[8];
+#endif
     HMODULE crt;
     InitializeCriticalSection(&g_cs);
     if (!GetEnvironmentVariableA("LOCALAPPDATA", la, MAX_PATH)) return;
     wsprintfA(g_dir, "%s\\SJ_JP", la);
     CreateDirectoryA(g_dir, NULL);
+#ifdef SJ_TEST
     if (GetEnvironmentVariableA("SJ_LOG", v, sizeof v) && v[0] == '1') g_logon = 1;
+#endif
     if (!verify_dosbox()) { dbg("unknown DOSBox\n"); return; }
     if (!load_blob(self)) { dbg("no blob\n"); return; }
     crt = GetModuleHandleA("msvcrt.dll");
@@ -575,7 +587,9 @@ BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r)
         DisableThreadLibraryCalls(h);
         proxy_init();
         init(h);
+#ifdef SJ_TEST
         testio_init();
+#endif
     }
     return TRUE;
 }

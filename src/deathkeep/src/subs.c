@@ -15,7 +15,11 @@
 #include <string.h>
 #include "resource.h"
 
+#ifdef DK_TEST
 void dlog(const char *fmt, ...);
+#else
+#define dlog(...) ((void)0)   /* 配布版: ログは書かない */
+#endif
 void jp_draw_raw(int x, int y, int color, const char *utf8);
 int jp_width_raw(const char *utf8);
 uint8_t *jp_frame_buffer(int *pitch);

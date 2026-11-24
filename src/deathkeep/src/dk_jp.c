@@ -14,10 +14,16 @@
 #include "resource.h"
 
 void proxy_init(void);
-void testio_init(void);
+#ifdef DK_TEST
+void testio_init(void);   /* testio.c（試験版だけ） */
+#endif
 void subs_init(HMODULE self);
 void *iat_hook(HMODULE mod, const char *dll, const char *func, void *repl);
 
+#ifndef DK_TEST
+/* 配布版: ログは書かない（ログ、DK_TEST / DK_LOG / DK_NOJP の切り替え、試験用の入出力は試験版 build.bat test だけ） */
+#define dlog(...) ((void)0)
+#else
 static char g_dir[MAX_PATH];
 static FILE *g_log;
 static int g_logon, g_test;
@@ -36,6 +42,7 @@ void dlog(const char *fmt, ...)
     va_end(ap);
     fflush(g_log);
 }
+#endif
 
 void *iat_hook(HMODULE mod, const char *dll, const char *func, void *repl)
 {
@@ -239,6 +246,9 @@ static const char *translate(const char *s)
 }
 
 /* 訳の無い文字列を一度ずつ記録（テスト用） */
+#ifndef DK_TEST
+#define note_missing(s) ((void)0)
+#else
 static uint32_t g_seen[4096];
 static void note_missing(const char *s)
 {
@@ -252,6 +262,7 @@ static void note_missing(const char *s)
     g_seen[k] = h;
     dlog("MISSING [%s]\n", s);
 }
+#endif
 
 static const char *tr_or_orig(const char *s)
 {
@@ -582,14 +593,16 @@ static void load_images(HMODULE self)
 
 static void init(HMODULE self)
 {
-    char t[MAX_PATH], v[8];
     HMODULE exe = GetModuleHandleA(NULL);
+#ifdef DK_TEST
+    char t[MAX_PATH], v[8];
     GetTempPathA(MAX_PATH, t);
     wsprintfA(g_dir, "%sDK_JP", t);
     CreateDirectoryA(g_dir, NULL);
     if (GetEnvironmentVariableA("DK_TEST", v, sizeof v) && v[0] == '1') g_test = 1;
     if ((GetEnvironmentVariableA("DK_LOG", v, sizeof v) && v[0] == '1') || g_test) g_logon = 1;
     if (GetEnvironmentVariableA("DK_NOJP", v, sizeof v) && v[0] == '1') g_nojp = 1;
+#endif
     dlog("DeathKeep JP patch loaded\n");
     if (g_nojp) return;
     if (!load_patch(self)) { dlog("no patch data\n"); return; }
@@ -613,7 +626,9 @@ BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r)
         DisableThreadLibraryCalls(h);
         proxy_init();
         init(h);
+#ifdef DK_TEST
         testio_init();
+#endif
     }
     return TRUE;
 }

@@ -16,11 +16,17 @@
 #include "resource.h"
 
 void proxy_init(void);
-void testio_init(void);   /* テスト用（DS_TEST=1 のときだけ）: SDL_PushEvent でキーを入れる */
+#ifdef DS_TEST
+void testio_init(void);   /* テスト用（試験版だけ。DS_TEST=1 のときだけ動く）: 画面の撮影と SDL_PushEvent でキーを入れる */
+#endif
 
 static char g_dir[MAX_PATH];
-static FILE *g_log;
 static int g_logon;
+#ifndef DS_TEST
+/* 配布版: ログは書かない（ログと試験用の入出力は試験版 build.bat test だけ） */
+#define dbg(...) ((void)0)
+#else
+static FILE *g_log;
 static void dbg(const char *fmt, ...)
 {
     va_list ap;
@@ -36,6 +42,7 @@ static void dbg(const char *fmt, ...)
     va_end(ap);
     fflush(g_log);
 }
+#endif
 
 static uint32_t g_dbx, g_dbx_code;   /* DOSBox build: Steam 0.74-3 = 0, GOG 0.74-2.1 = +0xe000 / -0x10 */
 #define A_CB_HANDLERS (0x74d460u + g_dbx)
@@ -237,6 +244,9 @@ static int read_cstr(uint32_t a, uint8_t *buf, int max)
     return n;
 }
 
+#ifndef DS_TEST
+#define log_miss(tag, s, n) ((void)0)
+#else
 #define NSEEN 8192
 static uint64_t g_seen[NSEEN];
 static void log_miss(const char *tag, const uint8_t *s, int n)
@@ -257,6 +267,7 @@ static void log_miss(const char *tag, const uint8_t *s, int n)
     buf[o] = 0;
     dbg("%s %s\n", tag, buf);
 }
+#endif
 
 /* 語を並べた名前（"Long Sword +2 " のような品物の名前）: 表にある語句（長いものから 4 語まで）と数だけで
  * できていれば、訳をつないだ文字列を作る（UTF-8 ではなく表の符号のまま）。できなければ 0 */
@@ -701,6 +712,10 @@ static void init(HMODULE self)
 BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r)
 {
     (void)r;
-    if (reason == DLL_PROCESS_ATTACH) { DisableThreadLibraryCalls(h); proxy_init(); init(h); testio_init(); }
+    if (reason == DLL_PROCESS_ATTACH) { DisableThreadLibraryCalls(h); proxy_init(); init(h);
+#ifdef DS_TEST
+        testio_init();
+#endif
+    }
     return TRUE;
 }

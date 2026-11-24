@@ -1,5 +1,32 @@
+#pragma code_page(65001)
 #include <windows.h>
 1 TJP "../build/tr.bin"
 2 TJP "../build/files.txt"
 3 TJP "../build/sans.ttf"
 4 TJP "../build/serif.ttf"
+
+1 VERSIONINFO
+FILEVERSION 1,2,0,0
+PRODUCTVERSION 1,2,0,0
+FILEOS 0x40004L
+FILETYPE VFT_DLL
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "041104B0"
+    BEGIN
+      VALUE "CompanyName", "higesho"
+      VALUE "ProductName", "テンプル・オブ・エレメンタル・イーヴル 日本語化パッチ（非公式）"
+      VALUE "FileDescription", "テンプル・オブ・エレメンタル・イーヴル 日本語化パッチ（非公式）"
+      VALUE "FileVersion", "1.2.0.0"
+      VALUE "ProductVersion", "1.2"
+      VALUE "InternalName", "TempleOfElementalEvil_JP"
+      VALUE "OriginalFilename", "DWrite.dll"
+      VALUE "Comments", "https://higesho.github.io/dnd-ja/toee/"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x0411, 1200
+  END
+END

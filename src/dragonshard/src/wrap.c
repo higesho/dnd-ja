@@ -82,7 +82,9 @@ void wrap_init(void)
 typedef struct { uint8_t *sub, *head; uint32_t count; uint8_t **map; } GIdx;
 static GIdx g_idx[32];
 static int g_nidx;
+#ifdef DSJP_TEST
 static uint32_t g_used_h;   /* bit per pixel height 0..31 that was asked for (test log) */
+#endif
 
 static uint8_t *__cdecl getglyph(uint8_t *sub, uint32_t ch)
 {
@@ -91,10 +93,12 @@ static uint8_t *__cdecl getglyph(uint8_t *sub, uint32_t ch)
     int i;
     GIdx *x = NULL;
     ch &= 0xffff;
+#ifdef DSJP_TEST
     if (g_test) {
         uint32_t h = *(uint32_t *)(sub + 4);
         if (h < 64 && !(g_used_h & (1u << (h & 31)))) { g_used_h |= 1u << (h & 31); dlog("font size %u used", h); }
     }
+#endif
     for (i = 0; i < g_nidx; i++) if (g_idx[i].sub == sub) { x = &g_idx[i]; break; }
     if (!x) {
         if (g_nidx == 32) { memset(g_idx, 0, sizeof g_idx); g_nidx = 0; }

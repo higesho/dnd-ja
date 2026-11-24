@@ -15,10 +15,16 @@
 #include "resource.h"
 
 void proxy_init(void);
+#ifdef SG_TEST
 void testio_init(void);
 void testio_mouse(int x, int y);
+#endif
 
 static char g_dir[MAX_PATH];
+#ifndef SG_TEST
+/* 配布版: ログは書かない（ログ・画面の撮影・入力の差し込みなどの試験用の仕組みは、build.bat test の試験版にだけ入る） */
+#define dbg(...) ((void)0)
+#else
 static FILE *g_log;
 static int g_logon;
 static void dbg(const char *fmt, ...)
@@ -36,6 +42,7 @@ static void dbg(const char *fmt, ...)
     va_end(ap);
     fflush(g_log);
 }
+#endif
 
 /* ------------------------------------------------ DOSBox の中身 */
 static uint32_t g_dbx, g_dbx_code;   /* Steam 0.74-3 = 0、GOG 0.74-2.1 = +0xe000 / -0x10、SVN 版 = +0x3b000 / +0xbc0 */
@@ -293,7 +300,9 @@ static uint32_t __cdecl cb_copy(void)
     }
     wb(w + n, 0);
     push16((uint16_t)(ss >> 4)); push16(buf);
+#ifdef SG_TEST
     { char aw[20]; int q; for (q = 0; q < 16 && rb(a + q) >= 0x20 && rb(a + q) < 0x7f; q++) aw[q] = (char)rb(a + q); aw[q] = 0; dbg("copy answer [%s]\n", aw); }
+#endif
     return 0;
 }
 
@@ -462,14 +471,19 @@ static int hook_iat(void)
 
 static void init(HMODULE self)
 {
-    char la[MAX_PATH], v[8];
+    char la[MAX_PATH];
+#ifdef SG_TEST
+    char v[8];
+#endif
     HMODULE crt;
     InitializeCriticalSection(&g_cs);
     if (!GetEnvironmentVariableA("LOCALAPPDATA", la, MAX_PATH)) return;
     wsprintfA(g_dir, "%s\\SG_JP", la);
     CreateDirectoryA(g_dir, NULL);
+#ifdef SG_TEST
     g_logon = GetEnvironmentVariableA("SG_LOG", v, sizeof v) > 0;
     if (GetEnvironmentVariableA("SG_NOJP", v, sizeof v) > 0) return;      /* テスト用: 英語のまま */
+#endif
     if (!verify_dosbox()) { dbg("unknown DOSBox build\n"); return; }
     if (!load_blob(self)) { dbg("no patch data\n"); return; }
     crt = GetModuleHandleA("msvcrt.dll");
@@ -488,7 +502,9 @@ BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r)
         DisableThreadLibraryCalls(h);
         proxy_init();
         init(h);
+#ifdef SG_TEST
         testio_init();
+#endif
     }
     return TRUE;
 }

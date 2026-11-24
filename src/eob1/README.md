@@ -8,6 +8,7 @@ DOSBox の中で動くゲームの文字の表示を横取りして日本語に�
 - このフォルダの中身を、ゲームのフォルダの中の `_jp` フォルダとして置きます（道具は `../` にある原作のファイルを読みます）。
 - `python -X utf8 tools/make_patch.py` で訳とフォントを `build/patch.bin` にまとめ、`src/build.bat` で DLL を作ります（`patch.bin` は DLL のリソースに入ります）。
 - `tools/intro_text.py` はオープニングの字幕画像を日本語で描き直します。
+- `src/build.bat test` は試験版の `build/test/winmm.dll` を作ります（ログ、未訳の記録、`dev.c` のキー入力と画面の撮影、`EOBJP_DEV` / `EOBJP_DISPTEST` が入ります。`tools/win.py` が使います。配布物には使いません）。
 - `src/build_trace.bat` は調べもの用の DLL です（配布物には使いません）。
 - `tools/win.py`・`rpm.py`・`poke.py`・`npc.sh`・`sheet.py` は動作を確かめるための道具です（DOSBox の起動と操作、画面の取り込み、人物との会話の場面の呼び出し）。
 - できあがり: `build/winmm.dll`

@@ -6,7 +6,7 @@ DOSBox の `winmm.dll` として読み込まれ、文章ファイル T・CODE.1�
 1. ゲームのフォルダ（GAME と DOSBOX がある所）に作業フォルダ `_jp` を作り、ここの `src/` と `tools/` を置きます。
 2. k8x12・k6x8 ゴシック・東雲 12 ドットなどの BDF フォントを `_jp/font/` に用意します。
 3. 訳のファイル（`_jp/text/`）は含まれていません。`tools/` の抽出の道具で英文を書き出し、各自で訳を用意します。
-4. `python tools/make_patch.py` で `build/patch.bin` を作り、`src/build.bat`（Visual Studio 2022 の 32 ビット cl）で `build/winmm.dll` を作ります。 `sh tools/rebuild.sh` でまとめて実行できます。
+4. `python tools/make_patch.py` で `build/patch.bin` を作り、`src/build.bat`（Visual Studio 2022 の 32 ビット cl）で `build/winmm.dll` を作ります。 `sh tools/rebuild.sh` でまとめて実行できます。 `src/build.bat test` は試験用の DLL（`build/test/winmm.dll`、`RLJP_TEST` 付き。配布しない）を作り、`tools/win.py start jp` はこちらを使います。
 5. できた `winmm.dll` をゲームの `DOSBOX\` に置きます。
 
 必要なもの: Python 3（Pillow）、Visual Studio 2022。原作のゲームファイルは各自で用意してください。

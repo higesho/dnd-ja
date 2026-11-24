@@ -11,9 +11,15 @@
 #define PATCH_CODE_VER 2
 
 void proxy_init(void);
-void testio_init(void);
+#ifdef DS_TEST
+void testio_init(void);   /* testio.c（試験版だけ） */
+#endif
 
 static char g_dir[MAX_PATH];
+#ifndef DS_TEST
+/* 配布版: ログは書かない（ログ、DS_LOG / DS_TEST / DS_NOJP の切り替え、メモリの書き出し、試験用の入出力は試験版 build.bat test だけ） */
+#define dbg(...) ((void)0)
+#else
 static FILE *g_log;
 static int g_logon;
 static void dbg(const char *fmt, ...)
@@ -31,6 +37,7 @@ static void dbg(const char *fmt, ...)
     va_end(ap);
     fflush(g_log);
 }
+#endif
 
 /* ------------------------------------------------ DOSBox の中身 */
 static uint32_t g_dbx, g_dbx_code;   /* DOSBox の版: Steam 0.74-3 = 0、GOG 0.74-2.1 = +0xe000 / -0x10、SVN 版 = +0x3b000 / +0xbc0 */
@@ -598,6 +605,7 @@ static int hook_iat(void)
     return done;
 }
 
+#ifdef DS_TEST
 /* ------------------------------------------------------------ 調べもの（DS_TEST=1） */
 /* 共有メモリ "DS_DUMP" の [0] に 1 を書くと、DOS のメモリ 1MB を %LOCALAPPDATA%\DS_JP\mem.bin に書き出す（[1] CS, [2] DS の物理番地） */
 static DWORD WINAPI dump_thread(LPVOID p)
@@ -622,19 +630,27 @@ static DWORD WINAPI dump_thread(LPVOID p)
         }
     }
 }
+#endif
 
 static void init(HMODULE self)
 {
-    char la[MAX_PATH], v[8];
+    char la[MAX_PATH];
+#ifdef DS_TEST
+    char v[8];
+#endif
     (void)self;
     if (!GetEnvironmentVariableA("LOCALAPPDATA", la, MAX_PATH)) return;
     wsprintfA(g_dir, "%s\\DS_JP", la);
     CreateDirectoryA(g_dir, NULL);
+#ifdef DS_TEST
     if (GetEnvironmentVariableA("DS_LOG", v, sizeof v) && v[0] == '1') g_logon = 1;
+#endif
     InitializeCriticalSection(&g_cs);
     if (!verify_dosbox()) { dbg("unknown DOSBox\n"); return; }
+#ifdef DS_TEST
     if (GetEnvironmentVariableA("DS_TEST", v, sizeof v) && v[0] == '1') CreateThread(NULL, 0, dump_thread, NULL, 0, NULL);
     if (GetEnvironmentVariableA("DS_NOJP", v, sizeof v) && v[0] == '1') return;
+#endif
     if (!load_blob(self)) { dbg("no blob\n"); return; }
     {
         HMODULE crt = GetModuleHandleA("msvcrt.dll");
@@ -653,7 +669,9 @@ BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r)
         DisableThreadLibraryCalls(h);
         proxy_init();
         init(h);
+#ifdef DS_TEST
         testio_init();
+#endif
     }
     return TRUE;
 }

@@ -93,7 +93,9 @@ int font_build(const uint8_t *src, uint32_t n, uint8_t **out, uint32_t *outn)
         for (s = 0; s < nsec; s++) if (cs[i] >= sec[s].first && cs[i] < sec[s].first + sec[s].count) { have = 1; break; }
         if (!have) add[nadd++] = cs[i];
     }
+#ifdef DSTJP_TEST
     { char e[16]; if (g_test && GetEnvironmentVariableA("DSTJP_FONTMAX", e, sizeof e) && atoi(e) < nadd) nadd = atoi(e); }
+#endif
     /* 足す字を区画に分ける（字の番号が 32 以内で続くものは 1 つの区画にまとめ、すき間は空の字にする） */
     for (i = 0; i < nadd; i++) {
         if (ng > 0 && add[i] - (gstart[ng - 1] + gcount[ng - 1]) <= 32) { gcount[ng - 1] = add[i] - gstart[ng - 1] + 1; continue; }
@@ -107,7 +109,9 @@ int font_build(const uint8_t *src, uint32_t n, uint8_t **out, uint32_t *outn)
     em = (int)floor(H * 0.80 + 0.5);
     cellw = em + 1;
     W = 2048;
+#ifdef DSTJP_TEST
     { char e[16]; if (g_test && GetEnvironmentVariableA("DSTJP_FONTW", e, sizeof e)) W = (uint32_t)atoi(e); }
+#endif
     if (W < tw) W = tw;
     rows = (nadd + (W / cellw) - 1) / (W / cellw);
     TH = th + rows * H + 2;
@@ -300,9 +304,10 @@ static const uint8_t *__cdecl font_subst(const uint8_t *d)
     uint32_t n;
     int m, i;
     uint8_t *p;
-    char e[8];
     if (!d || d[0] != 'X' || d[1] != 'F' || *(const uint16_t *)(d + 2) != 1) return d;
-    if (g_test && GetEnvironmentVariableA("DSTJP_NOFONT", e, sizeof e)) return d;
+#ifdef DSTJP_TEST
+    { char e[8]; if (g_test && GetEnvironmentVariableA("DSTJP_NOFONT", e, sizeof e)) return d; }
+#endif
     n = *(const uint32_t *)(d + 4);
     if (n < 0x20 || n > 0x4000000) return d;
     EnterCriticalSection(&g_fcs);

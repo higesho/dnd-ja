@@ -12,12 +12,19 @@
 #include "resource.h"
 
 void proxy_init(void);
-void dev_init(const char *gamedir);
+#ifdef EOBJP_TEST
+void dev_init(const char *gamedir);   /* dev.c（試験版だけ） */
+#endif
 
 /* ---------------------------------------------------------------- 記録 */
 static char g_dir[MAX_PATH], g_gamedir[MAX_PATH];
+static int g_logon;
+#ifndef EOBJP_TEST
+/* 配布版: ログは書かない（ログ、未訳の記録、EOBJP_DEV / EOBJP_DISPTEST、dev.c のキー入力と撮影は試験版 build.bat test だけ） */
+#define dbg(...) ((void)0)
+#else
 static FILE *g_log;
-static int g_logon, g_dev;
+static int g_dev;
 static void dbg(const char *fmt, ...)
 {
     va_list ap;
@@ -33,6 +40,7 @@ static void dbg(const char *fmt, ...)
     va_end(ap);
     fflush(g_log);
 }
+#endif
 
 /* ------------------------------------------------- DOSBox 0.74-3 の内部 */
 static uint32_t g_dbx, g_dbx_code;   /* DOSBox build: Steam 0.74-3 = 0, GOG 0.74-2.1 = +0xe000 / -0x10 */
@@ -352,6 +360,9 @@ static int translate_str(const uint8_t *s, int n, uint16_t *out, int cap)
 }
 
 /* ------------------------------------------------------------- 未訳の記録 */
+#ifndef EOBJP_TEST
+#define log_miss(where, s, n) ((void)0)
+#else
 static void log_miss(const char *where, const uint8_t *s, int n)
 {
     static uint32_t seen[8192];
@@ -383,6 +394,7 @@ static void log_miss(const char *where, const uint8_t *s, int n)
     fputc('\n', mf);
     fflush(mf);
 }
+#endif
 
 /* ------------------------------------------------------------ 描画 */
 static int is_jp_unit(uint16_t u) { return u >= 0x8000 && u < 0xC000; }
@@ -522,7 +534,9 @@ static uint32_t __cdecl cb_print(void)
     drv_ctx(&c);
     n = prepare_text(s, v, MAXS, &jp);
     if (g_in_disp && g_shift_next) { x += g_shift_next; if (x < 0) x = 0; g_shift_next = 0; }
+#ifdef EOBJP_TEST
     if (g_dev && jp) dbg("print x=%d y=%d fg=%d bg=%d ret=%04x:%04x\n", x, y, fg, bg, rw(sp + 2), rw(sp));
+#endif
     draw_units(&c, v, n, x, y, fg, bg);
     return 0;
 }
@@ -590,7 +604,9 @@ static uint32_t __cdecl cb_shaded(void)
     }
     n = prepare_text(s, v, MAXS, &jp);
     n = add_protect_answer(s, v, n);
+#ifdef EOBJP_TEST
     if (g_dev) dbg("shaded x=%d y=%d col=%d bg=%d jp=%d ret=%04x:%04x\n", x, y, col, bg, jp, rw(sp + 2), rw(sp));
+#endif
     if (!jp) {
         draw_units(&c, v, n, x - 1 < 0 ? 0 : x - 1, y, 12, bg);
         draw_units(&c, v, n, x, y + 1, 12, 0);
@@ -726,6 +742,7 @@ static uint32_t __cdecl cb_disp_prep(void)
         raw[n++] = c;
         if (c & 0x80) break;
     }
+#ifdef EOBJP_TEST
     if (g_dev) {   /* 試験用: EOBJP_DISPTEST の文（\xNN 可）でメッセージを置き換える */
         static char tv[512];
         static int tl = -1;
@@ -741,6 +758,7 @@ static uint32_t __cdecl cb_disp_prep(void)
             }
         }
     }
+#endif
     m = -1;
     {
         /* 制御コード（色替えなど）は、文の前と後ろにあるものだけなら外して訳し、あとで付け直す
@@ -1094,14 +1112,18 @@ static void init(HMODULE self)
     GetModuleFileNameA(NULL, g_gamedir, MAX_PATH);
     s = strrchr(g_gamedir, '\\'); if (s) *s = 0;      /* ...\DOSBOX */
     s = strrchr(g_gamedir, '\\'); if (s) *s = 0;      /* ゲームフォルダ */
+#ifdef EOBJP_TEST
     if (GetEnvironmentVariableA("EOBJP_DEV", la, MAX_PATH) && la[0] == '1') g_dev = 1;
     dev_init(g_gamedir);
+#endif
     if (!GetEnvironmentVariableA("LOCALAPPDATA", la, MAX_PATH)) return;
     wsprintfA(g_dir, "%s\\EOB1_JP", la);
     CreateDirectoryA(g_dir, NULL);
     if (!verify_dosbox()) return;
     if (!load_blob(self)) return;
+#ifdef EOBJP_TEST
     if (g_dev) g_logon = 1;
+#endif
     crt = GetModuleHandleA("msvcrt.dll");
     if (!crt) return;
     real_fopen = (fopen_t)GetProcAddress(crt, "fopen");

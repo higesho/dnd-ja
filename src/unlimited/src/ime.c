@@ -15,7 +15,11 @@
 #include <string.h>
 #include "uajp.h"
 
+#ifdef DS_TEST
 void ua_log(const char *fmt, ...);
+#else
+#define ua_log(...) ((void)0)   /* 配布版: ログは書かない */
+#endif
 
 /* ---------------------------------------------------------------- キーの待ち行列 */
 unsigned ua_ed_acks(void);     /* ua_jp.c: 入力欄のカーソルが描かれた回数（キーが 1 つ処理されるたびに増える） */
@@ -107,7 +111,11 @@ static int encode_text(const WCHAR *w, char *out, int max)
 /* ---------------------------------------------------------------- 入力欄 */
 #define IDC_EDIT 100
 #define IDC_INFO 101
+#ifdef DS_TEST
 static int g_test;                 /* テスト中（DS_TEST=1）: 入力欄を前面に出さない */
+#else
+#define g_test 0                   /* 配布版: いつもふつうに入力欄を前面に出す */
+#endif
 static int g_dlg_done;
 static WCHAR g_text[1024];
 static HFONT g_font;
@@ -302,8 +310,10 @@ void ime_init(void)
     IMAGE_NT_HEADERS *nt = (IMAGE_NT_HEADERS*)(b + ((IMAGE_DOS_HEADER*)b)->e_lfanew);
     IMAGE_DATA_DIRECTORY dd = nt->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT];
     IMAGE_IMPORT_DESCRIPTOR *d = (IMAGE_IMPORT_DESCRIPTOR*)(b + dd.VirtualAddress);
+#ifdef DS_TEST
     char v[8];
     g_test = GetEnvironmentVariableA("DS_TEST", v, sizeof v) && v[0] == '1';
+#endif
     for (; d->Name; d++) {
         IMAGE_THUNK_DATA *ot, *ft;
         if (lstrcmpiA((const char*)(b + d->Name), "SDL.dll")) continue;

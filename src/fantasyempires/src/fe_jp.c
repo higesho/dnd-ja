@@ -19,10 +19,17 @@
 #include "resource.h"
 
 void proxy_init(void);
+#ifdef FE_TEST
 void testio_init(void);
 void testio_mouse(int x, int y);
+#endif
 
 static char g_dir[MAX_PATH];
+#ifndef FE_TEST
+/* 配布版: ログは書かない（ログ・画面の撮影・入力の差し込みなどの試験用の仕組みは、build.bat test の試験版にだけ入る） */
+#define dbg(...) ((void)0)
+#define log_str(tag, s, n) ((void)0)
+#else
 static FILE *g_log;
 static int g_logon;
 static void dbg(const char *fmt, ...)
@@ -40,6 +47,7 @@ static void dbg(const char *fmt, ...)
     va_end(ap);
     fflush(g_log);
 }
+#endif
 
 /* ------------------------------------------------ DOSBox の中身 */
 static uint32_t g_dbx, g_dbx_code;   /* Steam 0.74-3 = 0、GOG 0.74-2.1 = +0xe000 / -0x10、SVN 版 = +0x3b000 / +0xbc0 */
@@ -266,6 +274,7 @@ static const tentry *lookup(const uint8_t *s, int n)
     }
     return NULL;
 }
+#ifdef FE_TEST
 static void log_str(const char *tag, const uint8_t *s, int n)
 {
     char buf[600];
@@ -275,6 +284,7 @@ static void log_str(const char *tag, const uint8_t *s, int n)
     buf[i] = 0;
     dbg("%s [%s]\n", tag, buf);
 }
+#endif
 
 /* ------------------------------------------------------------ 訳を引く */
 #define OUTMAX 1024
@@ -580,6 +590,7 @@ static int get_jp(const uint8_t *s, int n, int copyprot_ok)
         for (i = 0; i < g_nct; i++)
             if (g_ct[i].at == at && g_ct[i].h == h && g_ct[i].enlen == n) { js_cat(&g_js, g_ct[i].ja, g_ct[i].jalen); goto got; }
     }
+#ifdef FE_TEST
     if (g_logon >= 2) {                     /* テスト用: 描いた文字列と呼び出し元を（1 回ずつ）記録 */
         static uint64_t seen[4096]; static int ns;
         uint64_t k = fnv64(s, n) ^ ((uint64_t)at << 32);
@@ -587,8 +598,11 @@ static int get_jp(const uint8_t *s, int n, int copyprot_ok)
         for (j = 0; j < ns && seen[j] != k; j++) ;
         if (j == ns && ns < 4096) { char t[24]; seen[ns++] = k; wsprintfA(t, "draw@%x", at); log_str(t, s, n); }
     }
+#endif
     if (!translate(s, n, &g_js, 0)) {
+#ifdef FE_TEST
         if (g_logon) { char t[16]; wsprintfA(t, "miss@%x", at); log_str(t, s, n); }
+#endif
         return 0;
     }
 got:
@@ -645,7 +659,9 @@ static uint32_t __cdecl cb_wrap(void)
 }
 
 /* 1: 1 行の描画（入口: push esi; push edi; enter 14h,0 の代わり） */
+#ifdef FE_TEST
 static int g_novoice;           /* テスト用（FE_NOVOICE=1）: DM の声を使わない（文字で語る経路を確かめる） */
+#endif
 static uint32_t __cdecl cb_line(void)
 {
     uint8_t s[SMAX];
@@ -654,7 +670,9 @@ static uint32_t __cdecl cb_line(void)
     dest d;
     line_t lines[20];
     set_delta(0x15ffc);
+#ifdef FE_TEST
     if (g_novoice) wb(PHYS_DS + DATA(0x8ec09), 0);
+#endif
     n = read_str(R_EAX, s);
     fi = (int)arg(1);
     if (fi < 0 || fi > 5 || !get_jp(s, n, 0)) {
@@ -675,6 +693,7 @@ static uint32_t __cdecl cb_line(void)
         }
         draw_line(&d, &f, xx, y + k * pitch, &g_js, lines[k].st, lines[k].en);
     }
+#ifdef FE_TEST
     if (g_logon && nl) {                          /* テスト用: 英語より 4 ドット以上広い訳を記録 */
         int ew = en_width(&f, s, n), k2, mw = 0;
         while (n > 0 && s[n - 1] == ' ') n--;
@@ -682,6 +701,7 @@ static uint32_t __cdecl cb_line(void)
         for (k2 = 0; k2 < nl; k2++) if (lines[k2].w > mw) mw = lines[k2].w;
         if (mw > ew + 3) { char t[40]; wsprintfA(t, "wide@%x +%d", arg(0) - g_code_delta, mw - ew); log_str(t, s, n); }
     }
+#endif
     R_EIP = pop32(); R_ESP += 4;
     return 0;
 }
@@ -964,6 +984,7 @@ static int hook_iat(void)
     return done;
 }
 
+#ifdef FE_TEST
 /* テスト用（FE_PEEK=1）: ゲームの変数（マウスの位置・ボタン・押されたボタンの番号）を 0.5 秒ごとにログへ */
 static int g_peeklog;
 static DWORD WINAPI peek_thread(LPVOID p)
@@ -982,17 +1003,23 @@ static DWORD WINAPI peek_thread(LPVOID p)
             (int16_t)(rb(PHYS_DS + DATA(0x63e85)) | (rb(PHYS_DS + DATA(0x63e86)) << 8)));
     }
 }
+#endif
 
 static void init(HMODULE self)
 {
-    char la[MAX_PATH], v[8];
+    char la[MAX_PATH];
+#ifdef FE_TEST
+    char v[8];
+#endif
     HMODULE crt;
     InitializeCriticalSection(&g_cs);
     if (!GetEnvironmentVariableA("LOCALAPPDATA", la, MAX_PATH)) return;
     wsprintfA(g_dir, "%s\\FE_JP", la);
     CreateDirectoryA(g_dir, NULL);
+#ifdef FE_TEST
     g_logon = GetEnvironmentVariableA("FE_LOG", v, sizeof v) > 0 ? (v[0] == '2' ? 2 : 1) : 0;
     if (GetEnvironmentVariableA("FE_NOJP", v, sizeof v) > 0) return;      /* テスト用: 英語のまま */
+#endif
     if (!verify_dosbox()) { dbg("unknown DOSBox build\n"); return; }
     if (!load_blob(self)) { dbg("no patch data\n"); return; }
     crt = GetModuleHandleA("msvcrt.dll");
@@ -1001,9 +1028,11 @@ static void init(HMODULE self)
     if (!real_fopen) return;
     if (!hook_iat()) { dbg("fopen import not found\n"); return; }
     g_enabled = 1;
+#ifdef FE_TEST
     g_peeklog = GetEnvironmentVariableA("FE_PEEK", v, sizeof v) > 0;
     g_novoice = GetEnvironmentVariableA("FE_NOVOICE", v, sizeof v) > 0;
     if (GetEnvironmentVariableA("FE_TEST", v, sizeof v) > 0) CreateThread(NULL, 0, peek_thread, NULL, 0, NULL);
+#endif
     dbg("Fantasy Empires JP patch active (dosbox %x), blob %08X, %u entries, %u patterns\n", g_dbx, g_blob_crc, g_ntr, g_npt);
 }
 
@@ -1014,7 +1043,9 @@ BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r)
         DisableThreadLibraryCalls(h);
         proxy_init();
         init(h);
+#ifdef FE_TEST
         testio_init();
+#endif
     }
     return TRUE;
 }

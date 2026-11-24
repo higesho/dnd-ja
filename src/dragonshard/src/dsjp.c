@@ -1,14 +1,17 @@
 /* Dragonshard Japanese patch: entry point, patch helpers, file redirection, D3D9 test hooks */
 #include "dsjp.h"
+#ifdef DSJP_TEST
 #include <stdio.h>
 #include <stdarg.h>
 #include <d3d9.h>
+#endif
 
 void proxy_init(void);
 HRESULT WINAPI real_DirectInput8Create(HINSTANCE h, DWORD v, REFIID r, LPVOID *o, LPUNKNOWN u);
 
-int g_test;
 HMODULE g_self;
+#ifdef DSJP_TEST
+int g_test;
 static FILE *g_log;
 static CRITICAL_SECTION g_logcs;
 
@@ -24,6 +27,7 @@ void dlog(const char *fmt, ...)
     fflush(g_log);
     LeaveCriticalSection(&g_logcs);
 }
+#endif
 
 void patch_bytes(uint32_t at, const void *b, int n)
 {
@@ -50,8 +54,12 @@ uint32_t find_code(uint32_t fixed, const uint8_t *pat, const char *mask)
     IMAGE_SECTION_HEADER *sh = IMAGE_FIRST_SECTION(nt);
     int n = (int)strlen(mask), i, hits = 0;
     uint32_t found = 0;
+#ifdef DSJP_TEST
     char fs[4];
     if (match((const uint8_t *)fixed, pat, mask, n) && !(g_test && GetEnvironmentVariableA("DSJP_FORCESCAN", fs, sizeof fs))) return fixed;
+#else
+    if (match((const uint8_t *)fixed, pat, mask, n)) return fixed;
+#endif
     for (i = 0; i < nt->FileHeader.NumberOfSections; i++, sh++) {
         uint8_t *s, *e;
         if (!(sh->Characteristics & IMAGE_SCN_MEM_EXECUTE)) continue;
@@ -121,6 +129,7 @@ static HANDLE WINAPI h_CreateFileW(LPCWSTR name, DWORD acc, DWORD share, LPSECUR
     if (g_test) dlog("CreateFileW %ls%s -> %p", name ? name : L"(null)", r ? L" [JP]" : L"", h);
     return h;
 }
+#ifdef DSJP_TEST
 static HANDLE (WINAPI *o_CreateFileA)(LPCSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE);
 static HANDLE WINAPI h_CreateFileA(LPCSTR name, DWORD acc, DWORD share, LPSECURITY_ATTRIBUTES sa, DWORD disp, DWORD flags, HANDLE tmpl)
 {
@@ -485,26 +494,34 @@ static BOOL WINAPI h_SetForegroundWindow(HWND w) { (void)w; return TRUE; }
 static HWND WINAPI h_SetActiveWindow(HWND w) { (void)w; return NULL; }
 static HWND WINAPI h_SetFocus(HWND w) { (void)w; return NULL; }
 static BOOL WINAPI h_BringWindowToTop(HWND w) { (void)w; return TRUE; }
+#endif /* DSJP_TEST */
 
 HRESULT WINAPI p_DirectInput8Create(HINSTANCE h, DWORD v, REFIID r, LPVOID *o, LPUNKNOWN u)
 {
     HRESULT hr = real_DirectInput8Create(h, v, r, o, u);
+#ifdef DSJP_TEST
     if (g_test && SUCCEEDED(hr)) testio_wrap_dinput(*o);
+#endif
     return hr;
 }
 
 static void init(HMODULE self)
 {
+#ifdef DSJP_TEST
     char buf[MAX_PATH];
+#endif
     /* cmp [esp+0Ch],'FONT'; jne ..; fld [esp+10h]; fcomp [..]; fnstsw ax; test ah,41h（フォントを読む関数。この exe かどうかの目印） */
     static const uint8_t sig[] = { 0x81, 0x7c, 0x24, 0x0c, 0x46, 0x4f, 0x4e, 0x54, 0x75, 0x3b, 0xd9, 0x44, 0x24, 0x10, 0xd8, 0x1d,
                                    0, 0, 0, 0, 0xdf, 0xe0, 0xf6, 0xc4, 0x41 };
+#ifdef DSJP_TEST
     InitializeCriticalSection(&g_logcs);
     if (GetEnvironmentVariableA("DSJP_TEST", buf, sizeof buf) && buf[0] >= '1') g_test = buf[0] - '0';
     if (GetEnvironmentVariableA("DSJP_LOG", buf, sizeof buf)) g_log = fopen(buf, "w");
+#endif
     if (!find_code(0x6bd534, sig, "xxxxxxxxxxxxxxxx....xxxxx")) { dlog("unknown exe, patch disabled"); return; }
     dlog("dsjp start test=%d", g_test);
     o_CreateFileW = iat_hook("KERNEL32.dll", "CreateFileW", (void *)h_CreateFileW);
+#ifdef DSJP_TEST
     if (g_test) o_CreateFileA = iat_hook("KERNEL32.dll", "CreateFileA", (void *)h_CreateFileA);
     if (g_test) {
         if (GetEnvironmentVariableA("DSJP_WX", buf, sizeof buf)) g_wx = atoi(buf);
@@ -529,6 +546,7 @@ static void init(HMODULE self)
         if (g_test > 1) patch_call(0x6448a9, (void *)h_texload);   /* same as the nointro command line switch */
     }
     if (g_test && GetEnvironmentVariableA("DSJP_NOJP", buf, sizeof buf)) { dlog("NOJP: Japanese disabled"); return; }
+#endif
     if (!font_init()) return;
     arch_init();
     wrap_init();

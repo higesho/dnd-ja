@@ -1,14 +1,17 @@
 /* ToEE Japanese patch: entry point, patch helpers, test-mode window hooks */
 #include "tjp.h"
+#ifdef TJP_TEST
 #include <stdio.h>
 #include <stdarg.h>
+#endif
 
 void proxy_init(void);
 void text_init(void);
 void render_init(void);
 
-int g_test;
 HMODULE g_self;
+#ifdef TJP_TEST
+int g_test;
 static FILE *g_log;
 static CRITICAL_SECTION g_logcs;
 
@@ -24,6 +27,7 @@ void tlog(const char *fmt, ...)
     fflush(g_log);
     LeaveCriticalSection(&g_logcs);
 }
+#endif
 
 void patch_bytes(uint32_t at, const void *b, int n)
 {
@@ -120,7 +124,9 @@ static void check_game_dll(HMODULE m)
     if (!_stricmp(b, "ToEESteam.dll") || !_stricmp(b, "temple.dll") || !_stricmp(b, "ToEE.dll")) {
         tlog("game dll %s at %p", b, m);
         text_on_game_dll(m);
+#ifdef TJP_TEST
         if (g_test) testio_game_dll(m);
+#endif
         if (!o_LCMapStringA) o_LCMapStringA = iat_hook(m, "KERNEL32.dll", "LCMapStringA", (void *)h_LCMapStringA);
         { void *o = iat_hook(m, "KERNEL32.dll", "LCMapStringW", (void *)h_LCMapStringW); if (!o_LCMapStringW) o_LCMapStringW = o; }
     }
@@ -192,6 +198,7 @@ static HMODULE WINAPI h_LoadLibraryW(LPCWSTR n) { HMODULE m = o_LoadLibraryW(n);
 static HMODULE (WINAPI *o_LoadLibraryExW)(LPCWSTR, HANDLE, DWORD);
 static HMODULE WINAPI h_LoadLibraryExW(LPCWSTR n, HANDLE h, DWORD f) { HMODULE m = o_LoadLibraryExW(n, h, f); if (!(f & (LOAD_LIBRARY_AS_DATAFILE | LOAD_LIBRARY_AS_IMAGE_RESOURCE | 0x40))) check_game_dll(m); return m; }
 
+#ifdef TJP_TEST
 /* ---------- test mode: logging of file access, own window title, never activate / never minimised ---------- */
 static HANDLE (WINAPI *o_CreateFileW)(LPCWSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE);
 static HANDLE WINAPI h_CreateFileW(LPCWSTR n, DWORD a, DWORD s, LPSECURITY_ATTRIBUTES sa, DWORD d, DWORD f, HANDLE t)
@@ -248,11 +255,13 @@ static BOOL WINAPI h_ShowWindow(HWND w, int cmd)
     if (cmd == SW_SHOW || cmd == SW_SHOWNORMAL || cmd == SW_RESTORE || cmd == SW_SHOWDEFAULT) cmd = SW_SHOWNOACTIVATE;
     return ShowWindow(w, cmd);
 }
+#endif /* TJP_TEST */
 
 static void init(void)
 {
-    char buf[MAX_PATH];
     HMODULE exe = GetModuleHandleA(NULL);
+#ifdef TJP_TEST
+    char buf[MAX_PATH];
     InitializeCriticalSection(&g_logcs);
     if (GetEnvironmentVariableA("TJP_TEST", buf, sizeof buf) && buf[0] >= '1') g_test = buf[0] - '0';
     if (GetEnvironmentVariableA("TJP_LOG", buf, sizeof buf)) g_log = fopen(buf, "w");
@@ -270,6 +279,7 @@ static void init(void)
     }
     /* test: TJP_OFF=1 keeps only the test hooks (game as without the patch) */
     if (g_test && GetEnvironmentVariableA("TJP_OFF", buf, sizeof buf)) { tlog("TJP_OFF"); return; }
+#endif
     text_init();
     o_LoadLibraryW = iat_hook(exe, "KERNEL32.dll", "LoadLibraryW", (void *)h_LoadLibraryW);
     o_GetProcAddress = iat_hook(exe, "KERNEL32.dll", "GetProcAddress", (void *)h_GetProcAddress);

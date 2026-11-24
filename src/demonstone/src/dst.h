@@ -4,9 +4,16 @@
 #include <stdint.h>
 
 /* ---- dst.c ---- */
+/* 試験用の仕組み（窓のまま動かす、撮影、入力の差し込み、ログ）は試験版（build.bat test、/DDSTJP_TEST）だけに入る。
+   配布版では g_test は 0、dlog は何もしない */
+#ifdef DSTJP_TEST
 extern int g_test;                      /* DSTJP_TEST=1 */
-extern HMODULE g_self;
 void dlog(const char *fmt, ...);
+#else
+#define g_test 0
+#define dlog(...) ((void)0)
+#endif
+extern HMODULE g_self;
 void patch_jmp(uint32_t at, void *to);
 void patch_bytes(uint32_t at, const void *b, int n);
 uint32_t find_code(uint32_t fixed, const uint8_t *pat, const char *mask);   /* 0 = not found */
@@ -14,10 +21,12 @@ void *iat_hook_mod(HMODULE mod, const char *dll, const char *func, void *repl);
 const void *res_get(int id, DWORD *size);
 const WCHAR *work_dir(void);            /* %TEMP%\DemonStoneJP\ */
 
-/* ---- testio.c ---- */
+/* ---- testio.c（試験版だけ） ---- */
+#ifdef DSTJP_TEST
 void testio_init(void);
 void testio_present(void *dev);         /* IDirect3DDevice9* */
 HRESULT testio_wrap_dinput(void *di);   /* IDirectInput8A* */
+#endif
 
 /* ---- data.c ---- */
 int data_init(void);                    /* translation table + char set from the embedded blob */

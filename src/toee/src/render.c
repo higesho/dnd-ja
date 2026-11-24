@@ -52,6 +52,7 @@ int jp_measure(const TigFont *tf, const TigTextStyle *st, TigFontMetrics *m);
 int jp_linebreak(const TigFont *tf, const char *text, const TigRect *r, const TigTextStyle *st);
 int jp_hittest(const TigFont *tf, const char *text, const TigRect *r, const TigTextStyle *st, int mx, int my, int *out);
 
+#ifdef TJP_TEST
 /* test: TJP_SAMPLE=1 shows a few Japanese strings without a translation table */
 static int g_sample;
 static const char *sample(const char *t)
@@ -75,13 +76,17 @@ static const char *sample(const char *t)
 
 static int g_logged;
 static int g_trace = -1;
+#endif
 static int __cdecl h_draw(const char *text, TigRect *r, TigTextStyle *st)
 {
+#ifdef TJP_TEST
     if (g_sample) text = sample(text);
     if (g_trace < 0) g_trace = getenv("TJP_TRACE") != NULL;
+#endif
     if (text && jp_has(text) && r->x >= 0 && r->width >= 0) {
         TigFont *f = cur_font();
         st->colorSlot = 0;
+#ifdef TJP_TEST
         if (g_trace) {
             int w = 0, h = 0, fmt = 0, ms = 0; D3D11_VIEWPORT vp = {0}; UINT nvp = 1;
             if (g_d3d) {
@@ -96,8 +101,10 @@ static int __cdecl h_draw(const char *text, TigRect *r, TigTextStyle *st)
             }
             tlog("DRAW ra %p %d,%d %dx%d fl %x trk %d rt %dx%d f%d ms%d vp %.0f,%.0f %.0fx%.0f | %.40s", _ReturnAddress(), r->x, r->y, r->width, r->height, st->flags, st->tracking, w, h, fmt, ms, vp.TopLeftX, vp.TopLeftY, vp.Width, vp.Height, text);
         }
+#endif
         if (f && jp_draw(f, text, r, st) == 0) return 0;
     }
+#ifdef TJP_TEST
     if (g_test && g_logged < 400) {
         TigFont *f = cur_font();
         ID3D11DeviceContext *c = NULL;
@@ -118,18 +125,23 @@ static int __cdecl h_draw(const char *text, TigRect *r, TigTextStyle *st)
         tlog("draw [%s] %d,%d %dx%d font %s/%d h%d b%d fl %x trk %d kern %d slot %d tab %d rt %dx%d", text, r->x, r->y, r->width, r->height,
              f ? f->name : "-", f ? f->fontsize : 0, f ? f->largestHeight : 0, f ? f->baseline : 0, st->flags, st->tracking, st->kerning, st->colorSlot, st->field4c, w, h);
     }
+#endif
     return o_draw(text, r, st);
 }
 
 static int __cdecl h_measure(const TigTextStyle *st, TigFontMetrics *m)
 {
+#ifdef TJP_TEST
     if (g_sample && m->text) m->text = sample(m->text);
     if (g_trace < 0) g_trace = getenv("TJP_TRACE") != NULL;
+#endif
     if (m->text && jp_has(m->text)) {
         TigFont *f = cur_font();
         int iw = m->width, ih = m->height;
         if (f && jp_measure(f, st, m) == 0) {
+#ifdef TJP_TEST
             if (g_trace) tlog("MEAS ra %p in %dx%d fl %x trk %d -> %dx%d lines %d | %.40s", _ReturnAddress(), iw, ih, st->flags, st->tracking, m->width, m->height, m->lines, m->text);
+#endif
             return 0;
         }
     }
@@ -226,8 +238,10 @@ static HRESULT WINAPI h_D3D11CreateDevice(void *a, int t, HMODULE s, UINT fl, co
 
 void render_init(void)
 {
+#ifdef TJP_TEST
     char b[8];
     if (g_test && GetEnvironmentVariableA("TJP_SAMPLE", b, sizeof b)) g_sample = 1;
+#endif
     o_D3D11CreateDevice = iat_hook(NULL, "d3d11.dll", "D3D11CreateDevice", (void *)h_D3D11CreateDevice);
     CreateThread(NULL, 0, install_thread, NULL, 0, NULL);
 }

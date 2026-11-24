@@ -127,8 +127,8 @@ def start(variant):
         pass
     elif variant == 'trace':
         shutil.copy(os.path.join(ROOT, 'build', 'trace', 'winmm.dll'), dst)
-    elif variant == 'jp':
-        shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), dst)
+    elif variant == 'jp':   # 試験版（src\build.bat test で作る build\test\winmm.dll）
+        shutil.copy(os.path.join(ROOT, 'build', 'test', 'winmm.dll'), dst)
     p = subprocess.Popen([os.path.join(GAME, 'DOSBOX', 'DOSBox.exe'), '-conf', '_jp\\test\\test.conf', '-noconsole'], cwd=GAME)
     open(PIDF, 'w').write(str(p.pid))
     for i in range(50):

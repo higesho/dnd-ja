@@ -18,8 +18,10 @@ void proxy_init(void);
 static char g_dir[MAX_PATH];
 static FILE *g_log;
 static int g_logon;
+/* ログは試験版（DEVTEST）だけで書く。配布版では何もしない */
 static void dbg(const char *fmt, ...)
 {
+#ifdef DEVTEST
     va_list ap;
     if (!g_logon) return;
     if (!g_log) {
@@ -32,6 +34,9 @@ static void dbg(const char *fmt, ...)
     vfprintf(g_log, fmt, ap);
     va_end(ap);
     fflush(g_log);
+#else
+    (void)fmt;
+#endif
 }
 
 /* ------------------------------------------- DOSBox 0.74-3 の内部アドレス */

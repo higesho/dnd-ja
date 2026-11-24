@@ -10,6 +10,7 @@ DOSBox の中で動くゲームの文字の表示を横取りして日本語に�
 - フォントの組み立てにダンジョン・ハックの `tools/make_patch.py`（`../dungeonhack/tools/`）を使います。`tools/make_patch.py` の `DH` を置き場所に合わせて直してください。
 - `tools/code_patches.py` はゲームの実行ファイル（CODE.1 / CODE.2）への書き換えの一覧です。
 - できあがり: `build/winmm.dll`
+- `src/build.bat test` は試験用の DLL（`build/test/winmm.dll`、`RLJP_TEST` 付き。配布しない）を作ります。`tools/rebuild.sh` は両方を作り、`tools/win.py start jp` は試験用の DLL を使います。
 
 ## 含まれないもの（各自用意）
 - 原作のゲームのファイル

@@ -168,8 +168,8 @@ def start(variant):
         os.remove(dst)
     if variant == 'trace':
         shutil.copy(os.path.join(ROOT, 'build', 'trace', 'winmm.dll'), dst)
-    elif variant == 'jp':
-        shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), dst)
+    elif variant == 'jp':      # 試験版（src/build.bat test。dev.c のキー入力と撮影が入っている）
+        shutil.copy(os.path.join(ROOT, 'build', 'test', 'winmm.dll'), dst)
     exe = os.path.join(GAME, 'DOSBOX', 'DOSBox.exe')
     if variant == 'gog':
         # GOG's DOSBox 0.74-2.1 (copied from the GOG install) with the Steam game files
@@ -178,7 +178,7 @@ def start(variant):
         os.makedirs(gd, exist_ok=True)
         for f in ('DOSBox.exe', 'SDL.dll', 'SDL_net.dll'):
             shutil.copy(os.path.join(src, f), os.path.join(gd, f))
-        shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), os.path.join(gd, 'winmm.dll'))
+        shutil.copy(os.path.join(ROOT, 'build', 'test', 'winmm.dll'), os.path.join(gd, 'winmm.dll'))
         exe = os.path.join(gd, 'DOSBox.exe')
     p = subprocess.Popen([exe, '-noconsole', '-conf', 'base.conf', '-conf', 'graphics.conf',
                           '-conf', '_jp\\test\\test.conf'], cwd=GAME,

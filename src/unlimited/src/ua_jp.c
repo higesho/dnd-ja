@@ -16,9 +16,16 @@
 #include "resource.h"
 
 void proxy_init(void);
+#ifdef DS_TEST
 void testio_init(void);   /* テスト用（DS_TEST=1 のときだけ）: SDL_PushEvent でキーを入れる */
+#endif
 
 static char g_dir[MAX_PATH];
+#ifndef DS_TEST
+/* 配布版: ログは書かない（ログ・描画の記録・画面の撮影・キーの差し込みなどの試験用の仕組みは、build.bat test の試験版にだけ入る） */
+#define dbg(...) ((void)0)
+#define log_miss(tag, s, n) ((void)0)
+#else
 static FILE *g_log;
 static int g_logon;
 static volatile int g_trace;   /* テスト用: %LOCALAPPDATA%\UA_JP\trace.txt があるあいだ 1 字描画を記録する */
@@ -37,8 +44,10 @@ static void dbg(const char *fmt, ...)
     va_end(ap);
     fflush(g_log);
 }
+#endif
 
 void ime_init(void);      /* ime.c: 日本語の入力欄 */
+#ifdef DS_TEST
 void ua_log(const char *fmt, ...)
 {
     char b[2400];
@@ -48,6 +57,7 @@ void ua_log(const char *fmt, ...)
     va_end(ap);
     dbg("%s", b);
 }
+#endif
 
 static uint32_t g_dbx, g_dbx_code;   /* DOSBox build: Steam 0.74-3 = 0, GOG 0.74-2.1 = +0xe000 / -0x10 */
 #define A_CB_HANDLERS (0x74d460u + g_dbx)
@@ -168,7 +178,9 @@ static int load_blob(HMODULE self)
         } else if (s->type == 'P') {
             const uint32_t *v = (const uint32_t*)d;
             g_cb_base = (int)v[0];
+#ifdef DS_TEST
             g_logon = (int)v[1];
+#endif
         }
         p = d + s->len;
     }
@@ -285,6 +297,7 @@ static int read_cstr(uint32_t a, uint8_t *buf, int max)
     return n;
 }
 
+#ifdef DS_TEST
 #define NSEEN 8192
 static uint64_t g_seen[NSEEN];
 static void log_miss(const char *tag, const uint8_t *s, int n)
@@ -305,6 +318,7 @@ static void log_miss(const char *tag, const uint8_t *s, int n)
     buf[o] = 0;
     dbg("%s %s\n", tag, buf);
 }
+#endif
 
 /* 語を並べた名前（"Long Sword +2 " のような品物の名前）: 表にある語句（長いものから 4 語まで）と数だけで
  * できていれば、訳をつないだ文字列を作る（UTF-8 ではなく表の符号のまま）。できなければ 0 */
@@ -544,7 +558,9 @@ static void editor_compact(int site, uint16_t bg, uint16_t be, const uint8_t *en
             for (i = 0; i < 6; i++) if (rb(S + 0xed + 2 * i)) last = i + 1;
             if (rb(S + 0xf9) < last) wb(S + 0xf9, (uint8_t)last);
         }
+#ifdef DS_TEST
         if (g_trace) dbg("ED1 L%d col%d n%d len%d dc%d K%d p1=%02x\n", L, col, n, e.n, dc, e.cell[e.n], rb(S + rb(S + 0xec + 2 * L) - 1));
+#endif
         ww(xvar, (uint16_t)(rw(xvar) - 8 * (col - dc)));
     } else if (site == 2) {       /* 行末の空白埋め: 詰めた後の行末から 38 桁目まで */
         int K = e.cell[e.n];
@@ -861,6 +877,7 @@ static uint32_t __cdecl cb_glyph(void)
 {
     uint32_t a = PHYS_SS + R_BP + 0x0a;
     uint8_t c = rb(a);
+#ifdef DS_TEST
     if (g_logon) {      /* テスト用のビルドだけ: trace.txt があるかを 16 回に 1 回見る */
         static int cnt;
         if (!(cnt++ & 15)) {
@@ -881,6 +898,7 @@ static uint32_t __cdecl cb_glyph(void)
         }
         dbg("%s\n", buf);
     }
+#endif
     if (g_ov.active) {      /* エディタの入力欄の 1 行を描いている途中（cb_fmt の ov_build が作った「マスごとの中身」を順に使う） */
         static const uint8_t blank[8] = {0};
         int i = g_ov.i++;
@@ -984,7 +1002,9 @@ static CRITICAL_SECTION g_cs;
 static FILE *__cdecl hook_fopen(const char *name, const char *mode)
 {
     if (g_enabled) { EnterCriticalSection(&g_cs); try_patch(); LeaveCriticalSection(&g_cs); }
+#ifdef DS_TEST
     if (g_logon && name && strstr(name, ".DSN")) dbg("fopen %s %s\n", name, mode);      /* テスト用: デザインのどのファイルを開いたか */
+#endif
     return real_fopen(name, mode);
 }
 static int hook_iat(void)
@@ -1023,8 +1043,10 @@ static void init(HMODULE self)
     if (!GetEnvironmentVariableA("LOCALAPPDATA", la, MAX_PATH)) return;
     if (!verify_dosbox()) return;
     if (!load_blob(self)) return;
+#ifdef DS_TEST
     wsprintfA(g_dir, "%s\\UA_JP", la);
-    CreateDirectoryA(g_dir, NULL);
+    CreateDirectoryA(g_dir, NULL);      /* ログ（log.txt）と trace.txt の置き場。試験版だけ */
+#endif
     crt = GetModuleHandleA("msvcrt.dll");
     if (!crt) return;
     real_fopen = (fopen_t)GetProcAddress(crt, "fopen");
@@ -1035,6 +1057,10 @@ static void init(HMODULE self)
 BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r)
 {
     (void)r;
-    if (reason == DLL_PROCESS_ATTACH) { DisableThreadLibraryCalls(h); proxy_init(); init(h); testio_init(); if (g_enabled) ime_init(); }
+    if (reason == DLL_PROCESS_ATTACH) { DisableThreadLibraryCalls(h); proxy_init(); init(h);
+#ifdef DS_TEST
+        testio_init();
+#endif
+        if (g_enabled) ime_init(); }
     return TRUE;
 }

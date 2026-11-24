@@ -1,3 +1,31 @@
+#pragma code_page(65001)
+#include <winver.h>
 #include "resource.h"
 1 RCDATA "..\build\data.bin"
 3 RCDATA "..\build\serif.ttf"
+
+1 VERSIONINFO
+FILEVERSION 1,1,0,0
+PRODUCTVERSION 1,1,0,0
+FILEOS 0x40004L
+FILETYPE VFT_DLL
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "041104B0"
+    BEGIN
+      VALUE "CompanyName", "higesho"
+      VALUE "ProductName", "デーモンストーン 日本語化パッチ（非公式）"
+      VALUE "FileDescription", "デーモンストーン 日本語化パッチ（非公式）"
+      VALUE "FileVersion", "1.1.0.0"
+      VALUE "ProductVersion", "1.1"
+      VALUE "InternalName", "DemonStone_JP"
+      VALUE "OriginalFilename", "dinput8.dll"
+      VALUE "Comments", "https://higesho.github.io/dnd-ja/demonstone/"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x0411, 1200
+  END
+END

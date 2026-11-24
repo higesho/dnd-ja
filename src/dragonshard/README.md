@@ -5,6 +5,7 @@
 - `src/` … DLL の C ソースと組み立て用の `build.bat`（Visual Studio 2022 の x86 用 C コンパイラ）
 - `tools/` … H2O アーカイブを読む道具、訳の表から埋め込みデータとフォントを作る Python スクリプト、試験用の道具
 - 組み立て: `sh tools/rebuild.sh`（`merge.py` → `make_data.py` → `make_font.py` → `src/build.bat`）。`build/dinput8.dll` ができます
+- 配布版と試験版: `src/build.bat` は配布版（`build/dinput8.dll`）、`src/build.bat test` は試験版（`build/test/dinput8.dll`、`DSJP_TEST` 付きで `testio.c` 入り）を作ります。試験の道具（`tools/win.py`）は試験版を使います。試験版は配布しません
 - `src/explode.c` と `tools/blast.py` は Mark Adler 氏の blast（zlib の contrib）を元に書き直したもので、この 2 つだけは zlib ライセンスです（冒頭に表示があります）
 
 訳の表（text/）・フォントのデータ・原作のファイルは含みません。原作は各自で用意してください。

@@ -4,7 +4,7 @@
 
 - `src/` … DLL の C ソースと組み立て用の `build.bat`（Visual Studio 2022 の x86 用 C コンパイラ）
 - `tools/` … 訳の表から DLL に埋め込むデータを作る Python スクリプト、ゲームのデータを読む道具、試験用の道具
-- 組み立て: ゲームのフォルダの下の `_jp` に置き、`python -X utf8 tools/make_patch.py` でデータを作ってから `src/build.bat` を実行。`build/winmm.dll` ができます
+- 組み立て: ゲームのフォルダの下の `_jp` に置き、`python -X utf8 tools/make_patch.py` でデータを作ってから `src/build.bat` を実行。`build/winmm.dll`（配布版）ができます。`src/build.bat test` では試験版の `build/test/winmm.dll`（ログ、画面の撮影、キーとマウスの差し込み、DK_NOJP の切り替えが入る。`tools/win.py` が使う。配布しない）ができます
 - ムービーの字幕は `tools/make_subs.py` で作ります。画像の文字を描き直す道具は含みません
 
 訳の表（text/）・フォントのデータ・原作のファイルは含みません。原作は各自で用意してください。フォントは BDF 形式のものを `font/` に置きます。

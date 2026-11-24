@@ -1,5 +1,5 @@
 # Drive the test game (never the foreground window; the window is found by its title "TJP TEST" and pid).
-#   python tools/win.py start [ENV=VAL ..]   copy build/DWrite.dll into the game, launch with TJP_TEST=1
+#   python tools/win.py start [ENV=VAL ..]   copy build/test/DWrite.dll (test build) into the game, launch with TJP_TEST=1
 #   python tools/win.py stop                 kill the game, remove the DLL
 #   python tools/win.py shot NAME            back-buffer capture -> capture/NAME.png
 #   python tools/win.py click X Y [right]    / move X Y / key VK.. / type TEXT / wait MS
@@ -65,7 +65,7 @@ def main():
     a = sys.argv[1:]
     c = a[0]
     if c == 'start':
-        shutil.copy(os.path.join(ROOT, 'build', 'DWrite.dll'), os.path.join(GAME, 'DWrite.dll'))
+        shutil.copy(os.path.join(ROOT, 'build', 'test', 'DWrite.dll'), os.path.join(GAME, 'DWrite.dll'))   # 試験版（src/build.bat test）
         env = dict(os.environ); env['TJP_TEST'] = '1'; env['TJP_LOG'] = os.path.join(ROOT, 'work', 'tjp.log')
         args = []
         for x in a[1:]:

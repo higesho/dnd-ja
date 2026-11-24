@@ -18,11 +18,17 @@
 #include "resource.h"
 
 void proxy_init(void);
-void testio_init(void);
+#ifdef AQ_TEST
+void testio_init(void);   /* testio.c（試験版だけ） */
+#endif
 
 static char g_dir[MAX_PATH];
-static FILE *g_log;
 static int g_logon;
+#ifndef AQ_TEST
+/* 配布版: ログは書かない（ログと画面の撮影は試験版 build.bat test だけ） */
+#define dbg(...) ((void)0)
+#else
+static FILE *g_log;
 static void dbg(const char *fmt, ...)
 {
     va_list ap;
@@ -38,6 +44,7 @@ static void dbg(const char *fmt, ...)
     va_end(ap);
     fflush(g_log);
 }
+#endif
 
 /* ------------------------------------------------ DOSBox 0.74-3 の中身 */
 static uint32_t g_dbx, g_dbx_code;   /* DOSBox の版: Steam 0.74-3 = 0、GOG 0.74-2.1 = +0xe000 / -0x10 */
@@ -232,6 +239,9 @@ static const tentry *lookup(const uint8_t *s, int n)
 }
 static int glyph_no(uint8_t lead, uint8_t trail) { return g_glyph_index ? g_glyph_index[(lead << 8) | trail] : 0; }
 
+#ifndef AQ_TEST
+#define log_miss(tag, s, n) ((void)0)
+#else
 static void log_miss(const char *tag, const uint8_t *s, int n)
 {
     char buf[400];
@@ -241,6 +251,7 @@ static void log_miss(const char *tag, const uint8_t *s, int n)
     buf[i] = 0;
     dbg("%s [%s]\n", tag, buf);
 }
+#endif
 
 /* ------------------------------------------------------------ コールバック */
 #define JPBUF 2047          /* GPL の作業領域（EXE の書き換えで 2048 バイトにしてある） */
@@ -689,7 +700,9 @@ BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r)
         DisableThreadLibraryCalls(h);
         proxy_init();
         init(h);
+#ifdef AQ_TEST
         testio_init();
+#endif
     }
     return TRUE;
 }

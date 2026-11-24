@@ -1,5 +1,5 @@
 # Drive the test DOSBox window by its own process / unique title (never the foreground window).
-#   python tools/win.py start [trace|jp|none]   launch DOSBox (DLL variant copied as winmm.dll)
+#   python tools/win.py start [trace|jp|none]   launch DOSBox (DLL variant copied as winmm.dll; default = test build build/test/winmm.dll)
 #   python tools/win.py shot NAME               PrintWindow capture -> capture/NAME.png
 #   python tools/win.py key KEY [KEY..]         post keys (names: enter esc space up down left right f1.. a..z 0..9, or 'text:HELLO')
 #   python tools/win.py click X Y [right]       click at game coords (320x200)
@@ -144,7 +144,7 @@ def start(variant):
     if variant == 'trace':
         shutil.copy(os.path.join(ROOT, 'build', 'trace', 'winmm.dll'), dst)
     else:
-        shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), dst)
+        shutil.copy(os.path.join(ROOT, 'build', 'test', 'winmm.dll'), dst)   # 試験版（src/build.bat test）
     env = dict(os.environ); env["FE_TEST"] = "1"; env.setdefault("FE_LOG", "1")
     exe = os.path.join(GAME, 'DOSBOX', 'DOSBox.exe')
     if variant == 'gog':
@@ -155,7 +155,7 @@ def start(variant):
         os.makedirs(gd, exist_ok=True)
         for f in ('DOSBox.exe', 'SDL.dll', 'SDL_net.dll'):
             shutil.copy(os.path.join(src, f), os.path.join(gd, f))
-        shutil.copy(os.path.join(ROOT, 'build', 'winmm.dll'), os.path.join(gd, 'winmm.dll'))
+        shutil.copy(os.path.join(ROOT, 'build', 'test', 'winmm.dll'), os.path.join(gd, 'winmm.dll'))
         exe = os.path.join(gd, 'DOSBox.exe')
     p = subprocess.Popen([exe, '-noconsole', '-conf', 'base.conf',
                           '-conf', '_jp\\test\\' + os.environ.get('FE_CONF', 'test.conf')], cwd=GAME, env=env)
